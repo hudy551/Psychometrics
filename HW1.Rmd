@@ -1,0 +1,207 @@
+---
+title: 'Selected Topics of Psychometrics (NMST570)'
+subtitle: 'Homework Assignment 1: Introduction (due: Oct 18, 2021)'
+author: 'Kateřina Hudáčová, Benjamín Kunc'
+date: \today
+output:
+  html_document:
+  df_print: paged
+  code_folding: show
+  pdf_document: default
+---
+
+</br>
+
+#### 1. Read and comment on the first chapter on <https://perusall.com>. [2 pts]
+
+Done.
+
+#### 2. Run the code for the first chapter, available on course webpage <http://www.cs.cas.cz/martinkova/NMST570.html>.
+
+Done.
+
+#### 3. Complete the CAPlearnR online tutorials for Introduction and Measurement data. Attach certificates. [4 pts]
+
+> Note: If you meet any issues, contact the the TA or the instructor before 8 AM of the due date.
+
+Completed.
+
+#### 4. Project preparation: Explore the Czech matura data as described below. You can work with 1-2 teammates on this task. All teammates names have to be included on your answer sheet. [4 pts]
+
+##### 4a. The Czech matura sample data is available in the `ShinyItemAnalysis` package as `CZmaturaS`. The `CZmaturaS.csv` file is available on course webpage. Explore the `CZmaturaS` dataset with R and/or ShinyItemAnalysis. Load the data and write some basic description of the data below. How many rows and columns does it contain, what do they represent?
+
+> HINT: Use the `library()` function to load the package, and the `help()` function (or `?`) to learn more about the dataset. Use functions `dim()`, `names()`, `head()`, `str()`, and/or `summary()` to explore the data. Check how variables `SchTypeGY` and `Total` were computed.
+>
+> </p>
+
+```{r load_packages, message=FALSE, warning=FALSE, paged.print=TRUE}
+library(tidyverse)
+library(ShinyItemAnalysis)
+library(shiny)
+library(utils)
+library(ggplot2)
+library(psych)
+```
+
+```{r eval=FALSE}
+#Package documentation
+?"ShinyItemAnalysis-package"
+```
+
+```{r}
+#Loading the CzmaturaS dataset
+data("CZmaturaS")
+```
+
+```{r}
+dim(CZmaturaS)
+```
+
+<details>
+
+<summary>
+
+`names(CZmaturaS)`
+
+</summary>
+
+```{r echo=FALSE}
+names(CZmaturaS)
+```
+
+</details>
+
+<details>
+
+<summary>
+
+`head(CZmaturaS)`
+
+</summary>
+
+```{r echo=FALSE}
+head(CZmaturaS)
+```
+
+</details>
+
+<details>
+
+<summary>
+
+`str(CZmaturaS)`
+
+</summary>
+
+```{r echo=FALSE}
+str(CZmaturaS)
+```
+
+</details>
+
+<details>
+
+<summary>
+
+`summary(CZmaturaS)`
+
+</summary>
+
+```{r echo=FALSE}
+summary(CZmaturaS)
+```
+
+</details>
+
+</br>
+
+The CZmaturaS dataset contains a sample of 2000 students' results from the czech matura exam in Mathematics. The dataset consists of 2000 rows and 73 columns. The code of the given school type is stored in the variable `SchType`, a factor variable with 16 levels. `FirstAtt` provides information about whether it was the student's first attempt at the exam or not. It is set to a numeric variable, although it only takes on two values (binary). As can be deduced from the `summary()` function's output, approximately 87 % students in this dataset were taking the exam for the first time. `SchTypeGY` was computed from the `SchType` variable, ascribing value '1' to all schools of type `gymnázium` and value '0' to all other school types (binary). It is also set to a numeric variable. The `summary()` function's output tells us, that circa 42 % of students in this sample were attending a *gymnázium*. Columns `o1`--`o26.2` contain item answers, columns `b1`--`b26` represent scored item answers. `Total` stands for total score and was computed as the sum of item scores for each student. `Total` spans the range 1 to 50 with a mean score of 27.59 and a median score of 28. </br>
+
+##### 4b. Provide descriptive statistics and plots for all relevant variables. Are the total scores approximately normally distributed? Why/Why not?
+
+```{r compute_total_scores}
+#Descriptive statistics of total scores
+describe(CZmaturaS$Total, na.rm = FALSE)
+
+#Descriptive statistics of total scores grouped by 'SchTypeGY'
+describeBy(CZmaturaS[, c("SchTypeGY", "Total")], group = "SchTypeGY")
+
+#Histogram of total scores
+ggplot(CZmaturaS, aes(Total)) +
+  geom_histogram(binwidth = 1, fill = "#69b3a2", col="#e9ecef") +
+        xlab("Total score") +
+        ylab("Number of respondents") +
+        theme_bw()
+
+#Q-Q plot of total scores
+ggpubr::ggqqplot(CZmaturaS$Total, ylim=c(0,50), col ="#69b3a2") +
+  theme_bw()
+
+#Histogram of total scores grouped by 'SchTypeGY'
+ggplot(CZmaturaS, aes(x=Total, fill=(as.factor(SchTypeGY)))) +
+    geom_histogram(color="#e9ecef", 
+                   alpha=0.6, 
+                   position = 'identity', 
+                   binwidth = 1) +
+    scale_fill_manual(values=c("#69b3a2", "#404080"), 
+                      name = "School type", 
+                      labels = c("Other", "Gymnázium")) +
+    theme_bw()
+```
+
+```{r}
+#Descriptive statistics of total scores grouped by 'FirstAtt'
+describeBy(CZmaturaS[, c("FirstAtt", "Total")], group = "FirstAtt")
+
+#Histogram of total scores grouped by 'FirstAtt'
+ggplot(CZmaturaS, aes(x=Total, fill=(as.factor(FirstAtt)))) +
+    geom_histogram(color="#e9ecef", 
+                   alpha=0.6, 
+                   position = 'identity', 
+                   binwidth = 1) +
+    scale_fill_manual(values=c("#404080", "#69b3a2"), name = "First attempt", labels = c("No", "Yes")) +
+    theme_bw()
+```
+
+The total scores do not follow a normal distribution. The median (28) is larger than the mean (27.59) which suggests a slight negative skew (-0.09). The kurtosis is negative as well (-0.93), thus pointing to a somewhat platykurtic distribution. Although the histogram of total scores does not seem obviously non-normal, the Q-Q plot shows a clear deviance from the normal distribution around the tails. After plotting a separate histogram for schools of type *gymnázium*, it becomes apparent that the underlying distribution is not unimodal *Gymnázium* students are, on average, more successful (mean total score of 35.12) than other students (mean total score of 22.13). The distribution of the *gymnázium* students' total scores has a negative skew (-0.42), whereas the distribution of other students' total scores is positively-skewed (0.25). Similarly, the distributions of total scores differ when the variable `FirstAtt` is considered. The sample of students who are repeating the exam is quite small (n = 268). Nonetheless, their average total score (16.9) is distinctly lower than the total score of students who are taking the exam for the first time (29.25), and the distribution of their scores is positively skewed (0.58). </br>
+
+##### 4c Compute the Z-scores, T-scores, percentiles, and success rate for all respondents. Interpret the results for the first respondent.
+
+```{r compute_z_scores}
+zscore <- scale(CZmaturaS$Total)
+tscore <- 10 * zscore + 50
+ecdf <- ecdf(CZmaturaS$Total)
+percentiles <- as.matrix(100 * round(ecdf(CZmaturaS$Total), 2))
+success_rate <- as.matrix(100 * (CZmaturaS$Total / max(CZmaturaS$Total)))
+data.frame(zscore[1,], tscore[1,], percentiles[1,], success_rate[1,])
+```
+
+The first respondent has a Z-score of circa 0.28, which means their total score lies 0.28 times the standard deviation above the mean of this sample (Z-score = 0). The T-score of this student is approximately 52.85 which again points to an above-average (50) result. Their percentile is 60, meaning 60 % of respondents in this sample scored less than or equal to the first respondent. The respondent's success rate is 62, which means their total score corresponds to 62 % of the best total score in this sample (50).
+
+</br>
+
+##### 4d Work with ShinyItemAnalysis interactive app locally or online at <https://shiny.cs.cas.cz/ShinyItemAnalysis/> or <https://cemp.shinyapps.io/ShinyItemAnalysis/>. Upload the `CZmaturaS.csv` data files into the interactive app and explore the different tabs of the app. Download, attach and interpret the 3-color histogram of the summary scores.
+
+```{r work with SIA}
+# colors by cut-score
+cut <- median(CZmaturaS$Total) # cut-score
+color <- c(rep("red", cut - min(CZmaturaS$Total)), "gray", rep("blue", max(CZmaturaS$Total) - cut))
+df <- data.frame(CZmaturaS$Total)
+
+# 3-color histogram
+ggplot(df, aes(CZmaturaS.Total)) +
+  geom_histogram(binwidth = 1, fill = color, col = "black") +
+  xlab("Total score") +
+  ylab("Number of respondents") +
+  theme_bw()
+```
+
+The 3-color histogram depicts the total scores with a cut-score -- in this case, the median (28). The cut-score is represented by the grey column, which divides the sample into two equally sized groups. Students who scored below the median of this sample are red, students who scored above the sample median are blue. Lastly, students who reached a total score equal to the median are shown in the grey column.
+
+</br>
+
+#### 5. Provide constructive feedback to the lecture, exercises, or any of the material. Which dataset would you like to analyze for the project? [BONUS 1 pt]
+
+I find the lectures to be very helpful, I especially appreciate how well prepared the study materials are (e.g. the online R tutorial). I also think there's a very good balance of theory (lectures, reading materials) and praxis.
+
+</br>
