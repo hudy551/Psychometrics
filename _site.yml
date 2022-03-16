@@ -1,0 +1,12 @@
+name: "psychometrics"
+output_dir: "docs"
+navbar:
+  title: "Psychometrics"
+  left:
+  - text: "HW1"
+   href: HW1.html
+  - text: "HW2"
+   href: HW2.html
+output:
+  html_document:
+ theme: cosmo
