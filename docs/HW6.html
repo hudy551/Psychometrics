@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Kateřina Hudáčová (Benjamín Kunc)" />
+
+
+<title>Selected Topics of Psychometrics (NMST570)</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Psychometrics</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">HW1</a>
+</li>
+<li>
+  <a href="HW2.html">HW2</a>
+</li>
+<li>
+  <a href="HW3.html">HW3</a>
+</li>
+<li>
+  <a href="HW4.html">HW4</a>
+</li>
+<li>
+  <a href="HW5.html">HW5</a>
+</li>
+<li>
+  <a href="HW6.html">HW6</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Selected Topics of Psychometrics (NMST570)</h1>
+<h3 class="subtitle">Homework Assignment 6: DIF</h3>
+<h4 class="author">Kateřina Hudáčová (Benjamín Kunc)</h4>
+
+</div>
+
+
+<p>Note: The assignment is due on December 20, 2021. Send your code and html/pdf report to <code>dlouha@cs.cas.cz</code> (and to <code>martinkova@cs.cas.cz</code> in copy).</p>
+<p></br></p>
+<div id="read-and-comment-on-chapter-8-on-httpsperusall.com.-2-pts" class="section level4">
+<h4>1. Read and comment on Chapter 8 on <a href="https://perusall.com" class="uri">https://perusall.com</a>. [2 pts]</h4>
+</div>
+<div id="run-the-code-for-the-chapter-8-available-on-course-webpage-httpwww.cs.cas.czmartinkovanmst570.html." class="section level4">
+<h4>2. Run the code for the Chapter 8, available on course webpage <a href="http://www.cs.cas.cz/martinkova/NMST570.html" class="uri">http://www.cs.cas.cz/martinkova/NMST570.html</a>.</h4>
+</div>
+<div id="training-section-in-shinyitemanalysis-3-pts" class="section level4">
+<h4>3. Training section in ShinyItemAnalysis [3 pts]</h4>
+<div id="use-shinyitemanalysis-interactive-application-and-finish-exercises-in-diffairnessexercises." class="section level5">
+<h5>Use ShinyItemAnalysis interactive application, and finish Exercises in DIF/Fairness/Exercises.</h5>
+</div>
+</div>
+<div id="project-preparation." class="section level4">
+<h4>4. Project preparation.</h4>
+<div id="explore-the-czech-matura-data-or-data-of-your-choice-as-described-below.-you-can-work-with-1-2-teammates-on-this-task.-all-teammate-names-have-to-be-included-on-your-answer-sheet.-5-pts" class="section level5">
+<h5>Explore the Czech matura data OR DATA OF YOUR CHOICE as described below. You can work with 1-2 teammates on this task. All teammate names have to be included on your answer sheet. [5 pts]</h5>
+<p>I am working with the <code>BFI2</code> dataset from the <code>ShinyItemAnalysis</code> package. The <code>BFI2</code> dataset contains responses of <span class="math inline">\(1733\)</span> Czech respondents to the Big Five Inventory 2, as well as information about their age, education, and gender. The BFI2 items are scored using a 5-point Likert scale.</p>
+<pre class="r"><code>library(deltaPlotR)
+library(difNLR)
+library(difR)
+library(ggplot2)
+library(ltm)
+library(mirt)
+library(ShinyItemAnalysis)
+library(cowplot)
+library(Cairo)
+library(dplyr)
+
+data(BFI2, package=&#39;ShinyItemAnalysis&#39;)
+
+# Data frame for agreeableness domain
+BFI2_a &lt;- BFI2[, seq(2, 57, 5)]
+BFI2_a &lt;- cbind(BFI2_a, BFI2[61:63])
+BFI2_a &lt;- BFI2_a %&gt;% 
+  mutate(total_score = rowSums(BFI2_a[1:12]))</code></pre>
+<p>I created a data frame for the <em>agreeability</em> domain, which I’m going to be working with in this assignment.</p>
+<p></br></p>
+</div>
+</div>
+<div id="a.-introduction-to-dif" class="section level4">
+<h4>4a. Introduction to DIF</h4>
+<div id="explain-why-dif-analysis-is-important-in-test-validation.-introduce-your-data.-discuss-which-variables-could-you-use-for-testing-for-dif-provide-their-descriptive-statistics." class="section level5">
+<h5>Explain why DIF analysis is important in test validation. Introduce your data. Discuss which variables could you use for testing for DIF, provide their descriptive statistics.</h5>
+<p>DIF analysis is important in test validation, because it takes into account that groups may differ in overall ability and allows us to examine potential differences on the level of individual items. It can uncover unfair items or in case of tests that are meant to function differently for different groups, confirm their instructional sensitivity. </br></p>
+<p>There are three variables that could technically be used for DIF testing – gender, age (converted to age groups) and education.</p>
+<pre class="r"><code># Gender
+BFI2_a$Gender &lt;- factor(BFI2_a$Gender, levels = c(0,1), labels = c(&quot;Female&quot;, &quot;Male&quot;))
+table(BFI2_a$Gender)</code></pre>
+<pre><code>## 
+## Female   Male 
+##   1003    730</code></pre>
+<pre class="r"><code>tapply(BFI2_a$total_score, BFI2_a$Gender, summary)</code></pre>
+<pre><code>## $Female
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    20.0    40.0    45.0    44.3    49.0    60.0 
+## 
+## $Male
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   19.00   37.00   42.00   41.95   47.00   60.00</code></pre>
+<pre class="r"><code># Age
+summary(BFI2_a$Age)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   15.00   18.00   20.00   20.06   22.00   26.00</code></pre>
+<pre class="r"><code>BFI2_a$Age &lt;- factor(dplyr::case_when(BFI2_a$Age &lt;= 20 ~ &#39;15-20&#39;,
+                 TRUE ~ &#39;21-26&#39;))
+table(BFI2_a$Age)</code></pre>
+<pre><code>## 
+## 15-20 21-26 
+##  1055   678</code></pre>
+<pre class="r"><code>tapply(BFI2_a$total_score, BFI2_a$Age, summary)</code></pre>
+<pre><code>## $`15-20`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   20.00   39.00   43.00   42.82   48.00   60.00 
+## 
+## $`21-26`
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   19.00   40.00   45.00   44.07   49.00   60.00</code></pre>
+<pre class="r"><code># Education
+BFI2_a$Educ &lt;- factor(dplyr::case_when(BFI2_a$Educ &lt;= 4 ~ &quot;Secondary&quot;,
+                                      BFI2_a$Educ &gt; 4 ~ &quot;Tertiary&quot;))
+                               
+summary(BFI2_a$Educ)</code></pre>
+<pre><code>## Secondary  Tertiary      NA&#39;s 
+##       531       192      1010</code></pre>
+<pre class="r"><code>tapply(BFI2_a$total_score, BFI2_a$Educ, summary)</code></pre>
+<pre><code>## $Secondary
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   20.00   38.00   42.00   41.85   47.00   57.00 
+## 
+## $Tertiary
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   23.00   40.00   45.00   44.64   50.00   60.00</code></pre>
+<p>There are <span class="math inline">\(1003\)</span> women and <span class="math inline">\(730\)</span> men in the `BFI2´ dataset. As can be seen in the summary statistic, the total agreeability scores seem slightly different for male and female participants with female participants scoring higher in agreeability (= <span class="math inline">\(44.3\)</span>) than their male counterparts (= <span class="math inline">\(41.95\)</span>). </br></p>
+<p>When it comes to age, the ´BFI2´ sample is rather homogeneous with all participants being 15 to 26 years old. I divided participants into two groups – 15-20 (N = <span class="math inline">\(1055\)</span>) and 21-26 (N = <span class="math inline">\(678\)</span>) years old. The summary statistic shows, that the observed agreeability is a bit different for age groups with younger participants scoring (on average) lower (= <span class="math inline">\(42.82\)</span>) than older participants (= <span class="math inline">\(44.07\)</span>). </br></p>
+<p>The <code>Educ</code> variable has quite a lot of missing values (NA = <span class="math inline">\(1010\)</span>). Nonetheless, I divided participants into two groups based on education level (secondary or tertiary). The observed ability in both groups is, again, slightly different with participants with tertiary education scoring higher (= <span class="math inline">\(44.64\)</span>) than participants with secondary education (= <span class="math inline">\(41.85\)</span>).</p>
+</div>
+</div>
+<div id="b.-dif-analysis-with-delta-plot" class="section level4">
+<h4>4b. DIF analysis with Delta Plot</h4>
+<div id="binarize-your-data.-using-the-delta-plot-method-which-items-are-detected-as-functioning-differently-when-using-a-fixed-threshold-which-items-are-detected-as-functioning-differently-when-using-a-threshold-based-on-normal-approximation-what-is-the-value-of-the-threshold-now" class="section level5">
+<h5>Binarize your data. Using the Delta plot method, which items are detected as functioning differently when using a fixed threshold? Which items are detected as functioning differently when using a threshold based on normal approximation? What is the value of the threshold now?</h5>
+<p>I binarized my data and tried computing Delta plots for all the above mentioned grouping variables.</p>
+<pre class="r"><code># Binarize data
+bin &lt;- function(x) {
+  ifelse(x %in% 4:5, 1, 0)
+}
+
+BFI2_a_bin &lt;- data.frame(lapply(BFI2_a[1:12], bin))
+
+# Gender
+BFI2_a_binG &lt;- BFI2_a_bin %&gt;% 
+  mutate(Gender = BFI2_a$Gender)
+
+
+# Delta plot with fixed threshold
+(DP_fixed &lt;- deltaPlotR::deltaPlot(data = BFI2_a_binG, group = &quot;Gender&quot;,
+                                   focal.name = &quot;Female&quot;, thr = 1.5))</code></pre>
+<pre><code>## 
+## Detection of Differential Item Functioning using Angoff&#39;s Delta method 
+##   without item purification 
+##  
+## Extreme proportions adjusted by constraining to [0.001; 0.999]
+## 
+## Statistics: 
+##  
+##        Prop.Ref Prop.Foc Delta.Ref Delta.Foc Dist.   
+## Item1   0.7370   0.8903  10.4637    8.0869    0.7866 
+## Item2   0.8055   0.8325   9.5546    9.1436   -0.5940 
+## Item3   0.3438   0.3958  14.6081   14.0568   -0.0461 
+## Item4   0.7164   0.8385  10.7108    9.0470    0.3379 
+## Item5   0.6986   0.7737  10.9181    9.9959   -0.1334 
+## Item6   0.7055   0.7388  10.8391   10.4416   -0.4872 
+## Item7   0.7178   0.8375  10.6946    9.0633    0.3150 
+## Item8   0.4000   0.4636  14.0134   13.3654   -0.0357 
+## Item9   0.2699   0.2961  15.4529   15.1425   -0.1290 
+## Item10  0.4411   0.5603  13.5928   12.3929    0.2910 
+## Item11  0.8466   0.8913   8.9126    8.0656   -0.3637 
+## Item12  0.2658   0.3161  15.5028   14.9151    0.0587 
+## 
+## Code: &#39;***&#39; if item is flagged as DIF 
+##  
+## Parameters of the major axis: 
+##  
+##        a      b
+##  -2.6129 1.1364
+## 
+## Detection threshold: 1.5
+## 
+## Items detected as DIF items: no DIF item detected 
+##  
+## Output was not captured!</code></pre>
+<pre class="r"><code># Delta plot with normal approximation threshold
+(DP_norm &lt;- deltaPlotR::deltaPlot(data = BFI2_a_binG, group = &quot;Gender&quot;,
+                                  focal.name = &quot;Female&quot;, thr = &quot;norm&quot;))</code></pre>
+<pre><code>## 
+## Detection of Differential Item Functioning using Angoff&#39;s Delta method 
+##   without item purification 
+##  
+## Extreme proportions adjusted by constraining to [0.001; 0.999]
+## 
+## Statistics: 
+##  
+##        Prop.Ref Prop.Foc Delta.Ref Delta.Foc Dist.      
+## Item1   0.7370   0.8903  10.4637    8.0869    0.7866 ***
+## Item2   0.8055   0.8325   9.5546    9.1436   -0.5940    
+## Item3   0.3438   0.3958  14.6081   14.0568   -0.0461    
+## Item4   0.7164   0.8385  10.7108    9.0470    0.3379    
+## Item5   0.6986   0.7737  10.9181    9.9959   -0.1334    
+## Item6   0.7055   0.7388  10.8391   10.4416   -0.4872    
+## Item7   0.7178   0.8375  10.6946    9.0633    0.3150    
+## Item8   0.4000   0.4636  14.0134   13.3654   -0.0357    
+## Item9   0.2699   0.2961  15.4529   15.1425   -0.1290    
+## Item10  0.4411   0.5603  13.5928   12.3929    0.2910    
+## Item11  0.8466   0.8913   8.9126    8.0656   -0.3637    
+## Item12  0.2658   0.3161  15.5028   14.9151    0.0587    
+## 
+## Code: &#39;***&#39; if item is flagged as DIF 
+##  
+## Parameters of the major axis: 
+##  
+##        a      b
+##  -2.6129 1.1364
+## 
+## Detection threshold: 0.7661 (significance level: 5%)
+## 
+## Items detected as DIF items: 
+##       
+##  Item1
+## 
+## Output was not captured!</code></pre>
+<pre class="r"><code># Age
+BFI2_a_binA &lt;- BFI2_a_bin %&gt;% 
+  mutate(Age = BFI2_a$Age)
+
+# Delta plot with fixed threshold
+(DP_fixed &lt;- deltaPlotR::deltaPlot(data = BFI2_a_binA, group = &quot;Age&quot;,
+                                   focal.name = &quot;15-20&quot;, thr = 1.5))</code></pre>
+<pre><code>## 
+## Detection of Differential Item Functioning using Angoff&#39;s Delta method 
+##   without item purification 
+##  
+## Extreme proportions adjusted by constraining to [0.001; 0.999]
+## 
+## Statistics: 
+##  
+##        Prop.Ref Prop.Foc Delta.Ref Delta.Foc Dist.   
+## Item1   0.8525   0.8085   8.8110    9.5100    0.1202 
+## Item2   0.8628   0.7943   8.6275    9.7141   -0.1543 
+## Item3   0.4041   0.3545  13.9707   14.4928   -0.1689 
+## Item4   0.8112   0.7716   9.4706   10.0240    0.1751 
+## Item5   0.7920   0.7100   9.7460   10.7870   -0.2115 
+## Item6   0.6991   0.7412  10.9126   10.4114    0.8449 
+## Item7   0.8127   0.7706   9.4487   10.0365    0.1512 
+## Item8   0.4735   0.4133  13.2664   13.8766   -0.1772 
+## Item9   0.3038   0.2730  15.0536   15.4152   -0.1374 
+## Item10  0.5619   0.4768  12.3764   13.2330   -0.2885 
+## Item11  0.9204   0.8417   7.3702    8.9940   -0.4528 
+## Item12  0.2817   0.3033  15.3111   15.0595    0.2994 
+## 
+## Code: &#39;***&#39; if item is flagged as DIF 
+##  
+## Parameters of the major axis: 
+##  
+##      a      b
+##  1.823 0.8907
+## 
+## Detection threshold: 1.5
+## 
+## Items detected as DIF items: no DIF item detected 
+##  
+## Output was not captured!</code></pre>
+<pre class="r"><code># Delta plot with normal approximation threshold
+(DP_norm &lt;- deltaPlotR::deltaPlot(data = BFI2_a_binA, group = &quot;Age&quot;,
+                                  focal.name = &quot;15-20&quot;, thr = &quot;norm&quot;))</code></pre>
+<pre><code>## 
+## Detection of Differential Item Functioning using Angoff&#39;s Delta method 
+##   without item purification 
+##  
+## Extreme proportions adjusted by constraining to [0.001; 0.999]
+## 
+## Statistics: 
+##  
+##        Prop.Ref Prop.Foc Delta.Ref Delta.Foc Dist.      
+## Item1   0.8525   0.8085   8.8110    9.5100    0.1202    
+## Item2   0.8628   0.7943   8.6275    9.7141   -0.1543    
+## Item3   0.4041   0.3545  13.9707   14.4928   -0.1689    
+## Item4   0.8112   0.7716   9.4706   10.0240    0.1751    
+## Item5   0.7920   0.7100   9.7460   10.7870   -0.2115    
+## Item6   0.6991   0.7412  10.9126   10.4114    0.8449 ***
+## Item7   0.8127   0.7706   9.4487   10.0365    0.1512    
+## Item8   0.4735   0.4133  13.2664   13.8766   -0.1772    
+## Item9   0.3038   0.2730  15.0536   15.4152   -0.1374    
+## Item10  0.5619   0.4768  12.3764   13.2330   -0.2885    
+## Item11  0.9204   0.8417   7.3702    8.9940   -0.4528    
+## Item12  0.2817   0.3033  15.3111   15.0595    0.2994    
+## 
+## Code: &#39;***&#39; if item is flagged as DIF 
+##  
+## Parameters of the major axis: 
+##  
+##      a      b
+##  1.823 0.8907
+## 
+## Detection threshold: 0.6756 (significance level: 5%)
+## 
+## Items detected as DIF items: 
+##       
+##  Item6
+## 
+## Output was not captured!</code></pre>
+<pre class="r"><code>deltaPlotR::diagPlot(DP_norm, thr.draw = TRUE, main =&quot;DP_norm Age&quot;)</code></pre>
+<p><img src="HW6_files/figure-html/DeltaPlot-1.png" width="672" /></p>
+<pre><code>## The plot was not captured!</code></pre>
+<pre class="r"><code># Education
+BFI2_a_binE &lt;- BFI2_a_bin %&gt;% 
+  mutate(Educ = BFI2_a$Educ)
+
+# Delta plot with fixed threshold
+(DP_fixed &lt;- deltaPlotR::deltaPlot(data = BFI2_a_binE, group = &quot;Educ&quot;,
+                                   focal.name = &quot;Secondary&quot;, thr = 1.5))</code></pre>
+<pre><code>## 
+## Detection of Differential Item Functioning using Angoff&#39;s Delta method 
+##   without item purification 
+##  
+## Extreme proportions adjusted by constraining to [0.001; 0.999]
+## 
+## Statistics: 
+##  
+##        Prop.Ref Prop.Foc Delta.Ref Delta.Foc Dist.      
+## Item1   0.8750   0.7910   8.3986    9.7610    0.0686    
+## Item2   0.8438   0.7250   8.9600   10.6084   -0.1853    
+## Item3   0.3958   0.3315  14.0566   14.7437    0.1533    
+## Item4   0.8229   0.7740   9.2938    9.9915    0.4965    
+## Item5   0.8125   0.6535   9.4514   11.4210   -0.4602    
+## Item6   0.7031   0.7721  10.8664   10.0165    1.5304 ***
+## Item7   0.8021   0.7420   9.6037   10.4020    0.3989    
+## Item8   0.5156   0.3503  12.8433   14.5382   -0.5061    
+## Item9   0.3073   0.2524  15.0142   15.6684    0.1072    
+## Item10  0.5469   0.4181  12.5289   13.8272   -0.1882    
+## Item11  0.9531   0.8136   6.2962    9.4356   -1.0968    
+## Item12  0.3750   0.2599  14.2746   15.5748   -0.3183    
+## 
+## Code: &#39;***&#39; if item is flagged as DIF 
+##  
+## Parameters of the major axis: 
+##  
+##       a      b
+##  2.2878 0.9008
+## 
+## Detection threshold: 1.5
+## 
+## Items detected as DIF items: 
+##       
+##  Item6
+## 
+## Output was not captured!</code></pre>
+<pre class="r"><code>deltaPlotR::diagPlot(DP_fixed, thr.draw = TRUE, main = &quot;DP_fixed Education&quot;)</code></pre>
+<p><img src="HW6_files/figure-html/DeltaPlot-2.png" width="672" /></p>
+<pre><code>## The plot was not captured!</code></pre>
+<pre class="r"><code># Delta plot with normal approximation threshold
+(DP_norm &lt;- deltaPlotR::deltaPlot(data = BFI2_a_binE, group = &quot;Educ&quot;,
+                                  focal.name = &quot;Secondary&quot;, thr = &quot;norm&quot;))</code></pre>
+<pre><code>## 
+## Detection of Differential Item Functioning using Angoff&#39;s Delta method 
+##   without item purification 
+##  
+## Extreme proportions adjusted by constraining to [0.001; 0.999]
+## 
+## Statistics: 
+##  
+##        Prop.Ref Prop.Foc Delta.Ref Delta.Foc Dist.      
+## Item1   0.8750   0.7910   8.3986    9.7610    0.0686    
+## Item2   0.8438   0.7250   8.9600   10.6084   -0.1853    
+## Item3   0.3958   0.3315  14.0566   14.7437    0.1533    
+## Item4   0.8229   0.7740   9.2938    9.9915    0.4965    
+## Item5   0.8125   0.6535   9.4514   11.4210   -0.4602    
+## Item6   0.7031   0.7721  10.8664   10.0165    1.5304 ***
+## Item7   0.8021   0.7420   9.6037   10.4020    0.3989    
+## Item8   0.5156   0.3503  12.8433   14.5382   -0.5061    
+## Item9   0.3073   0.2524  15.0142   15.6684    0.1072    
+## Item10  0.5469   0.4181  12.5289   13.8272   -0.1882    
+## Item11  0.9531   0.8136   6.2962    9.4356   -1.0968    
+## Item12  0.3750   0.2599  14.2746   15.5748   -0.3183    
+## 
+## Code: &#39;***&#39; if item is flagged as DIF 
+##  
+## Parameters of the major axis: 
+##  
+##       a      b
+##  2.2878 0.9008
+## 
+## Detection threshold: 1.2715 (significance level: 5%)
+## 
+## Items detected as DIF items: 
+##       
+##  Item6
+## 
+## Output was not captured!</code></pre>
+<pre class="r"><code>deltaPlotR::diagPlot(DP_norm, thr.draw = TRUE, main = &quot;DP_norm Education&quot;)</code></pre>
+<p><img src="HW6_files/figure-html/DeltaPlot-3.png" width="672" /></p>
+<pre><code>## The plot was not captured!</code></pre>
+<p>While using a fixed threshold and education as a grouping variable, item 6 was detected as functioning differently. When using a threshold based on normal approximation, item 6 was detected as functioning differently with a threshold of <span class="math inline">\(1.2715\)</span>. Item 6 refers to item 27 in the complete inventory, and is phrased as: <em>“Považuji se za někoho, kdo má v povaze odpouštět.”</em>. This item is also detected when using a normal approximation and age as a grouping variable with a threshold of <span class="math inline">\(0.6756\)</span>.</p>
+<p></br></p>
+</div>
+</div>
+<div id="c.-dif-analysis-with-maentel-haenszel-test" class="section level4">
+<h4>4c. DIF analysis with Maentel Haenszel test</h4>
+<div id="use-the-binarized-data.-using-the-mh-test-which-items-are-detected-as-functioning-differently-what-are-the-values-of-dif-effect-sizes-for-dif-items-what-is-the-odds-ratio-for-item-1-interpret-the-result.-discuss-any-items-detected-as-dif-provide-wording-or-explanation-for-dif." class="section level5">
+<h5>Use the binarized data. Using the MH test, which items are detected as functioning differently? What are the values of DIF effect sizes for DIF items? What is the odds ratio for item 1, interpret the result. Discuss any items detected as DIF, provide wording or explanation for DIF.</h5>
+<p>I used the <code>difMH</code> function from the <code>difR</code> package and gender as a grouping variable.</p>
+<pre class="r"><code>difR::difMH(BFI2_a_binG, group = &quot;Gender&quot;, focal.name = &quot;Female&quot;)</code></pre>
+<pre><code>## 
+## Detection of Differential Item Functioning using Mantel-Haenszel method 
+## with continuity correction and without item purification
+## 
+## Results based on asymptotic inference 
+##  
+## Matching variable: test score 
+##  
+## No set of anchor items was provided 
+##  
+## No p-value adjustment for multiple comparisons 
+##  
+## Mantel-Haenszel Chi-square statistic: 
+##  
+##     Stat.   P-value    
+## i2  27.4107  0.0000 ***
+## i7   7.7294  0.0054 ** 
+## i12  0.9056  0.3413    
+## i17  4.6415  0.0312 *  
+## i22  0.0019  0.9652    
+## i27  4.4994  0.0339 *  
+## i32  5.2951  0.0214 *  
+## i37  1.4747  0.2246    
+## i42  1.7684  0.1836    
+## i47  1.1304  0.2877    
+## i52  0.5683  0.4509    
+## i57  0.0316  0.8589    
+## 
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1  
+## 
+## Detection threshold: 3.8415 (significance level: 0.05)
+## 
+## Items detected as DIF items: 
+##     
+##  i2 
+##  i7 
+##  i17
+##  i27
+##  i32
+## 
+##  
+## Effect size (ETS Delta scale): 
+##  
+## Effect size code: 
+##  &#39;A&#39;: negligible effect 
+##  &#39;B&#39;: moderate effect 
+##  &#39;C&#39;: large effect 
+##  
+##     alphaMH deltaMH  
+## i2   0.4203  2.0368 C
+## i7   1.5810 -1.0765 B
+## i12  1.1345 -0.2964 A
+## i17  0.7108  0.8023 A
+## i22  1.0147 -0.0344 A
+## i27  1.3245 -0.6604 A
+## i32  0.7051  0.8212 A
+## i37  1.1736 -0.3761 A
+## i42  1.1988 -0.4261 A
+## i47  0.8711  0.3242 A
+## i52  1.1616 -0.3521 A
+## i57  1.0305 -0.0707 A
+## 
+## Effect size codes: 0 &#39;A&#39; 1.0 &#39;B&#39; 1.5 &#39;C&#39; 
+##  (for absolute values of &#39;deltaMH&#39;) 
+##  
+## Output was not captured!</code></pre>
+<p>Using the Mantel-Haenszel test, the following items were detected as functioning differently when grouping by gender: i2, i7, i17, i27, i32. The effect size for item i2 is large (<span class="math inline">\(2.0368\)</span>), the effect for item i7 is moderate (<span class="math inline">\(-1.0765\)</span>) and the rest is negligible. On average, the odds of agreeing with item i2 (<em>“Považuji se za někoho, kdo je soucitný, má dobré srdce.”</em>) are about two times higher for females. On average, the odds of with item i7 (<em>“Považuji se za někoho, kdo je uctivý, s ostatními zachází s úctou.”</em>) are higher for males. Both effects could be presumably explained by gender roles and corresponding societal expectations.</p>
+<p></br></p>
+</div>
+</div>
+<div id="d-dif-analysis-with-regression-models" class="section level4">
+<h4>4d DIF analysis with regression models</h4>
+<div id="select-a-regression-model-for-dif-detection-based-on-your-data.-using-the-regression-method-which-items-are-detected-as-functioning-differently-provide-interpretations-which-items-favor-one-and-which-the-other-group-is-there-any-item-performing-non-uniform-dif-how-do-the-results-change-when-using-benjamini-hochberg-correction-for-multiple-comparison-provide-table-of-item-parameters-and-interpret-for-at-least-one-dif-item.-choose-some-dif-items-and-provide-item-information-curves.-provide-predictionf-for-correct-answer-from-members-of-one-and-of-the-other-group." class="section level5">
+<h5>Select a regression model for DIF detection based on your data. Using the regression method, which items are detected as functioning differently? Provide interpretations: Which items favor one and which the other group? Is there any item performing non-uniform DIF? How do the results change when using Benjamini-Hochberg correction for multiple comparison? Provide table of item parameters and interpret for at least one DIF item. Choose some DIF items and provide item information curves. Provide predictionf for correct answer from members of one and of the other group.</h5>
+<p>Since I’m working with ordinal data, I selected a cumulative logit model.</p>
+<pre class="r"><code>(fit &lt;- difNLR::difORD(Data = BFI2_a[1:12], group = BFI2_a$Gender, focal.name = &quot;Female&quot;, model = &quot;cumulative&quot;))</code></pre>
+<pre><code>## Detection of both types of Differential Item Functioning
+## for ordinal data using cumulative logit regression model
+## 
+## Likelihood-ratio Chi-square statistics
+## 
+## Item purification was not applied
+## No p-value adjustment for multiple comparisons
+## 
+##     Chisq-value P-value    
+## i2  32.1825      0.0000 ***
+## i7  13.0218      0.0015 ** 
+## i12  0.9161      0.6325    
+## i17 28.0959      0.0000 ***
+## i22  2.4058      0.3003    
+## i27  3.0764      0.2148    
+## i32  1.3033      0.5212    
+## i37  1.5645      0.4574    
+## i42 14.4755      0.0007 ***
+## i47  8.3113      0.0157 *  
+## i52  4.1293      0.1269    
+## i57  0.4415      0.8019    
+## 
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Items detected as DIF items:
+##  i2
+##  i7
+##  i17
+##  i42
+##  i47</code></pre>
+<pre class="r"><code>coef(fit, SE = TRUE)$i2</code></pre>
+<pre><code>##                  b2         b3          b4         b5          a      bDIF2      bDIF3      bDIF4       bDIF5       aDIF
+## estimate -3.7465872 -2.3311038 -1.16416728 0.74975066 1.58651128 -1.5532905 -1.0834312 -0.6960751 -0.06076410 -0.3953855
+## SE        0.2229763  0.1117726  0.06574045 0.06791423 0.08219925  0.3668848  0.2367521  0.1386163  0.09247543  0.1011679</code></pre>
+<pre class="r"><code>coef(fit, SE = TRUE)$i17</code></pre>
+<pre><code>##                  b2         b3          b4         b5          a      bDIF2      bDIF3       bDIF4       bDIF5       aDIF
+## estimate -3.0814098 -1.6875929 -0.92608243 0.74679893 1.68770036 -0.7152242 -0.5304063 -0.42943115 -0.20760966 -0.1975868
+## SE        0.1525441  0.0791357  0.05600347 0.06413846 0.08327597  0.2278495  0.1363454  0.09277368  0.08003456  0.1022943</code></pre>
+<pre class="r"><code>coef(fit, SE = TRUE)$i42</code></pre>
+<pre><code>##                  b2          b3        b4        b5          a     bDIF2     bDIF3     bDIF4      bDIF5       aDIF
+## estimate -3.2693962 -0.69470825 1.0758525 4.1404094 0.87769432 0.8624647 0.3918807 0.0682697 -0.4918492 0.19629679
+## SE        0.2505602  0.09147155 0.1262751 0.3613857 0.06898029 0.2934291 0.1055837 0.1471971  0.3999147 0.09204964</code></pre>
+<pre class="r"><code>plot(fit, item = &quot;i2&quot;, plot.type = &quot;cumulative&quot;, group.names = c(&quot;Females&quot;, &quot;Males&quot;))</code></pre>
+<pre><code>## [[1]]</code></pre>
+<p><img src="HW6_files/figure-html/DIFregr-1.png" width="672" /></p>
+<pre class="r"><code>plot(fit, item = &quot;i2&quot;, plot.type = &quot;category&quot;, group.names = c(&quot;Females&quot;, &quot;Males&quot;))</code></pre>
+<pre><code>## [[1]]</code></pre>
+<p><img src="HW6_files/figure-html/DIFregr-2.png" width="672" /></p>
+<pre class="r"><code>predict(fit, item = &quot;i2&quot;, match = 0, group = c(0, 1))</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["P(Y = 1)"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["P(Y = 2)"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["P(Y = 3)"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["P(Y = 4)"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["P(Y = 5)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.002614661","2":"0.02155189","3":"0.11206314","4":"0.6304198","5":"0.2333505"},{"1":"0.001809631","2":"0.01502829","3":"0.08150421","4":"0.5960364","5":"0.3056215"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>predict(fit, item = &quot;i2&quot;, match = 0, group = c(0, 1), type = &quot;cumulative&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["P(Y <= 1)"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["P(Y <= 2)"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["P(Y <= 3)"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["P(Y <= 4)"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["P(Y <= 5)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"0.9973853","3":"0.9758335","4":"0.8637703","5":"0.2333505"},{"1":"1","2":"0.9981904","3":"0.9831621","4":"0.9016579","5":"0.3056215"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>(fit_correc &lt;- difNLR::difORD(Data = BFI2_a[1:12], group = BFI2_a$Gender, focal.name = &quot;Female&quot;, model = &quot;cumulative&quot;, p.adjust.method = &quot;BH&quot;))</code></pre>
+<pre><code>## Detection of both types of Differential Item Functioning
+## for ordinal data using cumulative logit regression model
+## 
+## Likelihood-ratio Chi-square statistics
+## 
+## Item purification was not applied
+## Multiple comparisons made with Benjamini-Hochberg adjustment of p-values
+## 
+##     Chisq-value P-value Adj. P-value    
+## i2  32.1825      0.0000  0.0000      ***
+## i7  13.0218      0.0015  0.0045      ** 
+## i12  0.9161      0.6325  0.6900         
+## i17 28.0959      0.0000  0.0000      ***
+## i22  2.4058      0.3003  0.4505         
+## i27  3.0764      0.2148  0.3682         
+## i32  1.3033      0.5212  0.6254         
+## i37  1.5645      0.4574  0.6098         
+## i42 14.4755      0.0007  0.0029      ** 
+## i47  8.3113      0.0157  0.0376      *  
+## i52  4.1293      0.1269  0.2537         
+## i57  0.4415      0.8019  0.8019         
+## 
+## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Items detected as DIF items:
+##  i2
+##  i7
+##  i17
+##  i42
+##  i47</code></pre>
+<p>Items 2, 7, 17, 42 a 47 were detected as functioning differently based on gender. In order to at least agree a little with item 2 (<em>“Považuji se za někoho, kdo je soucitný, má dobré srdce.”</em>) with a 50% probability, male respondents were estimated to have a standardized total score of <span class="math inline">\(-1.16\)</span>, while a somewhat lower standardized total score (<span class="math inline">\(-1.86\)</span>) was sufficient for female respondents. A similar trend can be observed with item 17 (reversed - <em>“Považuji se za někoho, kdo s ostatními příliš nesoucítí.<em>), which makes sense given the wording of the two items. Item 42 on the other hand slightly favors male respondents, who, in order to at least agree a little bit with the statement </em>”Považuji se za někoho, kdo je vůči záměrům ostatních nedůvěřivý.”</em> (reversed) with a 50% probability, were estimated to have a standardized total score of <span class="math inline">\(1.08\)</span>. Female respondents were estimated to have a slightly higher total score of <span class="math inline">\(1.15\)</span>. A male respondent with an average agreeability score has a 60% probability of seeing himself at least somewhat as someone who is sympathetic, while a female respondent has a probability of 63%. With the Bejamini-Hochberg correction, the detected items remain the same, but the p-value of item 42 is now only below the threshold <span class="math inline">\(0.001\)</span>.</p>
+<p></br></p>
+</div>
+</div>
+<div id="e.-dif-analysis-with-irt-models" class="section level4">
+<h4>4e. DIF analysis with IRT models</h4>
+<div id="fit-a-group-specific-model-with-mirt-function.-which-items-are-detected-as-dif-provide-interpretations." class="section level5">
+<h5>Fit a group specific model with mirt() function. Which items are detected as DIF? Provide interpretations.</h5>
+<p>I fit a 2PL model for both genders.</p>
+<pre class="r"><code>(fit_irt0 &lt;- difR::itemParEst(BFI2_a_binG[BFI2_a_binG$Gender == &quot;Female&quot;, 1:12], model = &quot;2PL&quot;))</code></pre>
+<pre><code>##             a          b     se(a)      se(b)     cov(a,b)
+## i2  1.8012216 -1.7073276 0.2181294 0.12821557  0.022666244
+## i7  1.5997506 -1.4134223 0.1745893 0.10951154  0.014651181
+## i12 0.9858421  0.5146409 0.1105465 0.08887832 -0.004611976
+## i17 2.0134590 -1.3004931 0.2261906 0.09073321  0.014714671
+## i22 1.6451352 -1.0815832 0.1710193 0.08680723  0.010049405
+## i27 0.8988985 -1.3451550 0.1088984 0.15352685  0.013428844
+## i32 1.6652964 -1.4139569 0.1828755 0.10741192  0.014989953
+## i37 1.4823131  0.1358068 0.1458812 0.06048586 -0.001179499
+## i42 0.8487375  1.1727302 0.1073817 0.14755097 -0.012326562
+## i47 1.4950920 -0.2304477 0.1471051 0.06100996  0.001772618
+## i52 1.6661201 -1.7829683 0.1991625 0.13892218  0.022801478
+## i57 0.7277846  1.1816814 0.1000997 0.16822676 -0.013295505</code></pre>
+<pre class="r"><code>(fit_irt1 &lt;- difR::itemParEst(BFI2_a_binG[BFI2_a_binG$Gender == &quot;Male&quot;, 1:12], model = &quot;2PL&quot;))</code></pre>
+<pre><code>##             a          b     se(a)      se(b)     cov(a,b)
+## i2  2.5465719 -0.7806449 0.3212051 0.06768496  0.010299075
+## i7  1.7458408 -1.2099682 0.2144570 0.10539996  0.015897537
+## i12 0.9225102  0.8208913 0.1188522 0.12737666 -0.009548499
+## i17 2.5646533 -0.7067203 0.3164328 0.06461972  0.008592412
+## i22 0.9936780 -1.0185922 0.1287798 0.13373409  0.012019123
+## i27 1.1077210 -0.9826202 0.1361838 0.12012876  0.010965291
+## i32 1.7262627 -0.8201643 0.1938077 0.08203460  0.008557485
+## i37 1.1507745  0.4375248 0.1340367 0.09024047 -0.004833339
+## i42 0.7207532  1.5323198 0.1131038 0.23559881 -0.022441671
+## i47 1.4271710  0.2169368 0.1552811 0.07367495 -0.002478105
+## i52 1.9701019 -1.3564900 0.2561419 0.11045292  0.020719451
+## i57 0.7964208  1.4434577 0.1184676 0.20765385 -0.020276224</code></pre>
+<p>As we can see, discrimination and difficulty of item 2 are very different for males and females. Most items were easier for females, item 42 and 47 are an exception.</p>
+<p></br></p>
+</div>
+</div>
+<div id="f.-extra-interactive-shinyitemanalysis-app." class="section level4">
+<h4>4f. (extra) Interactive ShinyItemAnalysis app.</h4>
+<div id="use-the-interactive-shinyitemanalysis-application-to-create-some-of-the-plots-or-to-create-a-report-with-selected-dif-methods.-if-your-data-is-too-large-consider-using-sample-data-e.g.-from-a-random-sample-of-2000-respondents-and-selection-of-items---single-domain-etc.." class="section level5">
+<h5>Use the interactive ShinyItemAnalysis application to create some of the plots or to create a report with selected DIF methods. If your data is too large, consider using sample data (e.g. from a random sample of 2000 respondents and selection of items - single domain, etc.).</h5>
+<p>Your text (description of methods).</p>
+<p></br></p>
+</div>
+</div>
+<div id="usediscuss-your-own-data-andor-provide-constructive-feedback-to-the-lecture-exercises-or-any-of-the-material.-bonus-1-pt" class="section level4">
+<h4>5. Use/discuss your own data and/or provide constructive feedback to the lecture, exercises, or any of the material. [BONUS 1 pt]</h4>
+<p>Your text.</p>
+<p></br></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

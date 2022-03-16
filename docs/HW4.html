@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Kateřina Hudáčová (Benjamín Kunc)" />
+
+
+<title>Selected Topics of Psychometrics (NMST570)</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.20/datatables.js"></script>
+<link href="site_libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Psychometrics</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">HW1</a>
+</li>
+<li>
+  <a href="HW2.html">HW2</a>
+</li>
+<li>
+  <a href="HW3.html">HW3</a>
+</li>
+<li>
+  <a href="HW4.html">HW4</a>
+</li>
+<li>
+  <a href="HW5.html">HW5</a>
+</li>
+<li>
+  <a href="HW6.html">HW6</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Selected Topics of Psychometrics (NMST570)</h1>
+<h3 class="subtitle">Homework Assignment 4: Item Analysis</h3>
+<h4 class="author">Kateřina Hudáčová (Benjamín Kunc)</h4>
+
+</div>
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<p>Note: The assignment is due on Nov 22, 2021. Send your code and html/pdf report to <code>dlouha@cs.cas.cz</code> (and to <code>martinkova@cs.cas.cz</code> in copy).</p>
+<p></br></p>
+<div id="read-and-comment-on-chapter-4-on-httpsperusall.com.-2-pts" class="section level4">
+<h4>1. Read and comment on Chapter 4 on <a href="https://perusall.com" class="uri">https://perusall.com</a>. [2 pts]</h4>
+<p>Done.</p>
+</div>
+<div id="run-the-code-for-the-chapter-4-available-on-course-webpage-httpwww.cs.cas.czmartinkovanmst570.html." class="section level4">
+<h4>2. Run the code for the Chapter 4, available on course webpage <a href="http://www.cs.cas.cz/martinkova/NMST570.html" class="uri">http://www.cs.cas.cz/martinkova/NMST570.html</a>.</h4>
+<p>Done.</p>
+</div>
+<div id="complete-the-caplearnr-online-tutorial-for-item-analysis.-attach-certificate.-4-pts" class="section level4">
+<h4>3. Complete the CAPlearnR online tutorial for Item Analysis. Attach certificate. [4 pts]</h4>
+<blockquote>
+<p>Note: If you meet any issues, contact the the TA or the instructor before 8 AM of the due date.</p>
+</blockquote>
+<p>Done.</p>
+</div>
+<div id="project-preparation." class="section level4">
+<h4>4. Project preparation.</h4>
+<div id="explore-the-czech-matura-data-or-data-of-your-choice-as-described-below.-you-can-work-with-1-2-teammates-on-this-task.-all-teammate-names-have-to-be-included-on-your-answer-sheet.-4-pts" class="section level5">
+<h5>Explore the Czech matura data OR DATA OF YOUR CHOICE as described below. You can work with 1-2 teammates on this task. All teammate names have to be included on your answer sheet. [4 pts]</h5>
+<p>I am working with the <code>BFI2</code> dataset from the <code>ShinyItemAnalysis</code> package. The <code>BFI2</code>dataset contains responses of <span class="math inline">\(1733\)</span> Czech respondents to the Big Five Inventory 2, as well as information about their age, education, and gender. The BFI2 items are scored using a 5-point Likert scale. I used alternative item names provided in the dataset documentation.</p>
+<pre class="r"><code>data(BFI2, package=&#39;ShinyItemAnalysis&#39;)
+
+# Change column names
+colnames(BFI2)[1:60] &lt;- c(&quot;iEscb01&quot;, &quot;iAcmp02&quot;, &quot;iCorg03r&quot;, &quot;iNanx04r&quot;, &quot;iOaes05r&quot;, &quot;iEasr06&quot;,
+&quot;iArsp07&quot;, &quot;iCprd08r&quot;, &quot;iNdep09r&quot;, &quot;iOint10&quot;, &quot;iEenl11r&quot;, &quot;iAtrs12r&quot;, &quot;iCrsp13&quot;, &quot;iNemt14&quot;,
+&quot;iOcrt15&quot;, &quot;iEscb16r&quot;, &quot;iAcmp17r&quot;, &quot;iCorg18&quot;, &quot;iNanx19&quot;, &quot;iOaes20&quot;, &quot;iEasr21&quot;, &quot;iArsp22r&quot;,
+&quot;iCprd23r&quot;, &quot;iNdep24r&quot;, &quot;iOint25r&quot;, &quot;iEenl26r&quot;, &quot;iAtrs27&quot;, &quot;iCrsp28r&quot;, &quot;iNemt29r&quot;,
+&quot;iOcrt30r&quot;, &quot;iEscb31r&quot;, &quot;iAcmp32&quot;, &quot;iCorg33&quot;, &quot;iNanx34&quot;, &quot;iOaes35&quot;, &quot;iEasr36r&quot;, &quot;iArsp37r&quot;,
+&quot;iCprd38&quot;, &quot;iNdep39&quot;, &quot;iOint40&quot;, &quot;iEenl41&quot;, &quot;iAtrs42r&quot;, &quot;iCrsp43&quot;, &quot;iNemt44r&quot;, &quot;iOcrt45r&quot;,
+&quot;iEscb46&quot;, &quot;iAcmp47r&quot;, &quot;iCorg48r&quot;, &quot;iNanx49r&quot;, &quot;iOaes50r&quot;, &quot;iEasr51r&quot;, &quot;iArsp52&quot;, &quot;iCprd53&quot;,
+&quot;iNdep54&quot;, &quot;iOint55r&quot;, &quot;iEenl56&quot;, &quot;iAtrs57&quot;, &quot;iCrsp58r&quot;, &quot;iNemt59&quot;, &quot;iOcrt60&quot;)
+
+# Data frames for domains
+BFI2_e &lt;- BFI2[, seq(1, 56, 5)]
+BFI2_a &lt;- BFI2[, seq(2, 57, 5)]
+BFI2_c &lt;- BFI2[, seq(3, 58, 5)]
+BFI2_n &lt;- BFI2[, seq(4, 59, 5)]
+BFI2_o &lt;- BFI2[, seq(5, 60, 5)]</code></pre>
+<p>I created datasets for the respective BFI domains.</p>
+<p></br></p>
+</div>
+</div>
+<div id="a.-traditional-item-analysis." class="section level4">
+<h4>4a. Traditional item analysis.</h4>
+<div id="include-table-of-traditional-item-indices-difficulty-rir-rit-uli-alphadrop-etc..-comment-on-items-with-highest-and-lowest-difficulty-items-of-highlow-discrimination.-provide-explanation-taking-into-account-wording-of-the-items-if-available." class="section level5">
+<h5>Include table of traditional item indices (difficulty, RIR, RIT, ULI, alphaDrop, etc.). Comment on items with highest and lowest difficulty, items of high/low discrimination. Provide explanation taking into account wording of the items (if available).</h5>
+<p>For this task, I used the <code>ItemAnalysis</code> function from the <code>ShinyItemAnalysis</code> package. I extracted selected indices (Difficulty, RIR, RIT, ULI and alphaDrop) for each of the Big5 domains, then I highlighted the most interesting/problematic values. Using <code>DDplot</code> I plotted the difficulty and discrimination for each domain as well.</p>
+<pre class="r"><code>it_al_e &lt;- round(data.frame(ItemAnalysis(Data = BFI2_e, maxscore = 5, minscore = 1)[c(&quot;Mean&quot;, &quot;SD&quot;, &quot;Difficulty&quot;, &quot;RIR&quot;, &quot;RIT&quot;, &quot;ULI&quot;, &quot;gULI&quot;, &quot;Alpha.drop&quot;)]), digits=4)
+it_al_a &lt;- round(data.frame(ItemAnalysis(Data = BFI2_a, maxscore = 5, minscore = 1)[c(&quot;Mean&quot;, &quot;SD&quot;, &quot;Difficulty&quot;, &quot;RIR&quot;, &quot;RIT&quot;, &quot;ULI&quot;, &quot;gULI&quot;, &quot;Alpha.drop&quot;)]), digits=4)
+it_al_c &lt;- round(data.frame(ItemAnalysis(Data = BFI2_c, maxscore = 5, minscore = 1)[c(&quot;Mean&quot;, &quot;SD&quot;, &quot;Difficulty&quot;, &quot;RIR&quot;, &quot;RIT&quot;, &quot;ULI&quot;, &quot;gULI&quot;, &quot;Alpha.drop&quot;)]), digits=4)
+it_al_n &lt;- round(data.frame(ItemAnalysis(Data = BFI2_n, maxscore = 5, minscore = 1)[c(&quot;Mean&quot;, &quot;SD&quot;, &quot;Difficulty&quot;, &quot;RIR&quot;, &quot;RIT&quot;, &quot;ULI&quot;, &quot;gULI&quot;, &quot;Alpha.drop&quot;)]), digits=4)
+it_al_o &lt;- round(data.frame(ItemAnalysis(Data = BFI2_o, maxscore = 5, minscore = 1)[c(&quot;Mean&quot;, &quot;SD&quot;, &quot;Difficulty&quot;, &quot;RIR&quot;, &quot;RIT&quot;, &quot;ULI&quot;, &quot;gULI&quot;, &quot;Alpha.drop&quot;)]), digits=4)
+
+# Extraversion
+datatable(it_al_e, rownames = TRUE, options = list(pageLength = 12, lengthMenu = c(12), paging = FALSE, dom = &#39;t&#39;), caption = htmltools::tags$caption( style = &#39;caption-side: top; text-align: left; color:black; font-size:200% ;&#39;,&#39;Extraversion&#39;)) %&gt;%
+  formatStyle(columns = &quot;Difficulty&quot;, 
+              backgroundColor = styleInterval(c(0.1, 0.9), c(&quot;blue&quot;, NA, &quot;red&quot;))) %&gt;% 
+  formatStyle(columns = &quot;RIR&quot;,
+              backgroundColor = styleInterval(c(0.2), c(&quot;blue&quot;, NA))) %&gt;% 
+  formatStyle(columns = &quot;Alpha.drop&quot;,
+              backgroundColor = styleInterval(c(psychometric::alpha(BFI2_e)), c(NA, &quot;pink&quot;))) %&gt;% 
+  formatStyle(columns = &quot;ULI&quot;,
+              backgroundColor = styleInterval(c(0.2), c(&quot;pink&quot;, NA))) %&gt;% 
+  formatStyle(columns = &quot;Difficulty&quot;,
+              color = styleEqual(c(min(it_al_e[&#39;Difficulty&#39;]), max(it_al_e[&#39;Difficulty&#39;])), c(&quot;blue&quot;, &quot;red&quot;))) %&gt;% 
+  formatStyle(columns = &quot;ULI&quot;,
+              color = styleEqual(c(min(it_al_e[&#39;ULI&#39;]), max(it_al_e[&#39;ULI&#39;])), c(&quot;blue&quot;, &quot;red&quot;)))</code></pre>
+<div id="htmlwidget-b125a7865eeb230b7089" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b125a7865eeb230b7089">{"x":{"filter":"none","vertical":false,"caption":"<caption style=\"caption-side: top; text-align: left; color:black; font-size:200% ;\">Extraversion<\/caption>","data":[["iEscb01","iEasr06","iEenl11r","iEscb16r","iEasr21","iEenl26r","iEscb31r","iEasr36r","iEenl41","iEscb46","iEasr51r","iEenl56"],[3.6197,3.5909,3.6411,2.9388,2.9504,3.4495,2.7069,3.2002,3.4178,3.5326,2.9711,3.573],[1.0519,1.052,1.1097,1.3112,1.1883,0.9215,1.2699,1.0356,1.0295,1.1386,1.1455,0.9533],[0.6549,0.6477,0.6603,0.4847,0.4876,0.6124,0.4267,0.5501,0.6044,0.6332,0.4928,0.6432],[0.5972,0.6006,0.3056,0.6689,0.6233,0.3966,0.6029,0.3501,0.5172,0.6296,0.6084,0.4912],[0.6756,0.6785,0.4243,0.7515,0.7069,0.4881,0.6958,0.4572,0.6051,0.7088,0.6916,0.5759],[0.3899,0.396,0.2543,0.5771,0.4731,0.2474,0.5078,0.2608,0.341,0.4575,0.4424,0.2964],[0.3899,0.396,0.2543,0.5771,0.4731,0.2474,0.5078,0.2608,0.341,0.4575,0.4424,0.2964],[0.8432,0.843,0.8624,0.837,0.8408,0.8555,0.8423,0.8588,0.8485,0.8405,0.842,0.8502]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Mean<\/th>\n      <th>SD<\/th>\n      <th>Difficulty<\/th>\n      <th>RIR<\/th>\n      <th>RIT<\/th>\n      <th>ULI<\/th>\n      <th>gULI<\/th>\n      <th>Alpha.drop<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":12,"lengthMenu":12,"paging":false,"dom":"t","columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"blue\" : value <= 0.9 ? null : \"red\"});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.2 ? \"blue\" : null});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.8583 ? null : \"pink\"});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.2 ? \"pink\" : null});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'color':value == 0.4267 ? \"blue\" : value == 0.6603 ? \"red\" : null});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'color':value == 0.2474 ? \"blue\" : value == 0.5771 ? \"red\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<pre class="r"><code>DDplot(
+  Data = BFI2_e, discrim = &quot;ULI&quot;, maxscore = 5, minscore = 1)</code></pre>
+<p><img src="HW4_files/figure-html/traditional_extraversion-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Overall, it can be stated that the difficulty (popularity) of all the <strong>Extraversion</strong> items does not exceed the range of <span class="math inline">\([0.4, 0.7]\)</span>, which can be interpreted as acceptable. Similarly, the upper-lower index (ULI) never drops below the <span class="math inline">\(0.2\)</span> threshold, which means that all items differentiate <em>relatively</em> well between respondents with a high and low <strong>Extraversion</strong> score. </br></p>
+<p>Item number 11 (<code>iEenl11r</code>) has the highest difficulty and a low value of ULI. Furthermore, the <code>Alpha.drop</code> value for this item indicates that it lowers the reliability (estimated with Cronbach’s <span class="math inline">\(\alpha\)</span>) of the domain. The wording of this item is: <em>“Považuji se za někoho, kdo zřídkakdy pociťuje vzrušení a nadšení pro věc.”</em> Since this item is already reverse-coded, one could conclude that most respondents disagreed with this statement, and that it does not differentiate between introverts and extraverts as much as some of the other items. Perhaps the wording of the item invokes a rather negative self-image that most people, even introverts, are reluctant to accept (social desirability). This item might also be better at targeting neurotic traits (depression, anxiety…) than introversion. </br></p>
+<p>In contrast, item number 31 (<em>“Považuji se za někoho, kdo je někdy plachý, introvertní.”</em>) has the lowest difficulty (popularity). Again, this is a reverse-coded item, so most respondents agreed with this statement. I would hypothesize that the wording is too vague, maybe it would be better to avoid words such as <em>sometimes</em> that leave too much space for subjective interpretation. </br></p>
+<p>Item 16 (<em>“Považuji se za někoho, kdo bývá tichý.”</em>) is the best at discriminating between extraverts and introverts, item 26 (<em>“Považuji se za někoho, kdo je méně činorodý než ostatní.”</em>) is the worst. Item 26 could be problematic due to social desirability. Lastly, item 36 (<em>“Považuji se za někoho, kdo pokládá za obtížné ovlivňovat druhé.”</em>) also seems to decrease the reliability of this scale. Perhaps this item has more to do with traits like machiavellianism and narcissism than extraversion.</p>
+<pre class="r"><code># Agreeability
+datatable(it_al_a, rownames = TRUE, options = list(pageLength = 12, lengthMenu = c(12), paging = FALSE, dom = &#39;t&#39;), caption = htmltools::tags$caption( style = &#39;caption-side: top; text-align: left; color:black; font-size:200% ;&#39;,&#39;Agreeability&#39;)) %&gt;%
+  formatStyle(columns = &quot;Difficulty&quot;, 
+              backgroundColor = styleInterval(c(0.1, 0.9), c(&quot;blue&quot;, NA, &quot;red&quot;))) %&gt;% 
+  formatStyle(columns = &quot;RIR&quot;,
+              backgroundColor = styleInterval(c(0.2), c(&quot;blue&quot;, NA))) %&gt;% 
+  formatStyle(columns = &quot;Alpha.drop&quot;,
+              backgroundColor = styleInterval(c(psychometric::alpha(BFI2_a)), c(NA, &quot;pink&quot;))) %&gt;% 
+  formatStyle(columns = &quot;ULI&quot;,
+              backgroundColor = styleInterval(c(0.2), c(&quot;pink&quot;, NA))) %&gt;% 
+  formatStyle(columns = &quot;Difficulty&quot;,
+              color = styleEqual(c(min(it_al_a[&#39;Difficulty&#39;]), max(it_al_a[&#39;Difficulty&#39;])), c(&quot;blue&quot;, &quot;red&quot;))) %&gt;% 
+  formatStyle(columns = &quot;ULI&quot;,
+              color = styleEqual(c(min(it_al_a[&#39;ULI&#39;]), max(it_al_a[&#39;ULI&#39;])), c(&quot;blue&quot;, &quot;red&quot;)))</code></pre>
+<div id="htmlwidget-e7bb89ce495c4af173ab" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e7bb89ce495c4af173ab">{"x":{"filter":"none","vertical":false,"caption":"<caption style=\"caption-side: top; text-align: left; color:black; font-size:200% ;\">Agreeability<\/caption>","data":[["iAcmp02","iArsp07","iAtrs12r","iAcmp17r","iArsp22r","iAtrs27","iAcmp32","iArsp37r","iAtrs42r","iAcmp47r","iArsp52","iAtrs57"],[4.1021,4.0514,3.0029,4.015,3.9879,3.813,3.9371,3.157,2.8286,3.2937,4.1985,2.9256],[0.8334,0.815,1.1134,0.9736,0.9938,1.0582,0.7999,1.1562,1.0081,1.3147,0.7513,1.0339],[0.7755,0.7628,0.5007,0.7538,0.747,0.7033,0.7343,0.5392,0.4572,0.5734,0.7996,0.4814],[0.4897,0.4729,0.4354,0.5382,0.4779,0.3481,0.4909,0.5385,0.3167,0.52,0.4581,0.4295],[0.5802,0.5635,0.5636,0.6361,0.5869,0.4814,0.5778,0.6539,0.4472,0.6542,0.5434,0.5496],[0.2517,0.2396,0.3492,0.3189,0.3215,0.2673,0.2491,0.4346,0.2543,0.4935,0.2223,0.3076],[0.2517,0.2396,0.3492,0.3189,0.3215,0.2673,0.2491,0.4346,0.2543,0.4935,0.2223,0.3076],[0.7904,0.7919,0.7947,0.7849,0.7903,0.8026,0.7908,0.784,0.8049,0.787,0.7937,0.7948]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Mean<\/th>\n      <th>SD<\/th>\n      <th>Difficulty<\/th>\n      <th>RIR<\/th>\n      <th>RIT<\/th>\n      <th>ULI<\/th>\n      <th>gULI<\/th>\n      <th>Alpha.drop<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":12,"lengthMenu":12,"paging":false,"dom":"t","columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"blue\" : value <= 0.9 ? null : \"red\"});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.2 ? \"blue\" : null});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.8066 ? null : \"pink\"});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.2 ? \"pink\" : null});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'color':value == 0.4572 ? \"blue\" : value == 0.7996 ? \"red\" : null});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'color':value == 0.2223 ? \"blue\" : value == 0.4935 ? \"red\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<pre class="r"><code>DDplot(
+  Data = BFI2_a, discrim = &quot;ULI&quot;, maxscore = 5, minscore = 1)</code></pre>
+<p><img src="HW4_files/figure-html/traditional_agreeability-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The difficulty and ULI of all <strong>Agreeability</strong> items are in an acceptable range and none of the items decrease the scale’s reliability. </br></p>
+<p>Item 42 (<em>“Považuji se za někoho, kdo je vůči záměrům ostatních nedůvěřivý.”</em>) has the lowest difficulty (popularity) and a relatively low ULI. Since it is a reverse-coded item, most respondents agreed with this statement. One possible explanation could be the negative connotation of the word <em>důvěřivý</em>. Hypothetically, this effect could also be explained sociologically (lower trust in post-communist countries). </br></p>
+<p>Item 52 (<em>“Považuji se za někoho, kdo je k ostatním slušný a zdvořilý.”</em>) has the highest popularity and the lowest ability to discriminate between agreeable and non-agreeable respondents. This could be explained by social desirability. </br></p>
+<p>Item 47 (<em>“Považuji se za někoho, kdo dokáže být chladný a bezcitný.”</em>) has the highest ULI and thus, it is best at differentiating between agreeable and non-agreeable respondents.</p>
+<pre class="r"><code># Conscientiousness
+datatable(it_al_c, rownames = TRUE, options = list(pageLength = 12, lengthMenu = c(12), paging = FALSE, dom = &#39;t&#39;), caption = htmltools::tags$caption( style = &#39;caption-side: top; text-align: left; color:black; font-size:200% ;&#39;,&#39;Conscientiousness&#39;)) %&gt;%
+  formatStyle(columns = &quot;Difficulty&quot;, 
+              backgroundColor = styleInterval(c(0.1, 0.9), c(&quot;blue&quot;, NA, &quot;red&quot;))) %&gt;% 
+  formatStyle(columns = &quot;RIR&quot;,
+              backgroundColor = styleInterval(c(0.2), c(&quot;blue&quot;, NA))) %&gt;% 
+  formatStyle(columns = &quot;Alpha.drop&quot;,
+              backgroundColor = styleInterval(c(psychometric::alpha(BFI2_c)), c(NA, &quot;pink&quot;))) %&gt;% 
+  formatStyle(columns = &quot;ULI&quot;,
+              backgroundColor = styleInterval(c(0.2), c(&quot;pink&quot;, NA))) %&gt;% 
+  formatStyle(columns = &quot;Difficulty&quot;,
+              color = styleEqual(c(min(it_al_c[&#39;Difficulty&#39;]), max(it_al_c[&#39;Difficulty&#39;])), c(&quot;blue&quot;, &quot;red&quot;))) %&gt;% 
+  formatStyle(columns = &quot;ULI&quot;,
+              color = styleEqual(c(min(it_al_c[&#39;ULI&#39;]), max(it_al_c[&#39;ULI&#39;])), c(&quot;blue&quot;, &quot;red&quot;)))</code></pre>
+<div id="htmlwidget-3c7c35c1a01492ce2c85" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3c7c35c1a01492ce2c85">{"x":{"filter":"none","vertical":false,"caption":"<caption style=\"caption-side: top; text-align: left; color:black; font-size:200% ;\">Conscientiousness<\/caption>","data":[["iCorg03r","iCprd08r","iCrsp13","iCorg18","iCprd23r","iCrsp28r","iCorg33","iCprd38","iCrsp43","iCorg48r","iCprd53","iCrsp58r"],[3.0525,2.3439,3.6284,3.3168,2.7548,3.1956,3.1985,3.5776,3.8719,3.3422,3.5251,2.9435],[1.1297,1.1309,0.9474,1.1461,1.17,1.006,1.1598,0.9584,0.8575,1.2148,1.0144,1.1122],[0.5131,0.336,0.6571,0.5792,0.4387,0.5489,0.5496,0.6444,0.718,0.5855,0.6313,0.4859],[0.4884,0.5541,0.4712,0.7083,0.5387,0.5208,0.6767,0.5849,0.5093,0.5952,0.5839,0.5195],[0.5881,0.6445,0.5572,0.7734,0.6344,0.6059,0.7485,0.6579,0.5834,0.6851,0.6612,0.6135],[0.3661,0.4064,0.2838,0.5022,0.4185,0.3293,0.4905,0.3367,0.2695,0.4766,0.3635,0.3826],[0.3661,0.4064,0.2838,0.5022,0.4185,0.3293,0.4905,0.3367,0.2695,0.4766,0.3635,0.3826],[0.868,0.8638,0.8684,0.8536,0.865,0.8657,0.8557,0.8623,0.8667,0.8613,0.8621,0.866]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Mean<\/th>\n      <th>SD<\/th>\n      <th>Difficulty<\/th>\n      <th>RIR<\/th>\n      <th>RIT<\/th>\n      <th>ULI<\/th>\n      <th>gULI<\/th>\n      <th>Alpha.drop<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":12,"lengthMenu":12,"paging":false,"dom":"t","columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"blue\" : value <= 0.9 ? null : \"red\"});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.2 ? \"blue\" : null});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.8733 ? null : \"pink\"});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.2 ? \"pink\" : null});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'color':value == 0.336 ? \"blue\" : value == 0.718 ? \"red\" : null});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'color':value == 0.2695 ? \"blue\" : value == 0.5022 ? \"red\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<pre class="r"><code>DDplot(
+  Data = BFI2_c, discrim = &quot;ULI&quot;, maxscore = 5, minscore = 1)</code></pre>
+<p><img src="HW4_files/figure-html/traditional_conscientiousness-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>None of the items seem to be extremely faulty. </br></p>
+<p>Item 8 (<em>“Považuji se za někoho, kdo má sklon být líný.”</em>) has the lowest difficulty (popularity). As it is a reverse-coded item, most respondents agreed with the original statement. Perhaps this could be explained sociologically – either by the age range of the sample (<span class="math inline">\(15-26\)</span>) or by an increased societal pressure on productivity. </br></p>
+<p>Item 43 (<em>“Považuji se za někoho, kdo je důvěryhodný, vždy se na něj dá spolehnout.”</em>) has the highest popularity and the lowest ability to differentiate between conscientious and non-conscientious respondents, probably due to social desirability. </br></p>
+<p>Item 18 (<em>“Považuji se za někoho, kdo je systematický, udržuje ve věcech pořádek.”</em>) has the highest ULI and is therefore the best at discriminating between conscientious and non-conscientious respondents.</p>
+<pre class="r"><code># Negative Emotionality
+datatable(it_al_n, rownames = TRUE, options = list(pageLength = 12, lengthMenu = c(12), paging = FALSE, dom = &#39;t&#39;), caption = htmltools::tags$caption( style = &#39;caption-side: top; text-align: left; color:black; font-size:200% ;&#39;,&#39;Negative Emotionality&#39;)) %&gt;%
+  formatStyle(columns = &quot;Difficulty&quot;, 
+              backgroundColor = styleInterval(c(0.1, 0.9), c(&quot;blue&quot;, NA, &quot;red&quot;))) %&gt;% 
+  formatStyle(columns = &quot;RIR&quot;,
+              backgroundColor = styleInterval(c(0.2), c(&quot;blue&quot;, NA))) %&gt;% 
+  formatStyle(columns = &quot;Alpha.drop&quot;,
+              backgroundColor = styleInterval(c(psychometric::alpha(BFI2_n)), c(NA, &quot;pink&quot;))) %&gt;% 
+  formatStyle(columns = &quot;ULI&quot;,
+              backgroundColor = styleInterval(c(0.2), c(&quot;pink&quot;, NA))) %&gt;% 
+  formatStyle(columns = &quot;Difficulty&quot;,
+              color = styleEqual(c(min(it_al_n[&#39;Difficulty&#39;]), max(it_al_n[&#39;Difficulty&#39;])), c(&quot;blue&quot;, &quot;red&quot;))) %&gt;% 
+  formatStyle(columns = &quot;ULI&quot;,
+              color = styleEqual(c(min(it_al_n[&#39;ULI&#39;]),  max(it_al_n[&#39;ULI&#39;])), c(&quot;blue&quot;, &quot;red&quot;)))</code></pre>
+<div id="htmlwidget-c259ea78a349ee420325" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c259ea78a349ee420325">{"x":{"filter":"none","vertical":false,"caption":"<caption style=\"caption-side: top; text-align: left; color:black; font-size:200% ;\">Negative Emotionality<\/caption>","data":[["iNanx04r","iNdep09r","iNemt14","iNanx19","iNdep24r","iNemt29r","iNanx34","iNdep39","iNemt44r","iNanx49r","iNdep54","iNemt59"],[3.0635,2.6803,3.0173,3.0681,2.8892,2.9729,3.5482,2.7963,2.6838,3.2931,2.7455,2.8759],[1.1415,1.1237,1.2544,1.0697,1.1349,1.1795,1.0972,1.2093,1.1029,1.1217,1.2343,1.1659],[0.5159,0.4201,0.5043,0.517,0.4723,0.4932,0.637,0.4491,0.4209,0.5733,0.4364,0.469],[0.6377,0.53,0.6083,0.5485,0.4979,0.7309,0.546,0.675,0.4816,0.5407,0.6689,0.6134],[0.708,0.6145,0.6901,0.6267,0.5872,0.7874,0.6265,0.7429,0.5705,0.6236,0.7393,0.6889],[0.4428,0.3804,0.49,0.3653,0.3666,0.5251,0.3782,0.5035,0.3479,0.3752,0.5204,0.4523],[0.4428,0.3804,0.49,0.3653,0.3666,0.5251,0.3782,0.5035,0.3479,0.3752,0.5204,0.4523],[0.8759,0.8818,0.8776,0.8808,0.8835,0.8704,0.8809,0.8736,0.8843,0.8812,0.8739,0.8773]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Mean<\/th>\n      <th>SD<\/th>\n      <th>Difficulty<\/th>\n      <th>RIR<\/th>\n      <th>RIT<\/th>\n      <th>ULI<\/th>\n      <th>gULI<\/th>\n      <th>Alpha.drop<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":12,"lengthMenu":12,"paging":false,"dom":"t","columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"blue\" : value <= 0.9 ? null : \"red\"});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.2 ? \"blue\" : null});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.8875 ? null : \"pink\"});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.2 ? \"pink\" : null});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'color':value == 0.4201 ? \"blue\" : value == 0.637 ? \"red\" : null});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'color':value == 0.3479 ? \"blue\" : value == 0.5251 ? \"red\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<pre class="r"><code>DDplot(
+  Data = BFI2_n, discrim = &quot;ULI&quot;, maxscore = 5, minscore = 1)</code></pre>
+<p><img src="HW4_files/figure-html/traditional_negative_emotionality-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>All of the items seem to function relatively well. </br></p>
+<p>Item 9 (<em>“Považuji se za někoho, kdo zůstává optimistický i po nějakém nezdaru.”</em>) has the lowest difficulty, probably due to social desirability. </br></p>
+<p>Item 34 (<em>“Považuji se za někoho, kdo si hodně dělá starosti.”</em>) has the highest difficulty – perhaps because of the vague phrasing. </br></p>
+<p>Item 29 (<em>“Považuji se za někoho, kdo je emočně vyrovnaný, jen tak něco ho nerozhodí.”</em>) has the highest ULI, it is best at discriminating between respondents with high and low <em>Negative Emotionality</em> scores. </br></p>
+<p>Item 44 (<em>“Považuji se za někoho, kdo drží své emoce pod kontrolou.”</em>) has the lowest ULI, maybe because it relies too heavily on individual understanding of <em>control</em>.</p>
+<pre class="r"><code># Open-Mindedness
+datatable(it_al_o, rownames = TRUE, options = list(pageLength = 12, lengthMenu = c(12), paging = FALSE, dom = &#39;t&#39;), caption = htmltools::tags$caption( style = &#39;caption-side: top; text-align: left; color:black; font-size:200% ;&#39;,&#39;Open-Mindedness&#39;)) %&gt;%
+  formatStyle(columns = &quot;Difficulty&quot;, 
+              backgroundColor = styleInterval(c(0.1, 0.9), c(&quot;blue&quot;, NA, &quot;red&quot;))) %&gt;% 
+  formatStyle(columns = &quot;RIR&quot;,
+              backgroundColor = styleInterval(c(0.2), c(&quot;blue&quot;, NA))) %&gt;% 
+  formatStyle(columns = &quot;Alpha.drop&quot;,
+              backgroundColor = styleInterval(c(psychometric::alpha(BFI2_o)), c(NA, &quot;pink&quot;))) %&gt;% 
+  formatStyle(columns = &quot;ULI&quot;,
+              backgroundColor = styleInterval(c(0.2), c(&quot;pink&quot;, NA))) %&gt;% 
+  formatStyle(columns = &quot;Difficulty&quot;,
+              color = styleEqual(c(min(it_al_o[&#39;Difficulty&#39;]), max(it_al_o[&#39;Difficulty&#39;])), c(&quot;blue&quot;, &quot;red&quot;))) %&gt;% 
+  formatStyle(columns = &quot;ULI&quot;,
+              color = styleEqual(c(min(it_al_o[&#39;ULI&#39;]), max(it_al_o[&#39;ULI&#39;])), c(&quot;blue&quot;, &quot;red&quot;)))</code></pre>
+<div id="htmlwidget-4ef5a6c1d7f3700c3e5e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4ef5a6c1d7f3700c3e5e">{"x":{"filter":"none","vertical":false,"caption":"<caption style=\"caption-side: top; text-align: left; color:black; font-size:200% ;\">Open-Mindedness<\/caption>","data":[["iOaes05r","iOint10","iOcrt15","iOaes20","iOint25r","iOcrt30r","iOaes35","iOint40","iOcrt45r","iOaes50r","iOint55r","iOcrt60"],[3.2129,3.9394,3.5482,3.3953,3.5563,3.562,3.7334,4.0017,3.9123,3.6497,3.5199,3.4524],[1.3016,0.9571,0.9681,1.2304,1.2105,1.1153,1.058,0.9083,0.995,1.237,1.0737,0.9717],[0.5532,0.7349,0.637,0.5988,0.6391,0.6405,0.6834,0.7504,0.7281,0.6624,0.63,0.6131],[0.5558,0.4045,0.4215,0.5905,0.4264,0.53,0.5726,0.3654,0.4503,0.4641,0.5617,0.4816],[0.6667,0.5055,0.5218,0.6893,0.5503,0.6298,0.661,0.4651,0.55,0.585,0.6531,0.5752],[0.4827,0.2669,0.2682,0.4848,0.3744,0.386,0.3891,0.24,0.3068,0.406,0.3925,0.302],[0.4827,0.2669,0.2682,0.4848,0.3744,0.386,0.3891,0.24,0.3068,0.406,0.3925,0.302],[0.8103,0.8223,0.8211,0.8069,0.8218,0.8126,0.8094,0.8248,0.819,0.8186,0.8101,0.8168]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Mean<\/th>\n      <th>SD<\/th>\n      <th>Difficulty<\/th>\n      <th>RIR<\/th>\n      <th>RIT<\/th>\n      <th>ULI<\/th>\n      <th>gULI<\/th>\n      <th>Alpha.drop<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":12,"lengthMenu":12,"paging":false,"dom":"t","columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.1 ? \"blue\" : value <= 0.9 ? null : \"red\"});\nvar value=data[4]; $(this.api().cell(row, 4).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.2 ? \"blue\" : null});\nvar value=data[8]; $(this.api().cell(row, 8).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.829 ? null : \"pink\"});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 0.2 ? \"pink\" : null});\nvar value=data[3]; $(this.api().cell(row, 3).node()).css({'color':value == 0.5532 ? \"blue\" : value == 0.7504 ? \"red\" : null});\nvar value=data[6]; $(this.api().cell(row, 6).node()).css({'color':value == 0.24 ? \"blue\" : value == 0.4848 ? \"red\" : null});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+<pre class="r"><code>DDplot(
+  Data = BFI2_o, discrim = &quot;ULI&quot;, maxscore = 5, minscore = 1)</code></pre>
+<p><img src="HW4_files/figure-html/traditional_open_mindedness-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Again, all of the items seem to function relatively well. </br></p>
+<p>Item 5 (<em>“Považuji se za někoho, kdo se o umění příliš nezajímá.”</em>) has the lowest difficulty (popularity), maybe due to social desirability. </br></p>
+<p>Item 40 (<em>“Považuji se za někoho, kdo je přemýšlivý, nad věcmi uvažuje do hloubky.”</em>) has the highest difficulty and the lowest ULI – again, I would say the phrasing is quite vague and general enough to apply to most people. </br></p>
+<p>Item 20 (<em>“Považuji se za někoho, kdo je fascinován uměním, hudbou a literaturou.”</em>) has the highest ULI, so it is the best at differentiating between open-minded and non-open-minded respondents.</p>
+<p></br></p>
+</div>
+</div>
+<div id="b.-empirical-item-characteristic-curves." class="section level4">
+<h4>4b. Empirical item characteristic curves.</h4>
+<div id="choose-one-or-two-items-and-include-empirical-item-characteristic-curve-these-items-or-distractor-plots-in-case-of-multiple-choice-items.-select-interesting-items-such-as-the-most-difficult-or-best-discriminating-item-or-item-with-inappropriate-distractor-plot.-dicsuss-your-results-taking-into-account-wording-of-the-items." class="section level5">
+<h5>Choose one or two items and include empirical item characteristic curve these items, or distractor plots in case of multiple-choice items. Select interesting items, such as the most difficult or best discriminating item, or item with inappropriate distractor plot. Dicsuss your results taking into account wording of the items.</h5>
+<p>I selected item <code>iArsp52</code>, since it is the most difficult item from the whole inventory, and item <code>iEscb16r</code> as the best discriminating item. With the help of the selected R code in the interactive ShinyItemAnalysis app I created empirical item characteristic curves for both of these items. I used three groups for item <code>iArsp52</code> and two groups for item <code>iEscb16r</code></p>
+<pre class="r"><code>plotDistractorAnalysis(BFI2_a, num.group = 3, item = 11, multiple.answers = TRUE) +
+  labs(title=&quot;iArsp52 (most difficult item)&quot;,
+       subtitle=&#39;&quot;Považuji se za někoho, kdo je k ostatním slušný a zdvořilý.&quot;&#39;) +
+  theme(plot.subtitle = element_text(face=&quot;italic&quot;))
+
+DA &lt;- DistractorAnalysis(BFI2_a, key = 5, num.groups = 3, p.table = TRUE)[[11]]
+
+dcast(as.data.frame(DA), response ~ score.level, sum, margins = TRUE, value.var = &quot;Freq&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["response"],"name":[1],"type":["fct"],"align":["left"]},{"label":["Group1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Group2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Group3"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"0.007","3":"0.006","4":"0.004"},{"1":"2","2":"0.047","3":"0.010","4":"0.004"},{"1":"3","2":"0.176","3":"0.080","4":"0.018"},{"1":"4","2":"0.720","3":"0.570","4":"0.200"},{"1":"5","2":"0.050","3":"0.333","4":"0.775"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>plotDistractorAnalysis(BFI2_e, num.group = 2, item = 4, multiple.answers = TRUE) +
+  labs(title=&quot;iEscb16r (best discriminating item, reversed)&quot;,
+       subtitle=&#39;&quot;Považuji se za někoho, kdo bývá tichý.&quot;&#39;) +
+  theme(plot.subtitle = element_text(face=&quot;italic&quot;))
+
+DA &lt;- DistractorAnalysis(BFI2_e, key = 5, num.groups = 2, p.table = TRUE)[[4]]
+dcast(as.data.frame(DA), response ~ score.level, sum, margins = TRUE, value.var = &quot;Freq&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["response"],"name":[1],"type":["fct"],"align":["left"]},{"label":["Group1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Group2"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"0.205","3":"0.069"},{"1":"2","2":"0.373","3":"0.146"},{"1":"3","2":"0.220","3":"0.145"},{"1":"4","2":"0.192","3":"0.267"},{"1":"5","2":"0.010","3":"0.373"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p><img src="HW4_files/figure-html/empICC-1.png" width="50%" /><img src="HW4_files/figure-html/empICC-2.png" width="50%" /></p>
+<p>As we can see from the response curve for item <code>iArsp52</code>, answer 5 (<em>“Agree strongly”</em>) is selected more often by respondents with a higher total score (higher agreeability). However, it is also the most difficult/popular item with a low discrimination, which can be seen from the high option selection proportions for answers 4 (<em>“Agree a little.”</em>) and 5 (<em>“Agree strongly”</em>) even in groups with low/lower total scores. Item <code>iEscb16r</code> is reversed, so respondents with higher total scores (higher extraversion) select answers 1 (<em>“Disagree strongly”</em>) and 2 (<em>“Disagree a little”</em>) more often than respondents with lower total scores and vice versa.</p>
+<p></br></p>
+</div>
+</div>
+<div id="c.-binary-regression-models-for-item-description." class="section level4">
+<h4>4c. Binary regression models for item description.</h4>
+<div id="select-a-binary-item-or-binarize-one-of-the-items-provide-item-wording-if-available.-fit-2pl-3pl-and-4pl-regression-model-with-respect-to-standardized-total-score-using-intercept-slope-and-irt-parametrization.-interpret-item-parameters.-select-optimal-model-using-fit-indices." class="section level5">
+<h5>Select a binary item or binarize one of the items, provide item wording if available. Fit 2PL, 3PL and 4PL regression model with respect to standardized total score using intercept-slope and IRT parametrization. Interpret item parameters. Select optimal model using fit indices.</h5>
+<p>I selected item <code>iEscb16r</code> (the best discriminating item) and binarized it in a way that assigned value 1 to answers 4 and 5 on a Likert scale (“Agree a little” and “Agree strongly”), while assigning value 0 to the rest. For all models, I transformed the total scores to Z-scores using the <code>scale()</code> function. I also employed IRT parametrization. For the 3PL model, I used the nonlinear least squares method of estimation.</p>
+<pre class="r"><code># binarize data
+binarize &lt;- function(x) {
+  ifelse(x %in% 4:5, 1, 0)
+}
+
+BFI2_e_bin &lt;- data.frame(lapply(BFI2_e, binarize))
+
+# Z-transformation
+zscore &lt;- scale(rowSums(BFI2_e_bin))
+
+
+# logistic model for item 16
+fit1 &lt;- glm(BFI2_e_bin[, 4] ~ zscore, family = binomial)
+
+# coefficients and standard errors
+summary(fit1)$coefficients[, 1:2]</code></pre>
+<pre><code>##               Estimate Std. Error
+## (Intercept) -0.9226077 0.07382540
+## zscore       2.1008412 0.09690751</code></pre>
+<pre class="r"><code># probability difference of answering item 16 with Z-score 0 and 1
+data.frame(
+  zscore_0 = exp(coef(fit1)[1]) / (1 + exp(coef(fit1)[1])),
+  zscore_1 = exp(coef(fit1)[1] + coef(fit1)[2]) / (1 + exp(coef(fit1)[1] + coef(fit1)[2]))
+)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["zscore_0"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["zscore_1"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.2844269","2":"0.76463","_rn_":"(Intercept)"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code># IRT parametrization
+IRTpars16 &lt;- c(coef(fit1)[2], -coef(fit1)[1] / coef(fit1)[2])
+setNames(IRTpars16, c(&quot;a&quot;, &quot;b&quot;))</code></pre>
+<pre><code>##         a         b 
+## 2.1008412 0.4391611</code></pre>
+<pre class="r"><code># delta method to calculate SE
+msm:: deltamethod(
+  g = list(~ x2, ~ - x1 / x2),
+  mean = coef(fit1),
+  cov = vcov(fit1)
+)</code></pre>
+<pre><code>## [1] 0.09690751 0.03264921</code></pre>
+<pre class="r"><code># probit regression mode
+fit2 &lt;- glm(BFI2_e_bin[, 4] ~ zscore, family = binomial(link = &quot;probit&quot;))
+
+# coefficients and standard errors
+summary(fit2)$coefficients[, 1:2]</code></pre>
+<pre><code>##               Estimate Std. Error
+## (Intercept) -0.5343976 0.04095778
+## zscore       1.2261602 0.05061482</code></pre>
+<pre class="r"><code># probability of answering item 16 with Z-score 0
+pnorm(coef(fit2)[1])</code></pre>
+<pre><code>## (Intercept) 
+##   0.2965333</code></pre>
+<pre class="r"><code># probability of answering item 16 with Z-score 1
+pnorm(coef(fit2)[1] + coef(fit2)[2])</code></pre>
+<pre><code>## (Intercept) 
+##   0.7554568</code></pre>
+<pre class="r"><code># function for plot (logit)
+mod_logit &lt;- function(x, b0, b1) {
+  exp(b0 + b1 * x) / (1 + exp(b0 + b1 * x))
+}
+
+# function for plot (probit)
+mod_probit &lt;- function(x, b0, b1) {
+  pnorm(b0 + b1 * x)
+}
+
+df &lt;- data.frame(
+  x = sort(unique(zscore)),
+  y = tapply(BFI2_e_bin[, 4], zscore, mean),
+  Count = as.numeric(table(zscore))
+)
+
+# Logistic regression curve for logit and probit link (item 16)
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(aes(size = Count), color = &quot;darkblue&quot;, fill = &quot;darkblue&quot;, shape = 21, alpha = 0.5) +
+  stat_function(fun = mod_logit, geom = &quot;line&quot;,
+                args = list(b0 = coef(fit1)[1], b1 = coef(fit1)[2]),
+                size = 0.8, aes(color = &quot;logit&quot;, linetype = &quot;logit&quot;)) +
+  stat_function(fun = mod_probit, geom = &quot;line&quot;,
+                args = list(b0 = coef(fit2)[1], b1 = coef(fit2)[2]),
+                size = 0.8, aes(color = &quot;probit&quot;, linetype = &quot;probit&quot;)) +
+  xlab(&quot;Z-score&quot;) + ylab(&quot;Probability of answer 3 or higher&quot;) +
+  ylim(0, 1) +
+  scale_colour_manual(&quot;Link&quot;, values = c(&quot;darkblue&quot;, &quot;darkgoldenrod2&quot;)) +
+  scale_linetype_manual(&quot;Link&quot;, values = c(&quot;solid&quot;, &quot;dashed&quot;)) +
+  ggtitle(&quot;Reversed item 16 (&#39;Považuji se za někoho, kdo bývá tichý.&#39;)&quot;)</code></pre>
+<p><img src="HW4_files/figure-html/binary_2PL-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Logistic regression model</strong> </br></p>
+<p>The estimated intercept <span class="math inline">\(-0.92\)</span> with a standard error of <span class="math inline">\(0.07\)</span> is the log-odds of disagreement with item 16 for a respondent with a Z-score of 0 points (mean total score of extraverion), the probability of disagreeing with this item would be <span class="math inline">\(0.28\)</span>. With each standard deviation increase in the total score, the log-odds of disagreement with item 16 would increase by the ratio of <span class="math inline">\(2.1\)</span>. For a respondent with a Z-score of <span class="math inline">\(1\)</span> (above average extraversion), the log-odds of disagreeing with the item would thus be <span class="math inline">\(-0.92 + 2.1 = 1.18\)</span> and the probability would be <span class="math inline">\(0.76\)</span>. With the IRT parametrization, difficulty of item 16 is estimated at <span class="math inline">\(0.44\)</span> with a standard error of <span class="math inline">\(0.03\)</span> and the item discrimination is estimated at <span class="math inline">\(2.1\)</span>. A respondent with a total score <span class="math inline">\(0.43\)</span> SD above average has a probability of <span class="math inline">\(0.5\)</span> to disagree with the item. </br></p>
+<p><strong>Probit regression model</strong> </br></p>
+<p>The probability of disagreeing with item 16 by a respondent with Z-score of 0 (average total score) is <span class="math inline">\(0.3\)</span> and <span class="math inline">\(0.76\)</span> for a respondent with a Z-score of 1 (1 SD above mean).</p>
+<pre class="r"><code># Create function mod_3PL
+mod_3PL &lt;- function(x, a, b, c) {
+  c + (1 - c) * exp(a * (x - b)) / (1 + exp(a * (x - b)))
+}
+
+# Use method nls() with mod_3PL() created earlier to estimate model parameters
+fit3 &lt;- nls(
+  BFI2_e_bin[, 4] ~ mod_3PL(zscore, a, b, c),
+  algorithm = &quot;port&quot;,
+  start = c(a = 0.7, b = -0.9, c = 0),
+  lower = c(-Inf, -Inf, 0),
+  upper = c(Inf, Inf, 1)
+)
+
+# Estimated coefficients
+coef(fit3)</code></pre>
+<pre><code>##         a         b         c 
+## 1.9447916 0.4349806 0.0000000</code></pre>
+<pre class="r"><code># Plot of estimated curve
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(aes(size = Count),
+             color = &quot;darkblue&quot;,
+             fill = &quot;darkblue&quot;,
+             shape = 21, alpha = 0.5
+  ) +
+  stat_function(
+    fun = mod_3PL, geom = &quot;line&quot;,
+    args = list(
+      a = coef(fit3)[1], # Set param a using coef() function
+      b = coef(fit3)[2], # Set param b using coef() function
+      c = coef(fit3)[3]  # Set param c using coef() function
+    ),
+    size = 0.8,
+    color = &quot;darkblue&quot;
+  ) +
+  xlab(&quot;Z-score&quot;) +
+  ylab(&quot;Probability of correct answer&quot;) +
+  ylim(0, 1) +
+  ggtitle(&quot;Reversed item 16 (&#39;Považuji se za někoho, kdo bývá tichý.&#39;)&quot;)  +
+  theme(legend.position = c(0.88, 0.23))</code></pre>
+<p><img src="HW4_files/figure-html/binary_3PL-1.png" width="672" style="display: block; margin: auto;" /> Respondents would have an estimated probability <span class="math inline">\(0\)</span> of disagreeing with item 16 (note that this is a reversed item) despite having low extraversion. The observed trait (extraversion) is estimated at Z-score <span class="math inline">\(0.43\)</span>, for which the probability of disagreeing with the statement would be <span class="math inline">\(0.5\)</span>.</p>
+<pre class="r"><code>## 4PL
+
+# NLR 4P model for item 13: add parameter d and save as mod_4PL function
+mod_4PL &lt;- function(x, a, b, c, d) {
+  c + (d - c) * exp(a * (x - b)) / (1 + exp(a * (x - b)))
+}
+
+# Use method nls() with mod_4PL() created earlier to estimate model parameters
+fit4 &lt;- nls(
+  BFI2_e_bin[, 4] ~ mod_4PL(zscore, a, b, c, d),
+  algorithm = &quot;port&quot;,
+  start = c(a = 0.7, b = -0.9, c = 0, d = 1),
+  lower = c(-Inf, -Inf, 0, 0),
+  upper = c(Inf, Inf, 1, 1)
+)
+
+# Use coef() to extract estimated coefficients
+coef(fit4)</code></pre>
+<pre><code>##         a         b         c         d 
+## 1.9447912 0.4349806 0.0000000 1.0000000</code></pre>
+<pre class="r"><code># Model comparison
+cbind(as.data.frame(AIC(fit1, fit2, fit3, fit4)), as.data.frame(BIC(fit1, fit2, fit3, fit4)))</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["df"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"1389.349","3":"2","4":"1400.264","_rn_":"fit1"},{"1":"2","2":"1382.457","3":"2","4":"1393.372","_rn_":"fit2"},{"1":"4","2":"1384.058","3":"4","4":"1405.889","_rn_":"fit3"},{"1":"5","2":"1386.058","3":"5","4":"1413.346","_rn_":"fit4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>For item 16, the inattention parameter of the 4PL model is estimated to be <span class="math inline">\(1\)</span>, otherwise, the model is quite similar to the 3PL model. The model comparison shows that the 2PL (probit) model would be the best for item 16.</p>
+<p></br></p>
+</div>
+</div>
+<div id="d.-polytomous-regression-models-for-item-description." class="section level4">
+<h4>4d. Polytomous regression models for item description.</h4>
+<div id="select-a-polytomous-item-provide-item-wording-if-available.-select-and-fit-appropriate-regression-model-with-respect-to-standardized-total-score-using-intercept-slope-andor-irt-parametrization.-discuss-your-model-decission-with-respect-to-item-type.-interpret-item-parameters." class="section level5">
+<h5>Select a polytomous item, provide item wording if available. Select and fit appropriate regression model with respect to standardized total score using intercept-slope and/or IRT parametrization. Discuss your model decission with respect to item type. Interpret item parameters.</h5>
+<p>Again, I’m working with the reversed item 16 (<em>“Považuji se za někoho, kdo bývá tichý.”</em>). I decided to choose a cumulative logit model, since the <code>BFI2</code> consists of Likert scale items.</p>
+<pre class="r"><code># recoding data
+BFI2_e_rec &lt;- BFI2_e - 1
+
+# z-score
+zscore &lt;- scale(rowSums(BFI2_e_rec))
+
+# create a factor variable
+max(BFI2_e_rec[, 4])</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>maxval &lt;- max(BFI2_e_rec[, 4])
+BFI2_e_rec[, 4] &lt;- ordered(factor(BFI2_e_rec[, 4], levels = 0:maxval))
+
+# cumulative logit model for item 16
+fit.cum &lt;- vglm(BFI2_e_rec[, 4] ~ zscore,
+                family = cumulative(reverse = TRUE, parallel = TRUE))
+
+# coefficients and SE
+coef(fit.cum)</code></pre>
+<pre><code>## (Intercept):1 (Intercept):2 (Intercept):3 (Intercept):4        zscore 
+##     2.9367530     0.5143056    -0.8832174    -2.9103725     2.1761007</code></pre>
+<pre class="r"><code>sqrt(diag(vcov(fit.cum)))</code></pre>
+<pre><code>## (Intercept):1 (Intercept):2 (Intercept):3 (Intercept):4        zscore 
+##    0.09702355    0.06347559    0.06573433    0.09550154    0.06895762</code></pre>
+<pre class="r"><code># IRT parametrization
+c(-coef(fit.cum)[1:4] / coef(fit.cum)[5], coef(fit.cum)[5])</code></pre>
+<pre><code>## (Intercept):1 (Intercept):2 (Intercept):3 (Intercept):4        zscore 
+##    -1.3495483    -0.2363427     0.4058716     1.3374255     2.1761007</code></pre>
+<pre class="r"><code>msm::deltamethod(
+  list(~ -x1 / x5, ~ -x2 / x5, ~ -x3 / x5, ~ -x4 / x5, ~ x5),
+  mean = coef(fit.cum), cov = vcov(fit.cum)
+)</code></pre>
+<pre><code>## [1] 0.04226064 0.02915947 0.02965357 0.04141153 0.06895762</code></pre>
+<pre class="r"><code># plots
+plotCumulative(fit.cum, type = &quot;cumulative&quot;) +
+  xlab(&quot;Z-score&quot;)
+plotCumulative(fit.cum, type = &quot;category&quot;) +
+  xlab(&quot;Z-score&quot;)</code></pre>
+<p><img src="HW4_files/figure-html/polytomous-1.png" width="50%" /><img src="HW4_files/figure-html/polytomous-2.png" width="50%" /></p>
+<p>Respondent with a Z-score of <span class="math inline">\(-1.35\)</span> (below average extraversion) has a <span class="math inline">\(0.5\)</span> probability of answering at least <em>“Agree a little”</em>, respondent with a Z-score of <span class="math inline">\(-0.24\)</span> (below average extraversion) has a <span class="math inline">\(0.5\)</span> probability of answering at least <em>“Neutral; no opinion”</em>, respondent with a Z-score of <span class="math inline">\(0.41\)</span> (above average extraversion) has a <span class="math inline">\(0.5\)</span> probability of answering at least <em>“Disagree a little”</em>, and respondent with a Z-score of <span class="math inline">\(1.34\)</span> (above average extraversion) has a <span class="math inline">\(0.5\)</span> probability of answering at least <em>“Disagree strongly”</em>. With each unit increase of the Z-score, the log-odds of choosing the given answer or a lower one, increases by the ratio of <span class="math inline">\(2.18\)</span>.</p>
+<p></br></p>
+</div>
+</div>
+<div id="e.-extra-interactive-shinyitemanalysis-app." class="section level4">
+<h4>4e. (extra) Interactive ShinyItemAnalysis app.</h4>
+<div id="use-the-interactive-shinyitemanalysis-application-to-create-a-report-with-traditional-item-analysis-and-regression-models-for-all-items.-if-your-data-is-too-large-consider-using-sample-data-e.g.-from-a-random-sample-of-2000-respondents-and-selection-of-items---single-domain-etc.." class="section level5">
+<h5>Use the interactive ShinyItemAnalysis application to create a report with traditional item analysis and regression models for all items. If your data is too large, consider using sample data (e.g. from a random sample of 2000 respondents and selection of items - single domain, etc.).</h5>
+<p>Your text (description of methods).</p>
+<p></br></p>
+</div>
+</div>
+<div id="usediscuss-your-own-data-andor-provide-constructive-feedback-to-the-lecture-exercises-or-any-of-the-material.-bonus-1-pt" class="section level4">
+<h4>5. Use/discuss your own data and/or provide constructive feedback to the lecture, exercises, or any of the material. [BONUS 1 pt]</h4>
+<p>Your text.</p>
+<p></br></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

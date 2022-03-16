@@ -3,6 +3,15 @@ title: 'Selected Topics of Psychometrics (NMST570)'
 subtitle: 'Homework Assignment 1: Introduction (due: Oct 18, 2021)'
 author: 'Kateřina Hudáčová, Benjamín Kunc'
 date: \today
+output:
+  html_document:
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+    fig_caption: yes
+    df_print: paged
+    code_folding: show
 ---
 
 </br>

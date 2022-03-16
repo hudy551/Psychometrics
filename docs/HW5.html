@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Kateřina Hudáčová (Benjamín Kunc)" />
+
+
+<title>Selected Topics of Psychometrics (NMST570)</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Psychometrics</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">HW1</a>
+</li>
+<li>
+  <a href="HW2.html">HW2</a>
+</li>
+<li>
+  <a href="HW3.html">HW3</a>
+</li>
+<li>
+  <a href="HW4.html">HW4</a>
+</li>
+<li>
+  <a href="HW5.html">HW5</a>
+</li>
+<li>
+  <a href="HW6.html">HW6</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Selected Topics of Psychometrics (NMST570)</h1>
+<h3 class="subtitle">Homework Assignment 5: IRT models</h3>
+<h4 class="author">Kateřina Hudáčová (Benjamín Kunc)</h4>
+
+</div>
+
+
+<p>Note: The assignment is due on December 13, 2021. Send your code and html/pdf report to <code>dlouha@cs.cas.cz</code> (and to <code>martinkova@cs.cas.cz</code> in copy).</p>
+<p></br></p>
+<div id="read-and-comment-on-chapter-5-6-and-7-on-httpsperusall.com.-2-pts" class="section level4">
+<h4>1. Read and comment on Chapter 5, 6, and 7 on <a href="https://perusall.com" class="uri">https://perusall.com</a>. [2 pts]</h4>
+</div>
+<div id="run-the-code-for-the-chapter-5-6-and-7-available-on-course-webpage-httpwww.cs.cas.czmartinkovanmst570.html." class="section level4">
+<h4>2. Run the code for the Chapter 5, 6, and 7, available on course webpage <a href="http://www.cs.cas.cz/martinkova/NMST570.html" class="uri">http://www.cs.cas.cz/martinkova/NMST570.html</a>.</h4>
+</div>
+<div id="complete-the-caplearnr-online-tutorials-for-irt-models.-attach-certificates.-4-pts" class="section level4">
+<h4>3. Complete the CAPlearnR online tutorials for IRT models. Attach certificates. [4 pts]</h4>
+<blockquote>
+<p>Note: If you meet any issues, contact the the TA or the instructor before 8 AM of the due date.</p>
+</blockquote>
+</div>
+<div id="project-preparation." class="section level4">
+<h4>4. Project preparation.</h4>
+<div id="explore-the-czech-matura-data-or-data-of-your-choice-as-described-below.-you-can-work-with-1-2-teammates-on-this-task.-all-teammate-names-have-to-be-included-on-your-answer-sheet.-4-pts" class="section level5">
+<h5>Explore the Czech matura data OR DATA OF YOUR CHOICE as described below. You can work with 1-2 teammates on this task. All teammate names have to be included on your answer sheet. [4 pts]</h5>
+<p>I am working with the <code>BFI2</code> dataset from the <code>ShinyItemAnalysis</code> package. The <code>BFI2</code> dataset contains responses of <span class="math inline">\(1733\)</span> Czech respondents to the Big Five Inventory 2, as well as information about their age, education, and gender. The BFI2 items are scored using a 5-point Likert scale. For the purpose of this assignment I will only be using the extraversion items of the <code>BFI2</code>.</p>
+<pre class="r"><code>data(BFI2, package=&#39;ShinyItemAnalysis&#39;)
+
+# Data frames for domains
+BFI2_e &lt;- BFI2[, seq(1, 56, 5)]</code></pre>
+<p>I created datasets for the extraversion dimension.</p>
+<p></br></p>
+</div>
+</div>
+<div id="a.-1pl-irt-model-for-binary-data." class="section level4">
+<h4>4a. 1PL IRT model for binary data.</h4>
+<div id="binarize-your-data-and-fit-1pl-irt-model.-plot-and-discuss-a-person-item-map-wright-map." class="section level5">
+<h5>Binarize your data and fit 1PL IRT model. Plot and discuss a Person-Item map (Wright map).</h5>
+<p>I binarized the extraversion dimension of the<code>BFI2</code> data and fit a Rasch model using the <code>mirt</code> package.</p>
+<pre class="r"><code># binarize data
+bin &lt;- function(x) {
+  ifelse(x %in% 4:5, 1, 0)
+}
+
+BFI2_e_bin &lt;- data.frame(lapply(BFI2_e, bin))
+
+# fit model
+fit_rasch &lt;- mirt::mirt(data = BFI2_e_bin, model = 1, itemtype = &quot;Rasch&quot;, SE = TRUE)</code></pre>
+<pre><code>## 
+Iteration: 1, Log-Lik: -12288.471, Max-Change: 0.29827
+Iteration: 2, Log-Lik: -12232.194, Max-Change: 0.24077
+Iteration: 3, Log-Lik: -12209.315, Max-Change: 0.16961
+Iteration: 4, Log-Lik: -12200.997, Max-Change: 0.10856
+Iteration: 5, Log-Lik: -12198.173, Max-Change: 0.06552
+Iteration: 6, Log-Lik: -12197.249, Max-Change: 0.03817
+Iteration: 7, Log-Lik: -12196.949, Max-Change: 0.02233
+Iteration: 8, Log-Lik: -12196.857, Max-Change: 0.01205
+Iteration: 9, Log-Lik: -12196.828, Max-Change: 0.00674
+Iteration: 10, Log-Lik: -12196.819, Max-Change: 0.00383
+Iteration: 11, Log-Lik: -12196.816, Max-Change: 0.00208
+Iteration: 12, Log-Lik: -12196.815, Max-Change: 0.00116
+Iteration: 13, Log-Lik: -12196.814, Max-Change: 0.00065
+Iteration: 14, Log-Lik: -12196.814, Max-Change: 0.00035
+Iteration: 15, Log-Lik: -12196.814, Max-Change: 0.00020
+Iteration: 16, Log-Lik: -12196.814, Max-Change: 0.00011
+Iteration: 17, Log-Lik: -12196.814, Max-Change: 0.00006
+## 
+## Calculating information matrix...</code></pre>
+<pre class="r"><code># intercept/slope parameter estimates
+coef(fit_rasch, SE = TRUE)</code></pre>
+<pre><code>## $i1
+##         a1     d  g  u
+## par      1 0.756  0  1
+## CI_2.5  NA 0.624 NA NA
+## CI_97.5 NA 0.889 NA NA
+## 
+## $i6
+##         a1     d  g  u
+## par      1 0.620  0  1
+## CI_2.5  NA 0.489 NA NA
+## CI_97.5 NA 0.751 NA NA
+## 
+## $i11
+##         a1     d  g  u
+## par      1 0.858  0  1
+## CI_2.5  NA 0.725 NA NA
+## CI_97.5 NA 0.991 NA NA
+## 
+## $i16
+##         a1      d  g  u
+## par      1 -0.700  0  1
+## CI_2.5  NA -0.832 NA NA
+## CI_97.5 NA -0.567 NA NA
+## 
+## $i21
+##         a1      d  g  u
+## par      1 -0.720  0  1
+## CI_2.5  NA -0.852 NA NA
+## CI_97.5 NA -0.587 NA NA
+## 
+## $i26
+##         a1      d  g  u
+## par      1 -0.048  0  1
+## CI_2.5  NA -0.177 NA NA
+## CI_97.5 NA  0.082 NA NA
+## 
+## $i31
+##         a1      d  g  u
+## par      1 -1.091  0  1
+## CI_2.5  NA -1.228 NA NA
+## CI_97.5 NA -0.954 NA NA
+## 
+## $i36
+##         a1      d  g  u
+## par      1 -0.364  0  1
+## CI_2.5  NA -0.494 NA NA
+## CI_97.5 NA -0.234 NA NA
+## 
+## $i41
+##         a1      d  g  u
+## par      1  0.111  0  1
+## CI_2.5  NA -0.018 NA NA
+## CI_97.5 NA  0.240 NA NA
+## 
+## $i46
+##         a1     d  g  u
+## par      1 0.357  0  1
+## CI_2.5  NA 0.227 NA NA
+## CI_97.5 NA 0.486 NA NA
+## 
+## $i51
+##         a1      d  g  u
+## par      1 -0.812  0  1
+## CI_2.5  NA -0.945 NA NA
+## CI_97.5 NA -0.678 NA NA
+## 
+## $i56
+##         a1     d  g  u
+## par      1 0.456  0  1
+## CI_2.5  NA 0.326 NA NA
+## CI_97.5 NA 0.587 NA NA
+## 
+## $GroupPars
+##         MEAN_1 COV_11
+## par          0  1.970
+## CI_2.5      NA  1.777
+## CI_97.5     NA  2.164</code></pre>
+<pre class="r"><code># IRT parameter estimates
+coef(fit_rasch, SE = TRUE, IRTpars = TRUE)</code></pre>
+<pre><code>## $i1
+##          a      b  g  u
+## par      1 -0.756  0  1
+## CI_2.5  NA -0.889 NA NA
+## CI_97.5 NA -0.624 NA NA
+## 
+## $i6
+##          a      b  g  u
+## par      1 -0.620  0  1
+## CI_2.5  NA -0.751 NA NA
+## CI_97.5 NA -0.489 NA NA
+## 
+## $i11
+##          a      b  g  u
+## par      1 -0.858  0  1
+## CI_2.5  NA -0.991 NA NA
+## CI_97.5 NA -0.725 NA NA
+## 
+## $i16
+##          a     b  g  u
+## par      1 0.700  0  1
+## CI_2.5  NA 0.567 NA NA
+## CI_97.5 NA 0.832 NA NA
+## 
+## $i21
+##          a     b  g  u
+## par      1 0.720  0  1
+## CI_2.5  NA 0.587 NA NA
+## CI_97.5 NA 0.852 NA NA
+## 
+## $i26
+##          a      b  g  u
+## par      1  0.048  0  1
+## CI_2.5  NA -0.082 NA NA
+## CI_97.5 NA  0.177 NA NA
+## 
+## $i31
+##          a     b  g  u
+## par      1 1.091  0  1
+## CI_2.5  NA 0.954 NA NA
+## CI_97.5 NA 1.228 NA NA
+## 
+## $i36
+##          a     b  g  u
+## par      1 0.364  0  1
+## CI_2.5  NA 0.234 NA NA
+## CI_97.5 NA 0.494 NA NA
+## 
+## $i41
+##          a      b  g  u
+## par      1 -0.111  0  1
+## CI_2.5  NA -0.240 NA NA
+## CI_97.5 NA  0.018 NA NA
+## 
+## $i46
+##          a      b  g  u
+## par      1 -0.357  0  1
+## CI_2.5  NA -0.486 NA NA
+## CI_97.5 NA -0.227 NA NA
+## 
+## $i51
+##          a     b  g  u
+## par      1 0.812  0  1
+## CI_2.5  NA 0.678 NA NA
+## CI_97.5 NA 0.945 NA NA
+## 
+## $i56
+##          a      b  g  u
+## par      1 -0.456  0  1
+## CI_2.5  NA -0.587 NA NA
+## CI_97.5 NA -0.326 NA NA
+## 
+## $GroupPars
+##         MEAN_1 COV_11
+## par          0  1.970
+## CI_2.5      NA  1.777
+## CI_97.5     NA  2.164</code></pre>
+<pre class="r"><code># ICCs
+plot(fit_rasch, type = &quot;trace&quot;, facet_items = FALSE)</code></pre>
+<p><img src="HW5_files/figure-html/1PLirt-1.png" width="672" /></p>
+<pre class="r"><code># TSC
+plot(fit_rasch)</code></pre>
+<p><img src="HW5_files/figure-html/1PLirt-2.png" width="672" /></p>
+<pre class="r"><code># factor scores
+fs_SE &lt;- mirt::fscores(fit_rasch, full.scores.SE = TRUE)
+head(fs_SE, 3)</code></pre>
+<pre><code>##              F1     SE_F1
+## [1,]  1.4711763 0.6596684
+## [2,]  1.4711763 0.6596684
+## [3,] -0.9902839 0.6171505</code></pre>
+<pre class="r"><code># first respondent
+summary(fs_SE[, 1])</code></pre>
+<pre><code>##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max. 
+## -2.4832993 -0.9902839  0.0380714  0.0000158  1.0658842  2.5480626</code></pre>
+<pre class="r"><code>sd(fs_SE[, 1])</code></pre>
+<pre><code>## [1] 1.248974</code></pre>
+<pre class="r"><code># Wright map
+b &lt;- coef(fit_rasch, simplify = TRUE, IRTpars = TRUE)$items[, &quot;b&quot;]
+ggWrightMap(fs_SE[, 1], b)</code></pre>
+<p><img src="HW5_files/figure-html/1PLirt-3.png" width="672" /></p>
+<p>As we can see from the parameter estimates, the ability variance is estimated at <span class="math inline">\(1.97\)</span> with a confidence interval of <span class="math inline">\(1.78; 2.16\)</span>. For item 31 (most difficult item, <em>“Považuji se za někoho, kdo je někdy plachý, introvertní.”</em>) an ability (extraversion) of almost 1.1 SD above the mean is required to answer <em>“Disagree strongly”</em> or <em>“Disagree a little”</em> (reversed item) with a <span class="math inline">\(50\%\)</span> probability. The first respondent in this dataset has an ability (extraversion) of <span class="math inline">\(1.47 + / - 0.66\)</span> and the model discrimination is estimated at <span class="math inline">\(1.24\)</span>. </br></p>
+<p>The Wright map confirms that item 7 of the extraversion dimension (coded as item 31) is the most difficult and item 3 (coded as item 11, <em>“Považuji se za někoho, kdo zřídkakdy pociťuje vzrušení a nadšení pro věc.”</em>) is the least difficult.</p>
+<p></br></p>
+</div>
+</div>
+<div id="b.-other-irt-models-model-selection" class="section level4">
+<h4>4b. Other IRT models, model selection</h4>
+<div id="fit-more-irt-models-2pl-3pl4pl-only-if-they-make-sense-including-models-for-ordinal-data-if-ordinal-items-are-present-in-your-dataset.-select-optimal-model-provide-reasoning-for-selected-irt-model-based-on-data-type-or-using-comparison-of-more-irt-models.-provide-model-equations-and-interpretation-of-parameters.-which-method-was-used-for-estimation-of-parameters" class="section level5">
+<h5>Fit more IRT models (2PL, 3PL/4PL only if they make sense) including models for ordinal data, if ordinal items are present in your dataset. Select optimal model: Provide reasoning for selected IRT model (based on data type or using comparison of more IRT models). Provide model equation(s) and interpretation of parameters. Which method was used for estimation of parameters?</h5>
+<p>I decided to fit cummulative logit IRT models – graded response model and graded ratings scale model – since I’m working with ordinal items based on a Likert scale which also remains the same for all items.</p>
+<pre class="r"><code># GRM
+fit_GRM &lt;- mirt::mirt(BFI2_e, model = 1, itemtype = &quot;graded&quot;)</code></pre>
+<pre><code>## 
+Iteration: 1, Log-Lik: -27653.291, Max-Change: 0.91521
+Iteration: 2, Log-Lik: -27166.089, Max-Change: 0.58223
+Iteration: 3, Log-Lik: -27062.095, Max-Change: 0.32970
+Iteration: 4, Log-Lik: -27028.766, Max-Change: 0.23056
+Iteration: 5, Log-Lik: -27015.502, Max-Change: 0.08756
+Iteration: 6, Log-Lik: -27008.693, Max-Change: 0.04862
+Iteration: 7, Log-Lik: -27005.074, Max-Change: 0.04134
+Iteration: 8, Log-Lik: -27002.859, Max-Change: 0.04102
+Iteration: 9, Log-Lik: -27001.511, Max-Change: 0.03362
+Iteration: 10, Log-Lik: -27000.932, Max-Change: 0.02151
+Iteration: 11, Log-Lik: -27000.286, Max-Change: 0.01376
+Iteration: 12, Log-Lik: -26999.921, Max-Change: 0.01132
+Iteration: 13, Log-Lik: -26999.391, Max-Change: 0.00408
+Iteration: 14, Log-Lik: -26999.372, Max-Change: 0.00218
+Iteration: 15, Log-Lik: -26999.363, Max-Change: 0.00172
+Iteration: 16, Log-Lik: -26999.348, Max-Change: 0.00147
+Iteration: 17, Log-Lik: -26999.346, Max-Change: 0.00039
+Iteration: 18, Log-Lik: -26999.346, Max-Change: 0.00021
+Iteration: 19, Log-Lik: -26999.346, Max-Change: 0.00019
+Iteration: 20, Log-Lik: -26999.346, Max-Change: 0.00085
+Iteration: 21, Log-Lik: -26999.346, Max-Change: 0.00055
+Iteration: 22, Log-Lik: -26999.345, Max-Change: 0.00011
+Iteration: 23, Log-Lik: -26999.345, Max-Change: 0.00033
+Iteration: 24, Log-Lik: -26999.345, Max-Change: 0.00016
+Iteration: 25, Log-Lik: -26999.345, Max-Change: 0.00008</code></pre>
+<pre class="r"><code>coef(fit_GRM)</code></pre>
+<pre><code>## $i1
+##        a1    d1    d2    d3     d4
+## par 1.814 4.849 2.266 0.857 -2.141
+## 
+## $i6
+##        a1   d1    d2    d3   d4
+## par 1.661 4.68 2.135 0.627 -2.1
+## 
+## $i11
+##       a1    d1    d2    d3     d4
+## par 0.63 3.288 1.573 0.703 -1.329
+## 
+## $i16
+##        a1    d1   d2    d3     d4
+## par 2.341 3.013 0.54 -0.87 -2.986
+## 
+## $i21
+##        a1    d1    d2     d3     d4
+## par 1.812 2.872 0.704 -0.822 -3.343
+## 
+## $i26
+##      a1    d1    d2     d3     d4
+## par 0.8 4.526 1.947 -0.039 -2.178
+## 
+## $i31
+##        a1    d1     d2     d3     d4
+## par 1.866 2.311 -0.081 -1.208 -3.204
+## 
+## $i36
+##        a1    d1    d2     d3     d4
+## par 0.765 3.161 1.123 -0.308 -2.593
+## 
+## $i41
+##        a1    d1    d2    d3     d4
+## par 1.272 3.882 1.817 0.117 -2.366
+## 
+## $i46
+##        a1    d1    d2    d3     d4
+## par 1.974 4.573 2.064 0.413 -1.973
+## 
+## $i51
+##        a1   d1   d2     d3     d4
+## par 1.636 3.18 0.69 -0.866 -3.123
+## 
+## $i56
+##        a1    d1    d2    d3     d4
+## par 1.105 4.712 2.122 0.406 -2.072
+## 
+## $GroupPars
+##     MEAN_1 COV_11
+## par      0      1</code></pre>
+<pre class="r"><code># GRSM
+fit_GRSM &lt;- mirt::mirt(BFI2_e, model = 1, itemtype = &quot;grsmIRT&quot;)</code></pre>
+<pre><code>## 
+Iteration: 1, Log-Lik: -36364.919, Max-Change: 1.13345
+Iteration: 2, Log-Lik: -27774.218, Max-Change: 0.26460
+Iteration: 3, Log-Lik: -27653.409, Max-Change: 0.15790
+Iteration: 4, Log-Lik: -27622.966, Max-Change: 0.09836
+Iteration: 5, Log-Lik: -27607.112, Max-Change: 0.08106
+Iteration: 6, Log-Lik: -27592.498, Max-Change: 0.08198
+Iteration: 7, Log-Lik: -27582.188, Max-Change: 0.05701
+Iteration: 8, Log-Lik: -27577.430, Max-Change: 0.05774
+Iteration: 9, Log-Lik: -27572.650, Max-Change: 0.04208
+Iteration: 10, Log-Lik: -27569.315, Max-Change: 0.04403
+Iteration: 11, Log-Lik: -27565.505, Max-Change: 0.02378
+Iteration: 12, Log-Lik: -27563.739, Max-Change: 0.02903
+Iteration: 13, Log-Lik: -27560.732, Max-Change: 0.01493
+Iteration: 14, Log-Lik: -27559.331, Max-Change: 0.01425
+Iteration: 15, Log-Lik: -27558.607, Max-Change: 0.01158
+Iteration: 16, Log-Lik: -27557.728, Max-Change: 0.00705
+Iteration: 17, Log-Lik: -27557.494, Max-Change: 0.00501
+Iteration: 18, Log-Lik: -27557.331, Max-Change: 0.00459
+Iteration: 19, Log-Lik: -27556.855, Max-Change: 0.00246
+Iteration: 20, Log-Lik: -27556.834, Max-Change: 0.00081
+Iteration: 21, Log-Lik: -27556.830, Max-Change: 0.00080
+Iteration: 22, Log-Lik: -27556.823, Max-Change: 0.00089
+Iteration: 23, Log-Lik: -27556.821, Max-Change: 0.00055
+Iteration: 24, Log-Lik: -27556.820, Max-Change: 0.00049
+Iteration: 25, Log-Lik: -27556.820, Max-Change: 0.00013
+Iteration: 26, Log-Lik: -27556.819, Max-Change: 0.00028
+Iteration: 27, Log-Lik: -27556.819, Max-Change: 0.00007</code></pre>
+<pre class="r"><code>coef(fit_GRSM, simplify = TRUE)</code></pre>
+<pre><code>## $items
+##        a1    b1    b2    b3     b4      c
+## i1  1.539 3.055 1.478 0.429 -1.268  0.000
+## i6  1.566 3.055 1.478 0.429 -1.268 -0.066
+## i11 1.073 3.055 1.478 0.429 -1.268  0.126
+## i16 1.143 3.055 1.478 0.429 -1.268 -1.010
+## i21 1.400 3.055 1.478 0.429 -1.268 -1.014
+## i26 1.510 3.055 1.478 0.429 -1.268 -0.296
+## i31 1.141 3.055 1.478 0.429 -1.268 -1.381
+## i36 1.311 3.055 1.478 0.429 -1.268 -0.648
+## i41 1.525 3.055 1.478 0.429 -1.268 -0.320
+## i46 1.388 3.055 1.478 0.429 -1.268 -0.109
+## i51 1.473 3.055 1.478 0.429 -1.268 -0.970
+## i56 1.587 3.055 1.478 0.429 -1.268 -0.111
+## 
+## $means
+## F1 
+##  0 
+## 
+## $cov
+##    F1
+## F1  1</code></pre>
+<pre class="r"><code># model comparison
+anova(fit_GRM, fit_GRSM)</code></pre>
+<pre><code>## 
+## Model 1: mirt::mirt(data = BFI2_e, model = 1, itemtype = &quot;grsmIRT&quot;)
+## Model 2: mirt::mirt(data = BFI2_e, model = 1, itemtype = &quot;graded&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["AIC"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["SABIC"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["HQ"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["X2"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"55167.64","2":"55229.22","3":"55222.14","4":"55314.99","5":"-27556.82","6":"NaN","7":"NaN","8":"NaN"},{"1":"54118.69","2":"54255.53","3":"54239.80","4":"54446.15","5":"-26999.35","6":"1114.947","7":"33","8":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>It seems that the restricted model (GRSM) is a better fit for this data. Equation: <span class="math inline">\({\pi\ast}_{pik} = P(Y_{pi} \geq k|\theta_p) = \frac{\exp(a_i(\theta_p - (b_i + \lambda_k)))}{1 + \exp(a_i(\theta_p - (b_i + \lambda_k)))}\)</span> Parameter <span class="math inline">\(a_1\)</span> represents the item-specific slope and parameter <span class="math inline">\(c\)</span> corresponds to the item-specific location. </br></p>
+</div>
+</div>
+<div id="c.-item-parameters" class="section level4">
+<h4>4c. Item parameters</h4>
+<div id="plot-item-characteristic-curves-item-information-curves-test-information-curve.-provide-table-of-model-parameter-estimates-and-their-standard-errors-or-confidence-intervals.-which-item-is-most-informative-for-ability-level-1sd-above-average" class="section level5">
+<h5>Plot item characteristic curves, item information curves, test information curve. Provide table of model parameter estimates and their standard errors, or confidence intervals. Which item is most informative for ability level 1SD above average?</h5>
+<p>I used the <code>itemplot</code> function from the <code>mirt</code> package to plot ICCs of items 3 (i11) and 7 (i31). For IIC and TIC I used the plot function.</p>
+<pre class="r"><code># category response curves
+mirt::itemplot(fit_GRSM, item = 3, type = &quot;infotrace&quot;)</code></pre>
+<p><img src="HW5_files/figure-html/ItemParameters-1.png" width="672" /></p>
+<pre class="r"><code>mirt::itemplot(fit_GRSM, item = 7, type = &quot;infotrace&quot;)</code></pre>
+<p><img src="HW5_files/figure-html/ItemParameters-2.png" width="672" /></p>
+<pre class="r"><code># item information curves
+plot(fit_GRSM, type = &quot;infotrace&quot;, facet_items = FALSE)</code></pre>
+<p><img src="HW5_files/figure-html/ItemParameters-3.png" width="672" /></p>
+<pre class="r"><code># test information curve
+plot(fit_GRSM, type = &quot;infoSE&quot;)</code></pre>
+<p><img src="HW5_files/figure-html/ItemParameters-4.png" width="672" /></p>
+<pre class="r"><code>coef(fit_GRSM)</code></pre>
+<pre><code>## $i1
+##        a1    b1    b2    b3     b4 c
+## par 1.539 3.055 1.478 0.429 -1.268 0
+## 
+## $i6
+##        a1    b1    b2    b3     b4      c
+## par 1.566 3.055 1.478 0.429 -1.268 -0.066
+## 
+## $i11
+##        a1    b1    b2    b3     b4     c
+## par 1.073 3.055 1.478 0.429 -1.268 0.126
+## 
+## $i16
+##        a1    b1    b2    b3     b4     c
+## par 1.143 3.055 1.478 0.429 -1.268 -1.01
+## 
+## $i21
+##      a1    b1    b2    b3     b4      c
+## par 1.4 3.055 1.478 0.429 -1.268 -1.014
+## 
+## $i26
+##       a1    b1    b2    b3     b4      c
+## par 1.51 3.055 1.478 0.429 -1.268 -0.296
+## 
+## $i31
+##        a1    b1    b2    b3     b4      c
+## par 1.141 3.055 1.478 0.429 -1.268 -1.381
+## 
+## $i36
+##        a1    b1    b2    b3     b4      c
+## par 1.311 3.055 1.478 0.429 -1.268 -0.648
+## 
+## $i41
+##        a1    b1    b2    b3     b4     c
+## par 1.525 3.055 1.478 0.429 -1.268 -0.32
+## 
+## $i46
+##        a1    b1    b2    b3     b4      c
+## par 1.388 3.055 1.478 0.429 -1.268 -0.109
+## 
+## $i51
+##        a1    b1    b2    b3     b4     c
+## par 1.473 3.055 1.478 0.429 -1.268 -0.97
+## 
+## $i56
+##        a1    b1    b2    b3     b4      c
+## par 1.587 3.055 1.478 0.429 -1.268 -0.111
+## 
+## $GroupPars
+##     MEAN_1 COV_11
+## par      0      1</code></pre>
+<pre class="r"><code># 1SD above avg item information
+testinfo(fit_GRSM, 1, individual = TRUE)</code></pre>
+<pre><code>##           [,1]      [,2]      [,3]     [,4]      [,5]      [,6]      [,7]     [,8]      [,9]     [,10]     [,11]    [,12]
+## [1,] 0.6394934 0.6587602 0.3245168 0.392216 0.5603175 0.6134839 0.3986821 0.488654 0.6227589 0.5332194 0.6068691 0.672575</code></pre>
+<p>The slope for items 3 (i11) and 7 (i31) are quite similar, but it seems that even respondents with lower latent extraversion tend to disagree with item 3 (<em>“Považuji se za někoho, kdo zřídkakdy pociťuje vzrušení a nadšení pro věc.”</em>). The last item (i56) is the most informative for extraversion level 1SD above average. </br></p>
+</div>
+</div>
+<div id="d.-ability-estimates" class="section level4">
+<h4>4d. Ability estimates</h4>
+<div id="provide-ability-estimate-for-the-first-respondent-including-the-standard-error-or-confidence-interval.-plot-relationship-between-ability-estimates-in-irt-models-and-traditional-ability-estimates-based-on-standardized-total-scores." class="section level5">
+<h5>Provide ability estimate for the first respondent, including the standard error or confidence interval. Plot relationship between ability estimates in IRT models and traditional ability estimates based on (standardized) total scores.</h5>
+<p>For the ability estimate I used the <code>fscores</code> function from the <code>mirt</code> package.</p>
+<pre class="r"><code>fs_SE &lt;- mirt::fscores(fit_GRSM, full.scores.SE = TRUE)
+
+fs_SE[1,]</code></pre>
+<pre><code>##       F1    SE_F1 
+## 1.016787 0.344977</code></pre>
+<pre class="r"><code>summary(fs_SE[1,])</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.3450  0.5129  0.6809  0.6809  0.8488  1.0168</code></pre>
+<pre class="r"><code>fs &lt;- mirt::fscores(fit_GRSM)
+sts &lt;- as.vector(scale(rowSums(BFI2_e)))
+
+# plot
+plot(fs ~ sts, xlab = &quot;Standardized total score&quot;, ylab = &quot;Factor score&quot;)</code></pre>
+<p><img src="HW5_files/figure-html/AbilityEstimates-1.png" width="672" /></p>
+<pre class="r"><code>cor(fs, sts)</code></pre>
+<pre><code>##         [,1]
+## F1 0.9905268</code></pre>
+<p>The ability of the first respondent is estimated at <span class="math inline">\(1.017\)</span> with a standard error of <span class="math inline">\(0.35\)</span> and a confidence interval of <span class="math inline">\(0.35; 1.02\)</span>.</p>
+<p></br></p>
+</div>
+</div>
+<div id="e.-extra-interactive-shinyitemanalysis-app." class="section level4">
+<h4>4e. (extra) Interactive ShinyItemAnalysis app.</h4>
+<div id="use-the-interactive-shinyitemanalysis-application-to-create-a-report-with-selected-irt-model.-if-your-data-is-too-large-consider-using-sample-data-e.g.-from-a-random-sample-of-2000-respondents-and-selection-of-items---single-domain-etc.." class="section level5">
+<h5>Use the interactive ShinyItemAnalysis application to create a report with selected IRT model. If your data is too large, consider using sample data (e.g. from a random sample of 2000 respondents and selection of items - single domain, etc.).</h5>
+<p>Your text (description of methods).</p>
+<p></br></p>
+</div>
+</div>
+<div id="usediscuss-your-own-data-andor-provide-constructive-feedback-to-the-lecture-exercises-or-any-of-the-material.-bonus-1-pt" class="section level4">
+<h4>5. Use/discuss your own data and/or provide constructive feedback to the lecture, exercises, or any of the material. [BONUS 1 pt]</h4>
+<p>Your text.</p>
+<p></br></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

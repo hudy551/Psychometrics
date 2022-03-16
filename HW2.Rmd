@@ -3,6 +3,15 @@ title: 'Selected Topics of Psychometrics (NMST570)'
 subtitle: 'Homework Assignment 2: Validity'
 author: 'Kateřina Hudáčová (Benjamín Kunc)'
 date: \today
+output:
+  html_document:
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+    fig_caption: yes
+    df_print: paged
+    code_folding: show
 ---
 
 Note: The assignment is due on Oct 25, 2021. Send your code and html/pdf report to `dlouha@cs.cas.cz` (and to `martinkova@cs.cas.cz` in copy).
@@ -70,6 +79,13 @@ colnames(BFI2)[1:60] <- c("iEscb01", "iAcmp02", "iCorg03r", "iNanx04r", "iOaes05
 "iCprd38", "iNdep39", "iOint40", "iEenl41", "iAtrs42r", "iCrsp43", "iNemt44r", "iOcrt45r",
 "iEscb46", "iAcmp47r", "iCorg48r", "iNanx49r", "iOaes50r", "iEasr51r", "iArsp52", "iCprd53",
 "iNdep54", "iOint55r", "iEenl56", "iAtrs57", "iCrsp58r", "iNemt59", "iOcrt60")
+
+# Data frames for domains
+BFI2_e <- BFI2[, seq(1, 56, 5)]
+BFI2_a <- BFI2[, seq(2, 57, 5)]
+BFI2_c <- BFI2[, seq(3, 58, 5)]
+BFI2_n <- BFI2[, seq(4, 59, 5)]
+BFI2_o <- BFI2[, seq(5, 60, 5)]
 ```
 
 
@@ -238,8 +254,7 @@ ShinyItemAnalysis::plot_corr(BFI2_domains[1:5],
 
 ```{r}
 # extraversion subscales correlation matrix
-BFI2 %>% 
-  select(seq(1, 56, 5)) %>% 
+BFI2_e %>% 
   plot_corr(corr = "polychoric",
           clust_method = "ward.D2",
           n_clust = 3,
@@ -253,8 +268,7 @@ BFI2 %>%
 
 ```{r}
 # agreeability subscales correlation matrix
-BFI2 %>% 
-  select(seq(2, 57, 5)) %>% 
+BFI2_a %>% 
   plot_corr(corr = "polychoric",
           clust_method = "ward.D2",
           n_clust = 3,
@@ -268,8 +282,7 @@ BFI2 %>%
 
 ```{r}
 # conscientiousness subscales correlation matrix
-BFI2 %>% 
-  select(seq(3, 58, 5)) %>% 
+BFI2_c %>% 
   plot_corr(corr = "polychoric",
           clust_method = "ward.D2",
           n_clust = 3,
@@ -283,8 +296,7 @@ BFI2 %>%
 
 ```{r}
 # negative emotionality subscales correlation matrix
-BFI2 %>% 
-  select(seq(4, 59, 5)) %>% 
+BFI2_n %>% 
   plot_corr(corr = "polychoric",
           clust_method = "ward.D2",
           n_clust = 3,
@@ -298,8 +310,7 @@ BFI2 %>%
 
 ```{r}
 # open-mindedness subscales correlation matrix
-BFI2 %>% 
-  select(seq(5, 60, 5)) %>% 
+BFI2_o %>% 
   plot_corr(corr = "polychoric",
           clust_method = "ward.D2",
           n_clust = 3,

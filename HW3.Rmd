@@ -1,0 +1,480 @@
+---
+title: 'Selected Topics of Psychometrics (NMST570)'
+subtitle: 'Homework Assignment 3: Reliability'
+author: 'Kateřina Hudáčová (Benjamín Kunc)'
+date: \today
+output:
+  html_document:
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+    fig_caption: yes
+    df_print: paged
+    code_folding: show
+---
+
+Note: The assignment is due on Nov 8, 2021. Send your code and html/pdf report to `dlouha@cs.cas.cz` (and to `martinkova@cs.cas.cz` in copy).
+
+</br>
+
+#### 1. Read and comment on Chapter 3 on https://perusall.com. [2 pts]
+
+Done.
+
+#### 2. Run the code for the Chapter 3, available on course webpage http://www.cs.cas.cz/martinkova/NMST570.html.
+
+Done.
+
+#### 3. Complete the CAPlearnR online tutorial for Reliability. Attach certificate. [4 pts] 
+> Note: If you meet any issues, contact the the TA or the instructor before 8 AM of the due date.
+
+Done.
+
+#### 4. Project preparation: Explore the Czech matura data OR DATA OF YOUR CHOICE as described below. You can work with 1-2 teammates on this task. All teammate names have to be included on your answer sheet. [4 pts]
+
+##### 4a. Provide reliability estimate(s) with split-half coefficient. Compare the results for first-second, even-odd, average (of random) splits, the worst and the best split. Don't forget to adjust your estimates for number of items.  
+
+```{r load_data, include=FALSE}
+library(ShinyItemAnalysis)
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(psych)
+library(psychometric)
+library(truncnorm)
+data(BFI2)
+colnames(BFI2)[1:60] <- c("iEscb01", "iAcmp02", "iCorg03r", "iNanx04r", "iOaes05r", "iEasr06",
+"iArsp07", "iCprd08r", "iNdep09r", "iOint10", "iEenl11r", "iAtrs12r", "iCrsp13", "iNemt14",
+"iOcrt15", "iEscb16r", "iAcmp17r", "iCorg18", "iNanx19", "iOaes20", "iEasr21", "iArsp22r",
+"iCprd23r", "iNdep24r", "iOint25r", "iEenl26r", "iAtrs27", "iCrsp28r", "iNemt29r",
+"iOcrt30r", "iEscb31r", "iAcmp32", "iCorg33", "iNanx34", "iOaes35", "iEasr36r", "iArsp37r",
+"iCprd38", "iNdep39", "iOint40", "iEenl41", "iAtrs42r", "iCrsp43", "iNemt44r", "iOcrt45r",
+"iEscb46", "iAcmp47r", "iCorg48r", "iNanx49r", "iOaes50r", "iEasr51r", "iArsp52", "iCprd53",
+"iNdep54", "iOint55r", "iEenl56", "iAtrs57", "iCrsp58r", "iNemt59", "iOcrt60")
+```
+
+```{r include=FALSE}
+# EXTRAVERSION
+BFI2_e <- BFI2[, seq(1, 56, 5)]
+
+# first-second half split
+e1 <- BFI2_e[, 1:6]
+e2 <- BFI2_e[, 7:12]
+# total score calculation
+ts1 <- rowSums(e1)
+ts2 <- rowSums(e2)
+# correlation
+cor.x <- cor(ts1, ts2, method = "spearman")
+# apply Spearman-Brown formula to estimate reliability
+(rel.x_e_half <- 2 * cor.x / (1 + cor.x))
+
+# even-odd half split
+e1 <- BFI2_e[, seq(1, 12, 2)]
+e2 <- BFI2_e[, seq(2, 12, 2)]
+# total score calculation
+ts1 <- rowSums(e1)
+ts2 <- rowSums(e2)
+# correlation
+cor.x <- cor(ts1, ts2, method = "spearman")
+# apply Spearman-Brown formula to estimate reliability
+(rel.x_e_even_odd <- 2 * cor.x / (1 + cor.x))
+
+# average of all possible split-halves
+split <- psych::splitHalf(BFI2_e, raw = TRUE)
+(rel.x_e_avg <- mean(split$raw))
+
+# worst split
+(rel.x_e_worst <- min(split$raw))
+
+# best split
+(rel.x_e_best <- max(split$raw))
+
+e_split_half <- round(c(rel.x_e_half, rel.x_e_even_odd, rel.x_e_avg, rel.x_e_worst, rel.x_e_best), digits=4)
+```
+
+```{r include=FALSE}
+# AGREEABILITY
+BFI2_a <- BFI2[, seq(2, 57, 5)]
+
+# first-second half split
+a1 <- BFI2_a[, 1:6]
+a2 <- BFI2_a[, 7:12]
+# total score calculation
+ts1 <- rowSums(a1)
+ts2 <- rowSums(a2)
+# correlation
+cor.x <- cor(ts1, ts2, method = "spearman")
+# apply Spearman-Brown formula to estimate reliability
+(rel.x_a_half <- 2 * cor.x / (1 + cor.x))
+
+# even-odd half split
+e1 <- BFI2_a[, seq(1, 12, 2)]
+e2 <- BFI2_a[, seq(2, 12, 2)]
+# total score calculation
+ts1 <- rowSums(a1)
+ts2 <- rowSums(a2)
+# correlation
+cor.x <- cor(ts1, ts2, method = "spearman")
+# apply Spearman-Brown formula to estimate reliability
+(rel.x_a_even_odd <- 2 * cor.x / (1 + cor.x))
+
+# average of all possible split-halves
+split <- psych::splitHalf(BFI2_a, raw = TRUE, brute = TRUE)
+(rel.x_a_avg <- mean(split$raw))
+
+# worst split
+(rel.x_a_worst <- min(split$raw))
+
+# best split
+(rel.x_a_best <- max(split$raw))
+
+a_split_half <- round(c(rel.x_a_half, rel.x_a_even_odd, rel.x_a_avg, rel.x_a_worst, rel.x_a_best), digits=4)
+```
+
+```{r include=FALSE}
+# CONSCIENTIOUSNESS
+BFI2_c <- BFI2[, seq(3, 58, 5)]
+
+# first-second half split
+c1 <- BFI2_c[, 1:6]
+c2 <- BFI2_c[, 7:12]
+# total score calculation
+ts1 <- rowSums(c1)
+ts2 <- rowSums(c2)
+# correlation
+cor.x <- cor(ts1, ts2, method = "spearman")
+# apply Spearman-Brown formula to estimate reliability
+(rel.x_c_half <- 2 * cor.x / (1 + cor.x))
+
+# even-odd half split
+c1 <- BFI2_c[, seq(1, 12, 2)]
+c2 <- BFI2_c[, seq(2, 12, 2)]
+# total score calculation
+ts1 <- rowSums(c1)
+ts2 <- rowSums(c2)
+# correlation
+cor.x <- cor(ts1, ts2, method = "spearman")
+# apply Spearman-Brown formula to estimate reliability
+(rel.x_c_even_odd <- 2 * cor.x / (1 + cor.x))
+
+# average of all possible split-halves
+split <- psych::splitHalf(BFI2_c, raw = TRUE, brute = TRUE)
+(rel.x_c_avg <- mean(split$raw))
+
+# worst split
+(rel.x_c_worst <- min(split$raw))
+
+# best split
+(rel.x_c_best <- max(split$raw))
+
+c_split_half <- round(c(rel.x_c_half, rel.x_c_even_odd, rel.x_c_avg, rel.x_c_worst, rel.x_c_best), digits=4)
+```
+
+```{r include=FALSE}
+# NEGATIVE EMOTIONALITY
+BFI2_n <- BFI2[, seq(4, 59, 5)]
+
+# first-second half split
+n1 <- BFI2_n[, 1:6]
+n2 <- BFI2_n[, 7:12]
+# total score calculation
+ts1 <- rowSums(n1)
+ts2 <- rowSums(n2)
+# correlation
+cor.x <- cor(ts1, ts2, method = "spearman")
+# apply Spearman-Brown formula to estimate reliability
+(rel.x_n_half <- 2 * cor.x / (1 + cor.x))
+
+# even-odd half split
+n1 <- BFI2_n[, seq(1, 12, 2)]
+n2 <- BFI2_n[, seq(2, 12, 2)]
+# total score calculation
+ts1 <- rowSums(n1)
+ts2 <- rowSums(n2)
+# correlation
+cor.x <- cor(ts1, ts2, method = "spearman")
+# apply Spearman-Brown formula to estimate reliability
+(rel.x_n_even_odd <- 2 * cor.x / (1 + cor.x))
+
+# average of all possible split-halves
+split <- psych::splitHalf(BFI2_n, raw = TRUE, brute = TRUE)
+(rel.x_n_avg <- mean(split$raw))
+
+# worst split
+(rel.x_n_worst <- min(split$raw))
+
+# best split
+(rel.x_n_best <- max(split$raw))
+
+n_split_half <- round(c(rel.x_n_half, rel.x_n_even_odd, rel.x_n_avg, rel.x_n_worst, rel.x_n_best), digits=4)
+```
+
+```{r include=FALSE}
+# OPEN-MINDEDNESS
+BFI2_o <- BFI2[, seq(5, 60, 5)]
+
+# first-second half split
+o1 <- BFI2_o[, 1:6]
+o2 <- BFI2_o[, 7:12]
+# total score calculation
+ts1 <- rowSums(o1)
+ts2 <- rowSums(o2)
+# correlation
+cor.x <- cor(ts1, ts2, method = "spearman")
+# apply Spearman-Brown formula to estimate reliability
+(rel.x_o_half <- 2 * cor.x / (1 + cor.x))
+
+# even-odd half split
+n1 <- BFI2_o[, seq(1, 12, 2)]
+n2 <- BFI2_o[, seq(2, 12, 2)]
+# total score calculation
+ts1 <- rowSums(o1)
+ts2 <- rowSums(o2)
+# correlation
+cor.x <- cor(ts1, ts2, method = "spearman")
+# apply Spearman-Brown formula to estimate reliability
+(rel.x_o_even_odd <- 2 * cor.x / (1 + cor.x))
+
+# average all possible split-halves
+split <- psych::splitHalf(BFI2_o, raw = TRUE, brute = TRUE)
+(rel.x_o_avg <- mean(split$raw))
+
+# worst split
+split <- psych::splitHalf(BFI2_o, raw = TRUE, brute = TRUE)
+(rel.x_o_worst <- min(split$raw))
+
+# best split
+split <- psych::splitHalf(BFI2_o, raw = TRUE, brute = TRUE)
+(rel.x_o_best <- max(split$raw))
+
+o_split_half <- round(c(rel.x_o_half, rel.x_o_even_odd, rel.x_o_avg, rel.x_o_worst, rel.x_o_best), digits=4)
+```
+
+
+```{r}
+df <- data.frame(e_split_half, a_split_half, c_split_half, n_split_half, o_split_half, row.names=c("First-second", "Even-odd", "Average", "Worst", "Best"))
+colnames(df) <- c("Extraversion", "Agreeability", "Conscientiousness", "Negative Emotionality", "Open-Mindedness")
+print(df)
+```
+
+I computed estimates of split-half reliability for each domain separately, because the `BFI2` data set is based on the multidimensional Big Five model of personality. The first-second and even-odd methods separate the domains so that the domain facets are equally represented in both groups -- for **Agreeability** and **Open-Mindedness** these methods also yield equal estimates. Relatively mild differences between the estimates of the first two methods can be found in the other domains -- lower first-second estimates could be explained by respondents being more tired while answering the second half of items. All of the average split-half estimates are higher than $0.8$, which can be interpreted as an overall good split-half reliability of the questionnaire with regards to its domains. **Agreeability** has the lowest split-half reliability estimates, whereas **Negative Emotionality** and **Extraversion** seem to yield the highest estimates.
+
+</br>
+
+##### 4b. Provide estimate of reliability with Cronbach's alpha. Try more ways of estimating Cronbach's alpha. Include confidence interval and interpret with respect to Cicchetti’s cut-off values.
+
+
+```{r echo=FALSE}
+# Estimating Cronbach's alpha via variance
+# total scores
+BFI2_e_total <- rowSums(BFI2_e)
+BFI2_a_total <- rowSums(BFI2_a)
+BFI2_c_total <- rowSums(BFI2_c)
+BFI2_n_total <- rowSums(BFI2_n)
+BFI2_o_total <- rowSums(BFI2_o)
+
+m <- ncol(BFI2_e) # number of items
+
+# item variances
+item_vars_e <- sapply(BFI2_e, var)
+item_vars_a <- sapply(BFI2_a, var)
+item_vars_c <- sapply(BFI2_c, var)
+item_vars_n <- sapply(BFI2_n, var)
+item_vars_o <- sapply(BFI2_o, var)
+
+ca_var <- data.frame(
+  m / (m - 1) * (1 - (sum(item_vars_e)) / var(BFI2_e_total)),
+  m / (m - 1) * (1 - (sum(item_vars_a)) / var(BFI2_a_total)),
+  m / (m - 1) * (1 - (sum(item_vars_c)) / var(BFI2_c_total)),
+  m / (m - 1) * (1 - (sum(item_vars_n)) / var(BFI2_n_total)),
+  m / (m - 1) * (1 - (sum(item_vars_o)) / var(BFI2_o_total)),
+  row.names = "Variance formula")
+
+colnames(ca_var) <- c("Extraversion", "Agreeability", "Conscientiousness", "Negative Emotionality", "Open-Mindedness")
+ca_var <- round(ca_var, digits=4)
+
+# Estimating Cronbach's alpha with the covariance matrix
+# covariance matrix of data
+VC_e <- var(BFI2_e)
+VC_a <- var(BFI2_a)
+VC_c <- var(BFI2_c)
+VC_n <- var(BFI2_n)
+VC_o <- var(BFI2_o)
+
+ca_cov <- data.frame(
+  (m / (m - 1)) * (1 - sum(diag(VC_e)) / sum(VC_e)),
+  (m / (m - 1)) * (1 - sum(diag(VC_a)) / sum(VC_a)),
+  (m / (m - 1)) * (1 - sum(diag(VC_c)) / sum(VC_c)),
+  (m / (m - 1)) * (1 - sum(diag(VC_n)) / sum(VC_n)),
+  (m / (m - 1)) * (1 - sum(diag(VC_o)) / sum(VC_o)),
+  row.names = "Covariance matrix"
+)
+
+colnames(ca_cov) <- c("Extraversion", "Agreeability", "Conscientiousness", "Negative Emotionality", "Open-Mindedness")
+ca_cov <- round(ca_cov, digits=4)
+
+
+# Estimating Cronbach's alpha with the psychometric package
+ca_psychometric <- data.frame(
+  psychometric::alpha(BFI2_e),
+  psychometric::alpha(BFI2_a),
+  psychometric::alpha(BFI2_c),
+  psychometric::alpha(BFI2_n),
+  psychometric::alpha(BFI2_o),
+  row.names = "Psychometric"
+)
+
+colnames(ca_psychometric) <- c("Extraversion", "Agreeability", "Conscientiousness", "Negative Emotionality", "Open-Mindedness")
+ca_psychometric <- round(ca_psychometric, digits=4)
+
+
+# Estimating Cronbach's alpha with the psych package
+ca_psych <- data.frame(
+  psych::alpha(BFI2_e)$total[1],
+  psych::alpha(BFI2_a)$total[1],
+  psych::alpha(BFI2_c)$total[1],
+  psych::alpha(BFI2_n)$total[1],
+  psych::alpha(BFI2_o)$total[1],
+  row.names = "Psych"
+)
+colnames(ca_psych) <- c("Extraversion", "Agreeability", "Conscientiousness", "Negative Emotionality", "Open-Mindedness")
+ca_psych <- round(ca_psych, digits=4)
+
+rbind(ca_var, ca_cov, ca_psychometric, ca_psych)
+
+# Confidence intervals
+ca_ci <- rbind(
+  psychometric::alpha.CI(
+    psychometric::alpha(BFI2_e), N = nrow(BFI2_e), k = ncol(BFI2_e), level = 0.95),
+  psychometric::alpha.CI(
+    psychometric::alpha(BFI2_a), N = nrow(BFI2_a), k = ncol(BFI2_a), level = 0.95),
+  psychometric::alpha.CI(
+    psychometric::alpha(BFI2_c), N = nrow(BFI2_c), k = ncol(BFI2_c), level = 0.95),
+  psychometric::alpha.CI(
+    psychometric::alpha(BFI2_n), N = nrow(BFI2_n), k = ncol(BFI2_n), level = 0.95),
+  psychometric::alpha.CI(
+    psychometric::alpha(BFI2_o), N = nrow(BFI2_o), k = ncol(BFI2_o), level = 0.95)
+  )
+row.names(ca_ci) <- c("Extraversion", "Agreeability", "Conscientiousness", "Negative Emotionality", "Open-Mindedness")
+
+omega_e <- omega(BFI2_e, 3, plot = FALSE)
+omega_a <- omega(BFI2_a, 3, plot = FALSE)
+omega_c <- omega(BFI2_c, 3, plot = FALSE)
+omega_n <- omega(BFI2_n, 3, plot = FALSE)
+omega_o <- omega(BFI2_o, 3, plot = FALSE)
+
+omegas_exp<-data.frame(omega_e=omega_e$omega.tot, 
+                       omega_a=omega_a$omega.tot,
+                       omega_c=omega_c$omega.tot, 
+                       omega_n=omega_n$omega.tot, 
+                       omega_o=omega_o$omega.tot)
+
+omegas_exp <- t(omegas_exp)
+cbind(ca_ci, omegas_exp)
+```
+
+The first data frame shows a comparison of the estimates of Cronbach's $\alpha$ for the respective domains with different methods. The "variance formula" refers to the following basic formula: </br>
+$\alpha = \frac{k}{k-1}(1-\frac{\sum V_i}{V_t})$ </br>
+The covariance matrix row was calculated using this formula: </br>
+$\alpha = \frac{k}{k-1}(1-\frac{\sum \limits_{i} \sum \limits_{j} C_{ij}}{V_t})$ </br>
+I also used the packages `psychometric` and `psych` to estimate Cronbach's $\alpha$. As can be seen in the data frame, all methods lead to the same result.
+
+The second data frame includes the confidence intervals for Cronbach's $\alpha$. Since the estimates for all domains $> 0.75$, we can interpret their reliability as excellent. However, Cronbach's $\alpha$ is not the best estimate of reliability in this case, which is why I also tried to approximate McDonald's $\omega$ for all domains with an EFA using the `psych` package. I think the correct procedure would be to specify the model using SEM, then to perform a CFA and extract the corresponding $\omega$ values.
+</br>
+
+##### 4c Use the Cronbach's alpha as initial estimate of reliability and Implement Spearman-Brown formula. What would be the estimated reliability if you doubled the number of items? What is the number of items needed for reliability of 0.9?
+
+```{r criterion}
+rel.original <- psychometric::alpha(BFI2_n)
+
+# number of items in original data
+items.original <- ncol(BFI2_n)
+
+# number of items in new data
+items.new <- 2 * items.original
+# ratio of tests lengths
+m <- items.new / items.original
+# determining reliability
+SBrel(Nlength = m, rxx = rel.original)
+
+# desired reliability
+rel.new <- 0.9
+# determining test length
+(m.new <- SBlength(rxxp = rel.new, rxx = rel.original))
+# number of required items
+ceiling(m.new * items.original)
+```
+
+For the purpose of this exercise, I worked with the domain **Negative Emotionality**. If we doubled the original number of items ($12$), reliability would reach $0.94$, meaning it would increase by approximately $0.5$. In order to get a reliability of $0.9$, we would have to add two more items, resulting in $14$ items overall.
+
+</br>
+
+
+##### 4d Name at least 2 other reliability estimates and discuss what kind of data would you need to collect, and how they may provide proofs of reliability.
+
+
+One example of another reliability estimate is *test-retest reliability*. For *test-retest reliability*, we would need to collect data with the same inventory from the same respondent sample after a certain period of time (3 months are usually recommended). The estimate of reliability would correspond to the correlation between the respondent scores from the first and second administration. Theoretically, only the measurement error should change.
+A second example could be *parallel forms* reliability, which, similarly to *test-retest* requires another administration on the same subjects. As the name suggests, this method of estimating reliability relies on the administration of a parallel form of the inventory. Both administrations should have the same conditions, the test/inventory forms should have the same kinds of items of equal difficulty. In this specific case, one could use another but very similar inventory based on the Big Five model of personality.
+
+</br>
+
+
+##### 4e (extra) Discuss situations when range restriction may occur in your data. Simulate a situation when range restriction occurs in your data, or provide a practical example. Estimate reliability and provide estimate corrected for range restriction.
+
+```{r range_restriction}
+# Total scores for 1st administration
+n_new <- data.frame(Score_1=rowSums(BFI2_n))
+
+# Simulate scores for 2nd administration
+set.seed(123)
+n_new <- n_new %>% 
+ mutate(Z=rtruncnorm(n=1733, mean=17.5, sd=4.6, a=0, b=32),
+         Score_2=round(0.6*Score_1+sqrt(1-0.6^2)*Z, digits=0))
+
+summary(n_new$Score_2)
+
+# True test-retest reliability
+cor(n_new$Score_1, n_new$Score_2)
+
+# Simulate range restriction
+n_new_rest <- n_new %>% 
+  filter(Score_1 > 40)
+
+# Sample test-retest reliability
+(r <- cor(n_new_rest$Score_1, n_new_rest$Score_2))
+sdr <- sd(n_new_rest$Score_1)
+sdu <- sd(n_new$Score_1)
+# Correction for test-retest reliability
+psych::rangeCorrection(r=r, sdr=sdr, sdu=sdu)
+
+(sdu * r) / sqrt(sdu^2 * r^2 + sdr^2 - (sdr^2*r^2))
+
+ggplot(n_new_rest,
+       aes(x=Score_1, y=Score_2)) +
+  geom_point(position="jitter", size=2, alpha=0.6) +
+  coord_cartesian(xlim=c(0, 60), ylim=c(0, 80)) +
+  labs(title="cor X, Y = 0.61", x="X", y="Y") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5, face="bold")) +
+  geom_vline(xintercept = 40, color="red")
+
+ggplot(n_new,
+       aes(x=Score_1, y=Score_2)) +
+  geom_point(position="jitter", size=2, alpha=0.6) +
+  coord_cartesian(xlim=c(0, 60), ylim=c(0, 80)) +
+  labs(title="cor X, Y = ?", x="X", y="Y") +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5, face="bold"))
+```
+
+Let's say we want to determine the test-retest reliability of the **Negative Emotionality** subscale, but we only manage to collect new data from participants with a relatively high score from the first administration ($>40$). The estimate of test-retest reliability we obtain with this restricted sample is ca. $\rho = 0.61$. Using the `rangeCorrection` function from the `psych` package or the Wiberg & Sundström formula, we get a better estimate of the true test-retest reliability (coefficient of stability) -- $\rho = 0.84$.
+
+</br>
+
+
+#### 5. Use your own data and/or provide constructive feedback to the lecture, exercises, or any of the material. [BONUS 1 pt]
+
+Your text.
+
+</br>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Kateřina Hudáčová (Benjamín Kunc)" />
+
+
+<title>Selected Topics of Psychometrics (NMST570)</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Psychometrics</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">HW1</a>
+</li>
+<li>
+  <a href="HW2.html">HW2</a>
+</li>
+<li>
+  <a href="HW3.html">HW3</a>
+</li>
+<li>
+  <a href="HW4.html">HW4</a>
+</li>
+<li>
+  <a href="HW5.html">HW5</a>
+</li>
+<li>
+  <a href="HW6.html">HW6</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Selected Topics of Psychometrics (NMST570)</h1>
+<h3 class="subtitle">Homework Assignment 3: Reliability</h3>
+<h4 class="author">Kateřina Hudáčová (Benjamín Kunc)</h4>
+
+</div>
+
+
+<p>Note: The assignment is due on Nov 8, 2021. Send your code and html/pdf report to <code>dlouha@cs.cas.cz</code> (and to <code>martinkova@cs.cas.cz</code> in copy).</p>
+<p></br></p>
+<div id="read-and-comment-on-chapter-3-on-httpsperusall.com.-2-pts" class="section level4">
+<h4>1. Read and comment on Chapter 3 on <a href="https://perusall.com" class="uri">https://perusall.com</a>. [2 pts]</h4>
+<p>Done.</p>
+</div>
+<div id="run-the-code-for-the-chapter-3-available-on-course-webpage-httpwww.cs.cas.czmartinkovanmst570.html." class="section level4">
+<h4>2. Run the code for the Chapter 3, available on course webpage <a href="http://www.cs.cas.cz/martinkova/NMST570.html" class="uri">http://www.cs.cas.cz/martinkova/NMST570.html</a>.</h4>
+<p>Done.</p>
+</div>
+<div id="complete-the-caplearnr-online-tutorial-for-reliability.-attach-certificate.-4-pts" class="section level4">
+<h4>3. Complete the CAPlearnR online tutorial for Reliability. Attach certificate. [4 pts]</h4>
+<blockquote>
+<p>Note: If you meet any issues, contact the the TA or the instructor before 8 AM of the due date.</p>
+</blockquote>
+<p>Done.</p>
+</div>
+<div id="project-preparation-explore-the-czech-matura-data-or-data-of-your-choice-as-described-below.-you-can-work-with-1-2-teammates-on-this-task.-all-teammate-names-have-to-be-included-on-your-answer-sheet.-4-pts" class="section level4">
+<h4>4. Project preparation: Explore the Czech matura data OR DATA OF YOUR CHOICE as described below. You can work with 1-2 teammates on this task. All teammate names have to be included on your answer sheet. [4 pts]</h4>
+<div id="a.-provide-reliability-estimates-with-split-half-coefficient.-compare-the-results-for-first-second-even-odd-average-of-random-splits-the-worst-and-the-best-split.-dont-forget-to-adjust-your-estimates-for-number-of-items." class="section level5">
+<h5>4a. Provide reliability estimate(s) with split-half coefficient. Compare the results for first-second, even-odd, average (of random) splits, the worst and the best split. Don’t forget to adjust your estimates for number of items.</h5>
+<pre class="r"><code>df &lt;- data.frame(e_split_half, a_split_half, c_split_half, n_split_half, o_split_half, row.names=c(&quot;First-second&quot;, &quot;Even-odd&quot;, &quot;Average&quot;, &quot;Worst&quot;, &quot;Best&quot;))
+colnames(df) &lt;- c(&quot;Extraversion&quot;, &quot;Agreeability&quot;, &quot;Conscientiousness&quot;, &quot;Negative Emotionality&quot;, &quot;Open-Mindedness&quot;)
+print(df)</code></pre>
+<pre><code>##              Extraversion Agreeability Conscientiousness Negative Emotionality Open-Mindedness
+## First-second       0.8987       0.7978            0.8781                0.8829          0.8656
+## Even-odd           0.8919       0.7978            0.8873                0.9183          0.8656
+## Average            0.8561       0.8129            0.8736                0.8867          0.8288
+## Worst              0.7502       0.6741            0.8002                0.8305          0.6419
+## Best               0.9092       0.8670            0.9151                0.9195          0.8869</code></pre>
+<p>I computed estimates of split-half reliability for each domain separately, because the <code>BFI2</code> data set is based on the multidimensional Big Five model of personality. The first-second and even-odd methods separate the domains so that the domain facets are equally represented in both groups – for <strong>Agreeability</strong> and <strong>Open-Mindedness</strong> these methods also yield equal estimates. Relatively mild differences between the estimates of the first two methods can be found in the other domains – lower first-second estimates could be explained by respondents being more tired while answering the second half of items. All of the average split-half estimates are higher than <span class="math inline">\(0.8\)</span>, which can be interpreted as an overall good split-half reliability of the questionnaire with regards to its domains. <strong>Agreeability</strong> has the lowest split-half reliability estimates, whereas <strong>Negative Emotionality</strong> and <strong>Extraversion</strong> seem to yield the highest estimates.</p>
+<p></br></p>
+</div>
+<div id="b.-provide-estimate-of-reliability-with-cronbachs-alpha.-try-more-ways-of-estimating-cronbachs-alpha.-include-confidence-interval-and-interpret-with-respect-to-cicchettis-cut-off-values." class="section level5">
+<h5>4b. Provide estimate of reliability with Cronbach’s alpha. Try more ways of estimating Cronbach’s alpha. Include confidence interval and interpret with respect to Cicchetti’s cut-off values.</h5>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Extraversion"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Agreeability"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Conscientiousness"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Negative Emotionality"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Open-Mindedness"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.8583","2":"0.8066","3":"0.8733","4":"0.8875","5":"0.829","_rn_":"Variance formula"},{"1":"0.8583","2":"0.8066","3":"0.8733","4":"0.8875","5":"0.829","_rn_":"Covariance matrix"},{"1":"0.8583","2":"0.8066","3":"0.8733","4":"0.8875","5":"0.829","_rn_":"Psychometric"},{"1":"0.8583","2":"0.8066","3":"0.8733","4":"0.8875","5":"0.829","_rn_":"Psych"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["LCL"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["ALPHA"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["UCL"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["omegas_exp"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.8482107","2":"0.8582687","3":"0.8679305","4":"0.8883436","_rn_":"Extraversion"},{"1":"0.7928538","2":"0.8065799","3":"0.8197654","4":"0.8444697","_rn_":"Agreeability"},{"1":"0.8642806","2":"0.8732737","3":"0.8819127","4":"0.8964217","_rn_":"Conscientiousness"},{"1":"0.8795460","2":"0.8875276","3":"0.8951948","4":"0.9061431","_rn_":"Negative Emotionality"},{"1":"0.8168670","2":"0.8290019","3":"0.8406589","4":"0.8738068","_rn_":"Open-Mindedness"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>The first data frame shows a comparison of the estimates of Cronbach’s <span class="math inline">\(\alpha\)</span> for the respective domains with different methods. The “variance formula” refers to the following basic formula: </br> <span class="math inline">\(\alpha = \frac{k}{k-1}(1-\frac{\sum V_i}{V_t})\)</span> </br> The covariance matrix row was calculated using this formula: </br> <span class="math inline">\(\alpha = \frac{k}{k-1}(1-\frac{\sum \limits_{i} \sum \limits_{j} C_{ij}}{V_t})\)</span> </br> I also used the packages <code>psychometric</code> and <code>psych</code> to estimate Cronbach’s <span class="math inline">\(\alpha\)</span>. As can be seen in the data frame, all methods lead to the same result.</p>
+<p>The second data frame includes the confidence intervals for Cronbach’s <span class="math inline">\(\alpha\)</span>. Since the estimates for all domains <span class="math inline">\(&gt; 0.75\)</span>, we can interpret their reliability as excellent. However, Cronbach’s <span class="math inline">\(\alpha\)</span> is not the best estimate of reliability in this case, which is why I also tried to approximate McDonald’s <span class="math inline">\(\omega\)</span> for all domains with an EFA using the <code>psych</code> package. I think the correct procedure would be to specify the model using SEM, then to perform a CFA and extract the corresponding <span class="math inline">\(\omega\)</span> values. </br></p>
+</div>
+<div id="c-use-the-cronbachs-alpha-as-initial-estimate-of-reliability-and-implement-spearman-brown-formula.-what-would-be-the-estimated-reliability-if-you-doubled-the-number-of-items-what-is-the-number-of-items-needed-for-reliability-of-0.9" class="section level5">
+<h5>4c Use the Cronbach’s alpha as initial estimate of reliability and Implement Spearman-Brown formula. What would be the estimated reliability if you doubled the number of items? What is the number of items needed for reliability of 0.9?</h5>
+<pre class="r"><code>rel.original &lt;- psychometric::alpha(BFI2_n)
+
+# number of items in original data
+items.original &lt;- ncol(BFI2_n)
+
+# number of items in new data
+items.new &lt;- 2 * items.original
+# ratio of tests lengths
+m &lt;- items.new / items.original
+# determining reliability
+SBrel(Nlength = m, rxx = rel.original)</code></pre>
+<pre><code>## [1] 0.9404128</code></pre>
+<pre class="r"><code># desired reliability
+rel.new &lt;- 0.9
+# determining test length
+(m.new &lt;- SBlength(rxxp = rel.new, rxx = rel.original))</code></pre>
+<pre><code>## [1] 1.14053</code></pre>
+<pre class="r"><code># number of required items
+ceiling(m.new * items.original)</code></pre>
+<pre><code>## [1] 14</code></pre>
+<p>For the purpose of this exercise, I worked with the domain <strong>Negative Emotionality</strong>. If we doubled the original number of items (<span class="math inline">\(12\)</span>), reliability would reach <span class="math inline">\(0.94\)</span>, meaning it would increase by approximately <span class="math inline">\(0.5\)</span>. In order to get a reliability of <span class="math inline">\(0.9\)</span>, we would have to add two more items, resulting in <span class="math inline">\(14\)</span> items overall.</p>
+<p></br></p>
+</div>
+<div id="d-name-at-least-2-other-reliability-estimates-and-discuss-what-kind-of-data-would-you-need-to-collect-and-how-they-may-provide-proofs-of-reliability." class="section level5">
+<h5>4d Name at least 2 other reliability estimates and discuss what kind of data would you need to collect, and how they may provide proofs of reliability.</h5>
+<p>One example of another reliability estimate is <em>test-retest reliability</em>. For <em>test-retest reliability</em>, we would need to collect data with the same inventory from the same respondent sample after a certain period of time (3 months are usually recommended). The estimate of reliability would correspond to the correlation between the respondent scores from the first and second administration. Theoretically, only the measurement error should change. A second example could be <em>parallel forms</em> reliability, which, similarly to <em>test-retest</em> requires another administration on the same subjects. As the name suggests, this method of estimating reliability relies on the administration of a parallel form of the inventory. Both administrations should have the same conditions, the test/inventory forms should have the same kinds of items of equal difficulty. In this specific case, one could use another but very similar inventory based on the Big Five model of personality.</p>
+<p></br></p>
+</div>
+<div id="e-extra-discuss-situations-when-range-restriction-may-occur-in-your-data.-simulate-a-situation-when-range-restriction-occurs-in-your-data-or-provide-a-practical-example.-estimate-reliability-and-provide-estimate-corrected-for-range-restriction." class="section level5">
+<h5>4e (extra) Discuss situations when range restriction may occur in your data. Simulate a situation when range restriction occurs in your data, or provide a practical example. Estimate reliability and provide estimate corrected for range restriction.</h5>
+<pre class="r"><code># Total scores for 1st administration
+n_new &lt;- data.frame(Score_1=rowSums(BFI2_n))
+
+# Simulate scores for 2nd administration
+set.seed(123)
+n_new &lt;- n_new %&gt;% 
+ mutate(Z=rtruncnorm(n=1733, mean=17.5, sd=4.6, a=0, b=32),
+         Score_2=round(0.6*Score_1+sqrt(1-0.6^2)*Z, digits=0))
+
+summary(n_new$Score_2)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   16.00   31.00   35.00   35.42   40.00   58.00</code></pre>
+<pre class="r"><code># True test-retest reliability
+cor(n_new$Score_1, n_new$Score_2)</code></pre>
+<pre><code>## [1] 0.8364385</code></pre>
+<pre class="r"><code># Simulate range restriction
+n_new_rest &lt;- n_new %&gt;% 
+  filter(Score_1 &gt; 40)
+
+# Sample test-retest reliability
+(r &lt;- cor(n_new_rest$Score_1, n_new_rest$Score_2))</code></pre>
+<pre><code>## [1] 0.6078483</code></pre>
+<pre class="r"><code>sdr &lt;- sd(n_new_rest$Score_1)
+sdu &lt;- sd(n_new$Score_1)
+# Correction for test-retest reliability
+psych::rangeCorrection(r=r, sdr=sdr, sdu=sdu)</code></pre>
+<pre><code>## [1] 0.8421021</code></pre>
+<pre class="r"><code>(sdu * r) / sqrt(sdu^2 * r^2 + sdr^2 - (sdr^2*r^2))</code></pre>
+<pre><code>## [1] 0.8421021</code></pre>
+<pre class="r"><code>ggplot(n_new_rest,
+       aes(x=Score_1, y=Score_2)) +
+  geom_point(position=&quot;jitter&quot;, size=2, alpha=0.6) +
+  coord_cartesian(xlim=c(0, 60), ylim=c(0, 80)) +
+  labs(title=&quot;cor X, Y = 0.61&quot;, x=&quot;X&quot;, y=&quot;Y&quot;) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5, face=&quot;bold&quot;)) +
+  geom_vline(xintercept = 40, color=&quot;red&quot;)</code></pre>
+<p><img src="HW3_files/figure-html/range_restriction-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(n_new,
+       aes(x=Score_1, y=Score_2)) +
+  geom_point(position=&quot;jitter&quot;, size=2, alpha=0.6) +
+  coord_cartesian(xlim=c(0, 60), ylim=c(0, 80)) +
+  labs(title=&quot;cor X, Y = ?&quot;, x=&quot;X&quot;, y=&quot;Y&quot;) +
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5, face=&quot;bold&quot;))</code></pre>
+<p><img src="HW3_files/figure-html/range_restriction-2.png" width="672" /></p>
+<p>Let’s say we want to determine the test-retest reliability of the <strong>Negative Emotionality</strong> subscale, but we only manage to collect new data from participants with a relatively high score from the first administration (<span class="math inline">\(&gt;40\)</span>). The estimate of test-retest reliability we obtain with this restricted sample is ca. <span class="math inline">\(\rho = 0.61\)</span>. Using the <code>rangeCorrection</code> function from the <code>psych</code> package or the Wiberg &amp; Sundström formula, we get a better estimate of the true test-retest reliability (coefficient of stability) – <span class="math inline">\(\rho = 0.84\)</span>.</p>
+<p></br></p>
+</div>
+</div>
+<div id="use-your-own-data-andor-provide-constructive-feedback-to-the-lecture-exercises-or-any-of-the-material.-bonus-1-pt" class="section level4">
+<h4>5. Use your own data and/or provide constructive feedback to the lecture, exercises, or any of the material. [BONUS 1 pt]</h4>
+<p>Your text.</p>
+<p></br></p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

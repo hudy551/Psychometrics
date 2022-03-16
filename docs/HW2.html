@@ -17,7 +17,7 @@
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -30,9 +30,15 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -88,6 +94,76 @@ pre code {
 </style>
 
 
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
 
 <!-- tabsets -->
 
@@ -146,7 +222,73 @@ pre code {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
 
 
 
@@ -158,9 +300,65 @@ pre code {
 <div class="container-fluid main-container">
 
 
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
 
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Psychometrics</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">HW1</a>
+</li>
+<li>
+  <a href="HW2.html">HW2</a>
+</li>
+<li>
+  <a href="HW3.html">HW3</a>
+</li>
+<li>
+  <a href="HW4.html">HW4</a>
+</li>
+<li>
+  <a href="HW5.html">HW5</a>
+</li>
+<li>
+  <a href="HW6.html">HW6</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
 
 <div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
 
 
 
@@ -319,20 +517,11 @@ data(BFI2, package=&#39;ShinyItemAnalysis&#39;)</code></pre>
 ##  $ Educ  : num  NA NA NA NA NA NA NA NA NA NA ...</code></pre>
 </details>
 <pre class="r"><code>head(BFI2)</code></pre>
-<pre><code>##   i1 i2 i3 i4 i5 i6 i7 i8 i9 i10 i11 i12 i13 i14 i15 i16 i17 i18 i19 i20 i21 i22 i23 i24 i25 i26 i27 i28 i29 i30 i31 i32 i33 i34 i35 i36 i37 i38 i39 i40 i41 i42 i43 i44 i45 i46 i47 i48 i49 i50
-## 1  5  5  2  3  5  4  4  3  4   5   5   4   3   4   2   3   5   3   2   5   4   4   4   3   5   4   4   5   5   5   3   5   4   4   5   4   3   4   2   4   4   5   5   4   5   4   2   2   2   5
-## 2  4  5  4  3  3  3  5  3  2   4   4   2   4   2   3   4   5   4   3   4   4   4   4   2   2   4   2   4   3   4   5   5   5   4   5   3   4   4   1   4   4   3   4   2   4   4   4   5   2   4
-## 3  1  4  3  5  2  1  3  1  5   4   4   1   5   5   2   1   5   5   5   5   1   2   1   5   3   1   1   4   5   2   1   3   5   5   5   5   2   1   5   5   3   2   5   1   1   1   1   5   5   4
-## 4  4  5  1  4  5  3  5  2  4   3   3   5   4   2   2   3   5   2   2   5   2   5   2   3   4   3   5   4   2   3   2   5   2   5   5   3   5   2   3   4   2   5   5   2   2   2   5   4   4   5
-## 5  5  5  2  2  4  5  5  3  3   4   4   3   4   5   5   5   5   3   4   4   5   3   4   2   4   4   4   4   4   4   4   5   3   5   5   4   2   5   4   4   3   3   4   2   4   5   3   4   4   5
-## 6  3  5  2  3  4  3  4  1  3   5   4   4   3   5   2   1   5   1   3   2   1   5   4   2   1   3   4   3   4   2   1   4   2   2   3   3   2   4   5   3   4   2   4   5   3   4   3   2   5   4
-##   i51 i52 i53 i54 i55 i56 i57 i58 i59 i60 Gender Age Educ
-## 1   4   5   5   2   5   5   5   1   4   2      0  21   NA
-## 2   4   5   4   1   4   4   3   3   2   3      0  25   NA
-## 3   1   5   1   5   2   4   1   4   5   2      0  22   NA
-## 4   1   5   4   4   4   4   5   2   2   2      0  21   NA
-## 5   4   5   5   4   4   4   3   4   3   4      0  21   NA
-## 6   1   4   3   4   1   4   3   2   4   2      0  19   NA</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["i1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["i2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["i3"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["i4"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["i5"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["i6"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["i7"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["i8"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["i9"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["i10"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["i11"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["i12"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["i13"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["i14"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["i15"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["i16"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["i17"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["i18"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["i19"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["i20"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["i21"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["i22"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["i23"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["i24"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["i25"],"name":[25],"type":["dbl"],"align":["right"]},{"label":["i26"],"name":[26],"type":["dbl"],"align":["right"]},{"label":["i27"],"name":[27],"type":["dbl"],"align":["right"]},{"label":["i28"],"name":[28],"type":["dbl"],"align":["right"]},{"label":["i29"],"name":[29],"type":["dbl"],"align":["right"]},{"label":["i30"],"name":[30],"type":["dbl"],"align":["right"]},{"label":["i31"],"name":[31],"type":["dbl"],"align":["right"]},{"label":["i32"],"name":[32],"type":["dbl"],"align":["right"]},{"label":["i33"],"name":[33],"type":["dbl"],"align":["right"]},{"label":["i34"],"name":[34],"type":["dbl"],"align":["right"]},{"label":["i35"],"name":[35],"type":["dbl"],"align":["right"]},{"label":["i36"],"name":[36],"type":["dbl"],"align":["right"]},{"label":["i37"],"name":[37],"type":["dbl"],"align":["right"]},{"label":["i38"],"name":[38],"type":["dbl"],"align":["right"]},{"label":["i39"],"name":[39],"type":["dbl"],"align":["right"]},{"label":["i40"],"name":[40],"type":["dbl"],"align":["right"]},{"label":["i41"],"name":[41],"type":["dbl"],"align":["right"]},{"label":["i42"],"name":[42],"type":["dbl"],"align":["right"]},{"label":["i43"],"name":[43],"type":["dbl"],"align":["right"]},{"label":["i44"],"name":[44],"type":["dbl"],"align":["right"]},{"label":["i45"],"name":[45],"type":["dbl"],"align":["right"]},{"label":["i46"],"name":[46],"type":["dbl"],"align":["right"]},{"label":["i47"],"name":[47],"type":["dbl"],"align":["right"]},{"label":["i48"],"name":[48],"type":["dbl"],"align":["right"]},{"label":["i49"],"name":[49],"type":["dbl"],"align":["right"]},{"label":["i50"],"name":[50],"type":["dbl"],"align":["right"]},{"label":["i51"],"name":[51],"type":["dbl"],"align":["right"]},{"label":["i52"],"name":[52],"type":["dbl"],"align":["right"]},{"label":["i53"],"name":[53],"type":["dbl"],"align":["right"]},{"label":["i54"],"name":[54],"type":["dbl"],"align":["right"]},{"label":["i55"],"name":[55],"type":["dbl"],"align":["right"]},{"label":["i56"],"name":[56],"type":["dbl"],"align":["right"]},{"label":["i57"],"name":[57],"type":["dbl"],"align":["right"]},{"label":["i58"],"name":[58],"type":["dbl"],"align":["right"]},{"label":["i59"],"name":[59],"type":["dbl"],"align":["right"]},{"label":["i60"],"name":[60],"type":["dbl"],"align":["right"]},{"label":["Gender"],"name":[61],"type":["dbl"],"align":["right"]},{"label":["Age"],"name":[62],"type":["dbl"],"align":["right"]},{"label":["Educ"],"name":[63],"type":["dbl"],"align":["right"]}],"data":[{"1":"5","2":"5","3":"2","4":"3","5":"5","6":"4","7":"4","8":"3","9":"4","10":"5","11":"5","12":"4","13":"3","14":"4","15":"2","16":"3","17":"5","18":"3","19":"2","20":"5","21":"4","22":"4","23":"4","24":"3","25":"5","26":"4","27":"4","28":"5","29":"5","30":"5","31":"3","32":"5","33":"4","34":"4","35":"5","36":"4","37":"3","38":"4","39":"2","40":"4","41":"4","42":"5","43":"5","44":"4","45":"5","46":"4","47":"2","48":"2","49":"2","50":"5","51":"4","52":"5","53":"5","54":"2","55":"5","56":"5","57":"5","58":"1","59":"4","60":"2","61":"0","62":"21","63":"NA","_rn_":"1"},{"1":"4","2":"5","3":"4","4":"3","5":"3","6":"3","7":"5","8":"3","9":"2","10":"4","11":"4","12":"2","13":"4","14":"2","15":"3","16":"4","17":"5","18":"4","19":"3","20":"4","21":"4","22":"4","23":"4","24":"2","25":"2","26":"4","27":"2","28":"4","29":"3","30":"4","31":"5","32":"5","33":"5","34":"4","35":"5","36":"3","37":"4","38":"4","39":"1","40":"4","41":"4","42":"3","43":"4","44":"2","45":"4","46":"4","47":"4","48":"5","49":"2","50":"4","51":"4","52":"5","53":"4","54":"1","55":"4","56":"4","57":"3","58":"3","59":"2","60":"3","61":"0","62":"25","63":"NA","_rn_":"2"},{"1":"1","2":"4","3":"3","4":"5","5":"2","6":"1","7":"3","8":"1","9":"5","10":"4","11":"4","12":"1","13":"5","14":"5","15":"2","16":"1","17":"5","18":"5","19":"5","20":"5","21":"1","22":"2","23":"1","24":"5","25":"3","26":"1","27":"1","28":"4","29":"5","30":"2","31":"1","32":"3","33":"5","34":"5","35":"5","36":"5","37":"2","38":"1","39":"5","40":"5","41":"3","42":"2","43":"5","44":"1","45":"1","46":"1","47":"1","48":"5","49":"5","50":"4","51":"1","52":"5","53":"1","54":"5","55":"2","56":"4","57":"1","58":"4","59":"5","60":"2","61":"0","62":"22","63":"NA","_rn_":"3"},{"1":"4","2":"5","3":"1","4":"4","5":"5","6":"3","7":"5","8":"2","9":"4","10":"3","11":"3","12":"5","13":"4","14":"2","15":"2","16":"3","17":"5","18":"2","19":"2","20":"5","21":"2","22":"5","23":"2","24":"3","25":"4","26":"3","27":"5","28":"4","29":"2","30":"3","31":"2","32":"5","33":"2","34":"5","35":"5","36":"3","37":"5","38":"2","39":"3","40":"4","41":"2","42":"5","43":"5","44":"2","45":"2","46":"2","47":"5","48":"4","49":"4","50":"5","51":"1","52":"5","53":"4","54":"4","55":"4","56":"4","57":"5","58":"2","59":"2","60":"2","61":"0","62":"21","63":"NA","_rn_":"4"},{"1":"5","2":"5","3":"2","4":"2","5":"4","6":"5","7":"5","8":"3","9":"3","10":"4","11":"4","12":"3","13":"4","14":"5","15":"5","16":"5","17":"5","18":"3","19":"4","20":"4","21":"5","22":"3","23":"4","24":"2","25":"4","26":"4","27":"4","28":"4","29":"4","30":"4","31":"4","32":"5","33":"3","34":"5","35":"5","36":"4","37":"2","38":"5","39":"4","40":"4","41":"3","42":"3","43":"4","44":"2","45":"4","46":"5","47":"3","48":"4","49":"4","50":"5","51":"4","52":"5","53":"5","54":"4","55":"4","56":"4","57":"3","58":"4","59":"3","60":"4","61":"0","62":"21","63":"NA","_rn_":"5"},{"1":"3","2":"5","3":"2","4":"3","5":"4","6":"3","7":"4","8":"1","9":"3","10":"5","11":"4","12":"4","13":"3","14":"5","15":"2","16":"1","17":"5","18":"1","19":"3","20":"2","21":"1","22":"5","23":"4","24":"2","25":"1","26":"3","27":"4","28":"3","29":"4","30":"2","31":"1","32":"4","33":"2","34":"2","35":"3","36":"3","37":"2","38":"4","39":"5","40":"3","41":"4","42":"2","43":"4","44":"5","45":"3","46":"4","47":"3","48":"2","49":"5","50":"4","51":"1","52":"4","53":"3","54":"4","55":"1","56":"4","57":"3","58":"2","59":"4","60":"2","61":"0","62":"19","63":"NA","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <pre class="r"><code># data names
 names(BFI2)</code></pre>
 <pre><code>##  [1] &quot;i1&quot;     &quot;i2&quot;     &quot;i3&quot;     &quot;i4&quot;     &quot;i5&quot;     &quot;i6&quot;     &quot;i7&quot;     &quot;i8&quot;     &quot;i9&quot;     &quot;i10&quot;    &quot;i11&quot;    &quot;i12&quot;    &quot;i13&quot;    &quot;i14&quot;    &quot;i15&quot;    &quot;i16&quot;    &quot;i17&quot;    &quot;i18&quot;    &quot;i19&quot;    &quot;i20&quot;    &quot;i21&quot;   
@@ -345,7 +534,14 @@ names(BFI2)</code></pre>
 &quot;iOcrt30r&quot;, &quot;iEscb31r&quot;, &quot;iAcmp32&quot;, &quot;iCorg33&quot;, &quot;iNanx34&quot;, &quot;iOaes35&quot;, &quot;iEasr36r&quot;, &quot;iArsp37r&quot;,
 &quot;iCprd38&quot;, &quot;iNdep39&quot;, &quot;iOint40&quot;, &quot;iEenl41&quot;, &quot;iAtrs42r&quot;, &quot;iCrsp43&quot;, &quot;iNemt44r&quot;, &quot;iOcrt45r&quot;,
 &quot;iEscb46&quot;, &quot;iAcmp47r&quot;, &quot;iCorg48r&quot;, &quot;iNanx49r&quot;, &quot;iOaes50r&quot;, &quot;iEasr51r&quot;, &quot;iArsp52&quot;, &quot;iCprd53&quot;,
-&quot;iNdep54&quot;, &quot;iOint55r&quot;, &quot;iEenl56&quot;, &quot;iAtrs57&quot;, &quot;iCrsp58r&quot;, &quot;iNemt59&quot;, &quot;iOcrt60&quot;)</code></pre>
+&quot;iNdep54&quot;, &quot;iOint55r&quot;, &quot;iEenl56&quot;, &quot;iAtrs57&quot;, &quot;iCrsp58r&quot;, &quot;iNemt59&quot;, &quot;iOcrt60&quot;)
+
+# Data frames for domains
+BFI2_e &lt;- BFI2[, seq(1, 56, 5)]
+BFI2_a &lt;- BFI2[, seq(2, 57, 5)]
+BFI2_c &lt;- BFI2[, seq(3, 58, 5)]
+BFI2_n &lt;- BFI2[, seq(4, 59, 5)]
+BFI2_o &lt;- BFI2[, seq(5, 60, 5)]</code></pre>
 <pre class="r"><code># data format
 BFI2$Gender &lt;- factor(BFI2$Gender, 
                       levels=c(&#39;0&#39;, &#39;1&#39;), 
@@ -563,8 +759,7 @@ ShinyItemAnalysis::plot_corr(BFI2_domains[1:5],
                              labels_size = 4)</code></pre>
 <p><img src="HW2_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <pre class="r"><code># extraversion subscales correlation matrix
-BFI2 %&gt;% 
-  select(seq(1, 56, 5)) %&gt;% 
+BFI2_e %&gt;% 
   plot_corr(corr = &quot;polychoric&quot;,
           clust_method = &quot;ward.D2&quot;,
           n_clust = 3,
@@ -576,8 +771,7 @@ BFI2 %&gt;%
           fill_alpha = 0.1)</code></pre>
 <p><img src="HW2_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <pre class="r"><code># agreeability subscales correlation matrix
-BFI2 %&gt;% 
-  select(seq(2, 57, 5)) %&gt;% 
+BFI2_a %&gt;% 
   plot_corr(corr = &quot;polychoric&quot;,
           clust_method = &quot;ward.D2&quot;,
           n_clust = 3,
@@ -589,8 +783,7 @@ BFI2 %&gt;%
           fill_alpha = 0.1)</code></pre>
 <p><img src="HW2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <pre class="r"><code># conscientiousness subscales correlation matrix
-BFI2 %&gt;% 
-  select(seq(3, 58, 5)) %&gt;% 
+BFI2_c %&gt;% 
   plot_corr(corr = &quot;polychoric&quot;,
           clust_method = &quot;ward.D2&quot;,
           n_clust = 3,
@@ -602,8 +795,7 @@ BFI2 %&gt;%
           fill_alpha = 0.1)</code></pre>
 <p><img src="HW2_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <pre class="r"><code># negative emotionality subscales correlation matrix
-BFI2 %&gt;% 
-  select(seq(4, 59, 5)) %&gt;% 
+BFI2_n %&gt;% 
   plot_corr(corr = &quot;polychoric&quot;,
           clust_method = &quot;ward.D2&quot;,
           n_clust = 3,
@@ -615,8 +807,7 @@ BFI2 %&gt;%
           fill_alpha = 0.1)</code></pre>
 <p><img src="HW2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <pre class="r"><code># open-mindedness subscales correlation matrix
-BFI2 %&gt;% 
-  select(seq(5, 60, 5)) %&gt;% 
+BFI2_o %&gt;% 
   plot_corr(corr = &quot;polychoric&quot;,
           clust_method = &quot;ward.D2&quot;,
           n_clust = 3,
@@ -641,6 +832,8 @@ BFI2 %&gt;%
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -672,7 +865,41 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

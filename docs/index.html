@@ -17,7 +17,7 @@
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -30,9 +30,15 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -88,6 +94,76 @@ pre code {
 </style>
 
 
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
 
 <!-- tabsets -->
 
@@ -146,7 +222,73 @@ pre code {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
 
 
 
@@ -158,9 +300,65 @@ pre code {
 <div class="container-fluid main-container">
 
 
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
 
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Psychometrics</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">HW1</a>
+</li>
+<li>
+  <a href="HW2.html">HW2</a>
+</li>
+<li>
+  <a href="HW3.html">HW3</a>
+</li>
+<li>
+  <a href="HW4.html">HW4</a>
+</li>
+<li>
+  <a href="HW5.html">HW5</a>
+</li>
+<li>
+  <a href="HW6.html">HW6</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
 
 <div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
 
 
 
@@ -222,20 +420,11 @@ data(&quot;CZmaturaS&quot;)</code></pre>
 <summary>
 <p><code>head(CZmaturaS)</code></p>
 </summary>
-<pre><code>##   SchType FirstAtt SchTypeGY o1 o2 o3.1 o3.2 o4 o5 o6 o7 o8.1 o8.2 o8.3 o9.1 o9.2 o10 o11 o12 o13 o14 o15 o16.1 o16.2 o16.3 o16.4 o17 o18 o19 o20 o21 o22 o23 o24 o25.1 o25.2 o25.3 o25.4 o26.1
-## 1     GY4        1         1  1  1    0    0  2  0  1  2    1    1    1    1    1   1  NA   1   1   3   2     2     2     2     2   4   3   4   5   4   1   3   1     3     6     2     4     5
-## 2     ST1        1         0  1  1    0    0  2  2  1  2    1    1    1    1    0   1   0   1   0   0   2     1     2     1     2   4   3   2   4   4   1   3   2     3     6     1     2     5
-## 3     ST1        1         0  0  1   NA   NA  2  2  1  2   NA   NA   NA    1    1   1   1   0   0   3   2     1     1     1     1   1   3   4   1   5   2   5   3     3     6     1     5     5
-## 4     ST1        0         0  1  1    0    0  0 NA  1 NA    1    1    0   NA   NA   1  NA   1   0  NA   0     2     2     2     2   4   2   3   1   4   1   5   3     3     6     1     2     5
-## 5     UTE        1         0  1  0    1    0  2  2  1  2    1    1    0    1    1  NA   0   1   1   0   1     2     1     2     1   5   4   4   2   4   5   5   2     5     6     1     2     5
-## 6     GY8        0         1  0  0   NA   NA  0 NA NA NA    0    0    0    1    1   1   0   0   1   0   0     1     1     1     1   4   3   4   5   4   1   4   3     3     6     1     2     5
-##   o26.2 b1 b2 b3.1 b3.2 b4 b5 b6 b7 b8.1 b8.2 b8.3 b9.1 b9.2 b10 b11 b12 b13 b14 b15 b16 b17 b18 b19 b20 b21 b22 b23 b24 b25 b26 Total     IRTscore IRTscoreSE
-## 1     4  1  1    0    0  2  0  1  2    1    1    1    1    1   1   0   1   1   3   2   0   2   0   2   0   2   2   0   0   2   1    31  0.342881201  0.2661316
-## 2     3  1  1    0    0  2  2  1  2    1    1    1    1    0   1   0   1   0   0   2   0   2   0   0   0   2   2   0   0   4   3    30  0.295988773  0.2630337
-## 3     3  0  1    0    0  2  2  1  2    0    0    0    1    1   1   1   0   0   3   2   2   0   0   2   2   0   0   2   2   3   3    33 -0.005917671  0.2468540
-## 4     3  1  1    0    0  0  0  1  0    1    1    0    0    0   1   0   1   0   0   0   0   2   2   0   2   2   2   2   2   4   3    28 -0.145702261  0.2422359
-## 5     2  1  0    1    0  2  2  1  2    1    1    0    1    1   0   0   1   1   0   1   0   0   0   2   0   2   0   2   0   3   1    26 -0.085769847  0.2439559
-## 6     3  0  0    0    0  0  0  0  0    0    0    0    1    1   1   0   0   1   0   0   2   2   0   2   0   2   2   0   2   4   3    23 -0.735423400  0.2498404</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["SchType"],"name":[1],"type":["fct"],"align":["left"]},{"label":["FirstAtt"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["SchTypeGY"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["o1"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["o2"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["o3.1"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["o3.2"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["o4"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["o5"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["o6"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["o7"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["o8.1"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["o8.2"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["o8.3"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["o9.1"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["o9.2"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["o10"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["o11"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["o12"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["o13"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["o14"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["o15"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["o16.1"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["o16.2"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["o16.3"],"name":[25],"type":["dbl"],"align":["right"]},{"label":["o16.4"],"name":[26],"type":["dbl"],"align":["right"]},{"label":["o17"],"name":[27],"type":["dbl"],"align":["right"]},{"label":["o18"],"name":[28],"type":["dbl"],"align":["right"]},{"label":["o19"],"name":[29],"type":["dbl"],"align":["right"]},{"label":["o20"],"name":[30],"type":["dbl"],"align":["right"]},{"label":["o21"],"name":[31],"type":["dbl"],"align":["right"]},{"label":["o22"],"name":[32],"type":["dbl"],"align":["right"]},{"label":["o23"],"name":[33],"type":["dbl"],"align":["right"]},{"label":["o24"],"name":[34],"type":["dbl"],"align":["right"]},{"label":["o25.1"],"name":[35],"type":["dbl"],"align":["right"]},{"label":["o25.2"],"name":[36],"type":["dbl"],"align":["right"]},{"label":["o25.3"],"name":[37],"type":["dbl"],"align":["right"]},{"label":["o25.4"],"name":[38],"type":["dbl"],"align":["right"]},{"label":["o26.1"],"name":[39],"type":["dbl"],"align":["right"]},{"label":["o26.2"],"name":[40],"type":["dbl"],"align":["right"]},{"label":["b1"],"name":[41],"type":["dbl"],"align":["right"]},{"label":["b2"],"name":[42],"type":["dbl"],"align":["right"]},{"label":["b3.1"],"name":[43],"type":["dbl"],"align":["right"]},{"label":["b3.2"],"name":[44],"type":["dbl"],"align":["right"]},{"label":["b4"],"name":[45],"type":["dbl"],"align":["right"]},{"label":["b5"],"name":[46],"type":["dbl"],"align":["right"]},{"label":["b6"],"name":[47],"type":["dbl"],"align":["right"]},{"label":["b7"],"name":[48],"type":["dbl"],"align":["right"]},{"label":["b8.1"],"name":[49],"type":["dbl"],"align":["right"]},{"label":["b8.2"],"name":[50],"type":["dbl"],"align":["right"]},{"label":["b8.3"],"name":[51],"type":["dbl"],"align":["right"]},{"label":["b9.1"],"name":[52],"type":["dbl"],"align":["right"]},{"label":["b9.2"],"name":[53],"type":["dbl"],"align":["right"]},{"label":["b10"],"name":[54],"type":["dbl"],"align":["right"]},{"label":["b11"],"name":[55],"type":["dbl"],"align":["right"]},{"label":["b12"],"name":[56],"type":["dbl"],"align":["right"]},{"label":["b13"],"name":[57],"type":["dbl"],"align":["right"]},{"label":["b14"],"name":[58],"type":["dbl"],"align":["right"]},{"label":["b15"],"name":[59],"type":["dbl"],"align":["right"]},{"label":["b16"],"name":[60],"type":["dbl"],"align":["right"]},{"label":["b17"],"name":[61],"type":["dbl"],"align":["right"]},{"label":["b18"],"name":[62],"type":["dbl"],"align":["right"]},{"label":["b19"],"name":[63],"type":["dbl"],"align":["right"]},{"label":["b20"],"name":[64],"type":["dbl"],"align":["right"]},{"label":["b21"],"name":[65],"type":["dbl"],"align":["right"]},{"label":["b22"],"name":[66],"type":["dbl"],"align":["right"]},{"label":["b23"],"name":[67],"type":["dbl"],"align":["right"]},{"label":["b24"],"name":[68],"type":["dbl"],"align":["right"]},{"label":["b25"],"name":[69],"type":["dbl"],"align":["right"]},{"label":["b26"],"name":[70],"type":["dbl"],"align":["right"]},{"label":["Total"],"name":[71],"type":["dbl"],"align":["right"]},{"label":["IRTscore"],"name":[72],"type":["dbl"],"align":["right"]},{"label":["IRTscoreSE"],"name":[73],"type":["dbl"],"align":["right"]}],"data":[{"1":"GY4","2":"1","3":"1","4":"1","5":"1","6":"0","7":"0","8":"2","9":"0","10":"1","11":"2","12":"1","13":"1","14":"1","15":"1","16":"1","17":"1","18":"NA","19":"1","20":"1","21":"3","22":"2","23":"2","24":"2","25":"2","26":"2","27":"4","28":"3","29":"4","30":"5","31":"4","32":"1","33":"3","34":"1","35":"3","36":"6","37":"2","38":"4","39":"5","40":"4","41":"1","42":"1","43":"0","44":"0","45":"2","46":"0","47":"1","48":"2","49":"1","50":"1","51":"1","52":"1","53":"1","54":"1","55":"0","56":"1","57":"1","58":"3","59":"2","60":"0","61":"2","62":"0","63":"2","64":"0","65":"2","66":"2","67":"0","68":"0","69":"2","70":"1","71":"31","72":"0.342881201","73":"0.2661316","_rn_":"1"},{"1":"ST1","2":"1","3":"0","4":"1","5":"1","6":"0","7":"0","8":"2","9":"2","10":"1","11":"2","12":"1","13":"1","14":"1","15":"1","16":"0","17":"1","18":"0","19":"1","20":"0","21":"0","22":"2","23":"1","24":"2","25":"1","26":"2","27":"4","28":"3","29":"2","30":"4","31":"4","32":"1","33":"3","34":"2","35":"3","36":"6","37":"1","38":"2","39":"5","40":"3","41":"1","42":"1","43":"0","44":"0","45":"2","46":"2","47":"1","48":"2","49":"1","50":"1","51":"1","52":"1","53":"0","54":"1","55":"0","56":"1","57":"0","58":"0","59":"2","60":"0","61":"2","62":"0","63":"0","64":"0","65":"2","66":"2","67":"0","68":"0","69":"4","70":"3","71":"30","72":"0.295988773","73":"0.2630337","_rn_":"2"},{"1":"ST1","2":"1","3":"0","4":"0","5":"1","6":"NA","7":"NA","8":"2","9":"2","10":"1","11":"2","12":"NA","13":"NA","14":"NA","15":"1","16":"1","17":"1","18":"1","19":"0","20":"0","21":"3","22":"2","23":"1","24":"1","25":"1","26":"1","27":"1","28":"3","29":"4","30":"1","31":"5","32":"2","33":"5","34":"3","35":"3","36":"6","37":"1","38":"5","39":"5","40":"3","41":"0","42":"1","43":"0","44":"0","45":"2","46":"2","47":"1","48":"2","49":"0","50":"0","51":"0","52":"1","53":"1","54":"1","55":"1","56":"0","57":"0","58":"3","59":"2","60":"2","61":"0","62":"0","63":"2","64":"2","65":"0","66":"0","67":"2","68":"2","69":"3","70":"3","71":"33","72":"-0.005917671","73":"0.2468540","_rn_":"3"},{"1":"ST1","2":"0","3":"0","4":"1","5":"1","6":"0","7":"0","8":"0","9":"NA","10":"1","11":"NA","12":"1","13":"1","14":"0","15":"NA","16":"NA","17":"1","18":"NA","19":"1","20":"0","21":"NA","22":"0","23":"2","24":"2","25":"2","26":"2","27":"4","28":"2","29":"3","30":"1","31":"4","32":"1","33":"5","34":"3","35":"3","36":"6","37":"1","38":"2","39":"5","40":"3","41":"1","42":"1","43":"0","44":"0","45":"0","46":"0","47":"1","48":"0","49":"1","50":"1","51":"0","52":"0","53":"0","54":"1","55":"0","56":"1","57":"0","58":"0","59":"0","60":"0","61":"2","62":"2","63":"0","64":"2","65":"2","66":"2","67":"2","68":"2","69":"4","70":"3","71":"28","72":"-0.145702261","73":"0.2422359","_rn_":"4"},{"1":"UTE","2":"1","3":"0","4":"1","5":"0","6":"1","7":"0","8":"2","9":"2","10":"1","11":"2","12":"1","13":"1","14":"0","15":"1","16":"1","17":"NA","18":"0","19":"1","20":"1","21":"0","22":"1","23":"2","24":"1","25":"2","26":"1","27":"5","28":"4","29":"4","30":"2","31":"4","32":"5","33":"5","34":"2","35":"5","36":"6","37":"1","38":"2","39":"5","40":"2","41":"1","42":"0","43":"1","44":"0","45":"2","46":"2","47":"1","48":"2","49":"1","50":"1","51":"0","52":"1","53":"1","54":"0","55":"0","56":"1","57":"1","58":"0","59":"1","60":"0","61":"0","62":"0","63":"2","64":"0","65":"2","66":"0","67":"2","68":"0","69":"3","70":"1","71":"26","72":"-0.085769847","73":"0.2439559","_rn_":"5"},{"1":"GY8","2":"0","3":"1","4":"0","5":"0","6":"NA","7":"NA","8":"0","9":"NA","10":"NA","11":"NA","12":"0","13":"0","14":"0","15":"1","16":"1","17":"1","18":"0","19":"0","20":"1","21":"0","22":"0","23":"1","24":"1","25":"1","26":"1","27":"4","28":"3","29":"4","30":"5","31":"4","32":"1","33":"4","34":"3","35":"3","36":"6","37":"1","38":"2","39":"5","40":"3","41":"0","42":"0","43":"0","44":"0","45":"0","46":"0","47":"0","48":"0","49":"0","50":"0","51":"0","52":"1","53":"1","54":"1","55":"0","56":"0","57":"1","58":"0","59":"0","60":"2","61":"2","62":"0","63":"2","64":"0","65":"2","66":"2","67":"0","68":"2","69":"4","70":"3","71":"23","72":"-0.735423400","73":"0.2498404","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </details>
 <details>
 <summary>
@@ -384,8 +573,11 @@ data(&quot;CZmaturaS&quot;)</code></pre>
 <h5>4b. Provide descriptive statistics and plots for all relevant variables. Are the total scores approximately normally distributed? Why/Why not?</h5>
 <pre class="r"><code>#Descriptive statistics of total scores
 describe(CZmaturaS$Total, na.rm = FALSE)</code></pre>
-<pre><code>##    vars    n  mean    sd median trimmed   mad min max range  skew kurtosis   se
-## X1    1 2000 27.59 11.95     28   27.73 13.34   1  50    49 -0.09    -0.93 0.27</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["vars"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["mean"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["trimmed"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["mad"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["min"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["range"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["skew"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["kurtosis"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["se"],"name":[13],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2000","3":"27.5945","4":"11.95456","5":"28","6":"27.72687","7":"13.3434","8":"1","9":"50","10":"49","11":"-0.08536237","12":"-0.9254544","13":"0.2673121","_rn_":"X1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <pre class="r"><code>#Descriptive statistics of total scores grouped by &#39;SchTypeGY&#39;
 describeBy(CZmaturaS[, c(&quot;SchTypeGY&quot;, &quot;Total&quot;)], group = &quot;SchTypeGY&quot;)</code></pre>
 <pre><code>## 
@@ -405,11 +597,11 @@ ggplot(CZmaturaS, aes(Total)) +
         xlab(&quot;Total score&quot;) +
         ylab(&quot;Number of respondents&quot;) +
         theme_bw()</code></pre>
-<p><img src="HW1_files/figure-html/compute_total_scores-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/compute_total_scores-1.png" width="672" /></p>
 <pre class="r"><code>#Q-Q plot of total scores
 ggpubr::ggqqplot(CZmaturaS$Total, ylim=c(0,50), col =&quot;#69b3a2&quot;) +
   theme_bw()</code></pre>
-<p><img src="HW1_files/figure-html/compute_total_scores-2.png" width="672" /></p>
+<p><img src="index_files/figure-html/compute_total_scores-2.png" width="672" /></p>
 <pre class="r"><code>#Histogram of total scores grouped by &#39;SchTypeGY&#39;
 ggplot(CZmaturaS, aes(x=Total, fill=(as.factor(SchTypeGY)))) +
     geom_histogram(color=&quot;#e9ecef&quot;, 
@@ -420,7 +612,7 @@ ggplot(CZmaturaS, aes(x=Total, fill=(as.factor(SchTypeGY)))) +
                       name = &quot;School type&quot;, 
                       labels = c(&quot;Other&quot;, &quot;Gymnázium&quot;)) +
     theme_bw()</code></pre>
-<p><img src="HW1_files/figure-html/compute_total_scores-3.png" width="672" /></p>
+<p><img src="index_files/figure-html/compute_total_scores-3.png" width="672" /></p>
 <pre class="r"><code>#Descriptive statistics of total scores grouped by &#39;FirstAtt&#39;
 describeBy(CZmaturaS[, c(&quot;FirstAtt&quot;, &quot;Total&quot;)], group = &quot;FirstAtt&quot;)</code></pre>
 <pre><code>## 
@@ -442,7 +634,7 @@ ggplot(CZmaturaS, aes(x=Total, fill=(as.factor(FirstAtt)))) +
                    binwidth = 1) +
     scale_fill_manual(values=c(&quot;#404080&quot;, &quot;#69b3a2&quot;), name = &quot;First attempt&quot;, labels = c(&quot;No&quot;, &quot;Yes&quot;)) +
     theme_bw()</code></pre>
-<p><img src="HW1_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>The total scores do not follow a normal distribution. The median (28) is larger than the mean (27.59) which suggests a slight negative skew (-0.09). The kurtosis is negative as well (-0.93), thus pointing to a somewhat platykurtic distribution. Although the histogram of total scores does not seem obviously non-normal, the Q-Q plot shows a clear deviance from the normal distribution around the tails. After plotting a separate histogram for schools of type <em>gymnázium</em>, it becomes apparent that the underlying distribution is not unimodal <em>Gymnázium</em> students are, on average, more successful (mean total score of 35.12) than other students (mean total score of 22.13). The distribution of the <em>gymnázium</em> students’ total scores has a negative skew (-0.42), whereas the distribution of other students’ total scores is positively-skewed (0.25). Similarly, the distributions of total scores differ when the variable <code>FirstAtt</code> is considered. The sample of students who are repeating the exam is quite small (n = 268). Nonetheless, their average total score (16.9) is distinctly lower than the total score of students who are taking the exam for the first time (29.25), and the distribution of their scores is positively skewed (0.58). </br></p>
 </div>
 <div id="c-compute-the-z-scores-t-scores-percentiles-and-success-rate-for-all-respondents.-interpret-the-results-for-the-first-respondent." class="section level5">
@@ -453,8 +645,11 @@ ecdf &lt;- ecdf(CZmaturaS$Total)
 percentiles &lt;- as.matrix(100 * round(ecdf(CZmaturaS$Total), 2))
 success_rate &lt;- as.matrix(100 * (CZmaturaS$Total / max(CZmaturaS$Total)))
 data.frame(zscore[1,], tscore[1,], percentiles[1,], success_rate[1,])</code></pre>
-<pre><code>##   zscore.1... tscore.1... percentiles.1... success_rate.1...
-## 1   0.2848704     52.8487               60                62</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["zscore.1..."],"name":[1],"type":["dbl"],"align":["right"]},{"label":["tscore.1..."],"name":[2],"type":["dbl"],"align":["right"]},{"label":["percentiles.1..."],"name":[3],"type":["dbl"],"align":["right"]},{"label":["success_rate.1..."],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.2848704","2":"52.8487","3":"60","4":"62"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <p>The first respondent has a Z-score of circa 0.28, which means their total score lies 0.28 times the standard deviation above the mean of this sample (Z-score = 0). The T-score of this student is approximately 52.85 which again points to an above-average (50) result. Their percentile is 60, meaning 60 % of respondents in this sample scored less than or equal to the first respondent. The respondent’s success rate is 62, which means their total score corresponds to 62 % of the best total score in this sample (50).</p>
 <p></br></p>
 </div>
@@ -471,7 +666,7 @@ ggplot(df, aes(CZmaturaS.Total)) +
   xlab(&quot;Total score&quot;) +
   ylab(&quot;Number of respondents&quot;) +
   theme_bw()</code></pre>
-<p><img src="HW1_files/figure-html/work%20with%20SIA-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/work%20with%20SIA-1.png" width="672" /></p>
 <p>The 3-color histogram depicts the total scores with a cut-score – in this case, the median (28). The cut-score is represented by the grey column, which divides the sample into two equally sized groups. Students who scored below the median of this sample are red, students who scored above the sample median are blue. Lastly, students who reached a total score equal to the median are shown in the grey column.</p>
 <p></br></p>
 </div>
@@ -484,6 +679,8 @@ ggplot(df, aes(CZmaturaS.Total)) +
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -515,7 +712,41 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
