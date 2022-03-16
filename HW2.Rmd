@@ -1,0 +1,333 @@
+---
+title: 'Selected Topics of Psychometrics (NMST570)'
+subtitle: 'Homework Assignment 2: Validity'
+author: 'Kateřina Hudáčová (Benjamín Kunc)'
+date: \today
+---
+
+Note: The assignment is due on Oct 25, 2021. Send your code and html/pdf report to `dlouha@cs.cas.cz` (and to `martinkova@cs.cas.cz` in copy).
+
+</br>
+
+#### 1. Read and comment on Chapter 2 on https://perusall.com. [2 pts]
+
+Done.
+
+#### 2. Run the code for the Chapter 2, available on course webpage http://www.cs.cas.cz/martinkova/NMST570.html.
+
+Done.
+
+#### 3. Complete the CAPlearnR online tutorial for Validity. Attach certificate. [4 pts] 
+> Note: If you meet any issues, contact the the TA or the instructor before 8 AM of the due date.
+
+Done.
+
+#### 4. Project preparation: Explore the Czech matura data OR DATA OF YOUR CHOICE as described below. You can work with 1-2 teammates on this task. All teammate names have to be included on your answer sheet. [4 pts]
+
+##### 4a. The original Czech matura data is available on https://vysledky.cermat.cz/statistika/. You need to select `Maturitní zkoušky` `Jaro - 2019` and click on `Matematika` at the very botom in the `Neagregovaná položková data` section. This will download a .xls file with the item data. You may view the file and its decription which is avalable on the webpage. Load the data and prepare it for the analysis. Check item wording (include the link where it can be found).
+
+```{r load_packages, include=FALSE}
+library(ShinyItemAnalysis)
+library(ggridges)
+library(psych)
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(corrplot)
+```
+
+
+```{r load_data}
+# read data
+data(BFI2, package='ShinyItemAnalysis')
+```
+
+<details><summary>`summary()`</summary>
+```{r}
+summary(BFI2)
+```
+</details>
+
+<details><summary>`str()`</summary>
+```{r}
+str(BFI2)
+```
+</details>
+
+```{r}
+head(BFI2)
+```
+
+
+```{r}
+# data names
+names(BFI2)
+colnames(BFI2)[1:60] <- c("iEscb01", "iAcmp02", "iCorg03r", "iNanx04r", "iOaes05r", "iEasr06",
+"iArsp07", "iCprd08r", "iNdep09r", "iOint10", "iEenl11r", "iAtrs12r", "iCrsp13", "iNemt14",
+"iOcrt15", "iEscb16r", "iAcmp17r", "iCorg18", "iNanx19", "iOaes20", "iEasr21", "iArsp22r",
+"iCprd23r", "iNdep24r", "iOint25r", "iEenl26r", "iAtrs27", "iCrsp28r", "iNemt29r",
+"iOcrt30r", "iEscb31r", "iAcmp32", "iCorg33", "iNanx34", "iOaes35", "iEasr36r", "iArsp37r",
+"iCprd38", "iNdep39", "iOint40", "iEenl41", "iAtrs42r", "iCrsp43", "iNemt44r", "iOcrt45r",
+"iEscb46", "iAcmp47r", "iCorg48r", "iNanx49r", "iOaes50r", "iEasr51r", "iArsp52", "iCprd53",
+"iNdep54", "iOint55r", "iEenl56", "iAtrs57", "iCrsp58r", "iNemt59", "iOcrt60")
+```
+
+
+```{r}
+# data format
+BFI2$Gender <- factor(BFI2$Gender, 
+                      levels=c('0', '1'), 
+                      labels=c('Female', 'Male'))
+
+BFI2$Educ <- factor(BFI2$Educ,
+                    levels = c(2:8),
+                    labels=c("Secondary technical school", "Secondary general school", "Other secondary school",
+                             "Tertiary professional school", "Bachelor degree", 
+                             "Masters degree", "PhD"))
+```
+
+```{r}
+# descriptive statistics for Gender, Age and Educ
+round(prop.table(table(BFI2$Gender)), 3)
+
+summary(BFI2$Age)
+
+summary(BFI2$Educ)
+round(prop.table(table(BFI2$Educ)), 3)
+educ <- as.data.frame(table(BFI2$Educ, dnn = list("Education")), responseName = "Count")
+```
+
+```{r plots}
+# gender
+ggplot(BFI2, aes(Gender, fill = Gender)) +
+  geom_bar() +
+  theme_bw() +
+  ggtitle("Gender") +
+  theme(plot.title = element_text(hjust=0.5),
+        axis.title.x = element_blank())
+
+# age
+ggplot(BFI2, 
+       aes(Age)) +
+  geom_histogram(bins = 12, fill = 'coral1', col='white') +
+  theme_bw() +
+  ggtitle("Age") +
+  theme(plot.title = element_text(hjust=0.5),
+        axis.title.x = element_blank())
+
+# educ
+ggplot(educ, aes(x=reorder(Education, +Count), y=Count, fill = Education)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Education") +
+  theme_bw() +
+    theme(legend.position="none",
+        plot.title = element_text(hjust=0.5),
+        axis.title.y = element_blank()) + 
+  coord_flip()
+```
+
+```{r}
+# facet scores
+facets <- unique(substr(names(BFI2[1:60]), 2,5))
+BFI2_facets <- as.data.frame(sapply(facets, function(xx) rowSums(BFI2[,grep(xx, names(BFI2)), drop=FALSE])))
+
+# domain scores
+domains <- unique(substr(names(BFI2[1:60]), 2, 2))
+BFI2_domains <- as.data.frame(sapply(domains, function(xx) rowSums(BFI2_facets[,grep(xx, names(BFI2_facets)), drop=FALSE])))
+BFI2_domains <- cbind(BFI2_domains, BFI2$Gender, BFI2$Educ)
+colnames(BFI2_domains)[6:7] <- c("Gender", "Education")
+```
+
+
+```{r}
+# item scores to long format
+BFI2_long <- BFI2 %>% 
+  mutate(pid = row_number()) %>% 
+  pivot_longer(starts_with("i"), names_to ="Item", values_to = "Score") %>% 
+  mutate(Domain = substr(Item, 2, 2),
+         Facet = substr(Item, 2, 5))
+```
+
+
+```{r message=FALSE}
+# domain scores to long format
+BFI2_domains_long <- BFI2_domains %>% 
+  mutate(pid = row_number()) %>% 
+  pivot_longer(cols = 1:5, names_to = "Domain", values_to = "Score") %>% 
+  mutate(Domain = as.factor(Domain))
+
+# descriptive stats for domains
+describeBy(BFI2_long$Score, group=BFI2_long$Domain)
+
+# descriptive stats grouped by domain & gender
+describeBy(BFI2_domains_long$Score, group = list(BFI2_domains_long$Domain, BFI2_domains_long$Gender))
+
+# plot of domain distributions & gender
+ggplot(BFI2_domains_long, aes(x=Score, y=Domain)) + 
+  geom_density_ridges(aes(group = interaction(Domain, Gender), fill = Gender, linetype=Gender),
+               position = "identity",
+               alpha = 0.7,
+               size = 1) +
+  labs(title = "Distribution of Big5 domains", x = "Score") +
+  scale_y_discrete(labels=c("Open-Mindedness", "Negative Emotionality", 
+                            "Extraversion", "Conscientiousness", "Agreeability")) +
+  theme_bw() +
+  theme(axis.title.y = element_blank(),
+        plot.title = element_text(hjust=0.5))
+```
+
+We decided to work with the `BFI2`dataset from the `ShinyItemAnalysis` package. The `BFI2`dataset contains responses of $1733$ Czech respondents to the Big Five Inventory 2, as well as information about their age, education, and gender. The BFI2 items are scored using a 5-point Likert scale. I used alternative item names provided in the dataset documentation and I set both the `Gender` and `Educ` variables to factors with appropriate labels. Circa $57.9 \%$ of the respondents are female, $42.1 \%$ are male. Notably, the dataset only covers an age group of people between $15$ and $26$ with a mean of $20.06$ years. Out of the $723$ respondents who specified their highest level of attained education -- $32.1 \%$ finished a secondary technical school, $27.9 \%$ finished a secondary general school, $13.4 \%$ finished another secondary school, $11.2 \%$ obtained a Masters degree, $10.4 \%$ obtained a Bachelor degree, $4 \%$ finished a tertiary professional school and finally, $1 \%$ obtained a PhD. 
+
+When observing the distribution of scores grouped by the Big5 domains it can be stated that they do not follow a normal distribution -- they are multimodal. *Open-Mindedness* has the highest mean in this sample ($43.48$) followed by *Agreeability* ($43.31$), *Extraversion* ($39.59$), *Conscientiousness* ($38.75$) and *Negative Emotionality* (35.63). *Negative Emotionality* exhibits the highest standard deviation, which points to relatively spread out responses on the corresponding items. It could be hypothesized, that these results are, to a certain extent, typical of the given age group (e.g. high *Open-Mindedness*). On average, female respondents in this sample scored higher than males in all dimensions except *Extraversion*. The most distinct gender differences in this sample seem to emerge along the dimensions of *Negative Emotionaliy* ($\mu_{(F)} = 37.61$, $\mu_{(M)} = 32.92$) and *Agreeability* ($\mu_{(F)} = 44.3$, $\mu_{(M)} = 41.95$). 
+
+</br>
+
+##### 4b. What construct is your test measuring? What is intended use of test scores? Is there other use you can think of? 
+
+The Big Five is a 5-factor model of personality -- therefore, inventories based on this model measure 5 personality traits. The test scores are primarily intended to capture and summarize important personality differences, which is especially useful in psychological research. The *Neuroticism*/*Negative Emotionality* scale is particularly beneficial in clinical psychology. Big Five inventories can also be utilized in career counseling (identifying personal strengths) or in candidate assessment (comparing candidate's profile to an ideal one). Apart from the broad 5 personality dimensions, Big Five inventories generally also contain more specific subscales (e.g. *Sociability*) which allow for more precise predictions of behavior.
+
+</br>
+
+##### 4c How would you obtain evidence of validity of test scores based on test content? How would you obtain evidence of criterion validity, what data would you need? Use terms concurrent, predictive, incremental, convergent, discriminant. Provide proofs of criterion validity if criterion is available.
+
+Since the BFI2 is a self-report inventory, evidence of construct validity could be obtained by examining rater-concordance between the respondents and their friends, or between respondents and experts (psychiatrists, clinical psychologists). Test content validity could be determined by experts' ratings of the importance/suitability of the individual items.
+
+Evidence for the **convergent validity** of the Big Five could be obtained by correlating the domain scores with other psychological tests aiming to measure the same or at least similar constructs. One could for example compare the BFI2 results to reults of the NEO PI-R. Furthermore, one could for example expect the subscale of *Negative Emotionality* to correlate with measures of anxiety (e.g. Generalized Anxiety Disorder Assessment) and depression (Beck's Depression Inventory). *Open-Mindedness* should presumably correlate with measures of creativity etc.
+
+**Discriminant validity** of the BFI2 could be explored by comparing the results of its subscales to constructs, that should not be highly correlated to said subscales. Going back to the previously mentioned GAD and BDI as correlates of the *Negative Emotionality* subscale, one should make sure that the correlations aren't extremely high, and that the tests aren't measuring identical constructs.
+
+**Concurrent validity** could be assessed by comparing the BFI2 results with another personality test based on the Big Five model administrated at the same time.
+
+
+We could obtain evidence for the BIF2's **predictive validity** for example by correlating *Conscientiousness* scores of students with their future GPAs, or scores of employees with their future job performance. *Negative Emotionality* could serve as a predictor of certain clinical diagnoses (anxiety, personality disorders, mood disorders).
+
+An example of evidence for **incremental validity** of the BFI2 could be the comparison of the predictive value of *Conscientiousness* scores (in terms of future job performance) to other measures of candidate assessment, such as an assessment centre.
+
+
+</br>
+
+
+##### 4d Provide evidence of validity of test scores based on internal structure: Include corrplot, discuss which items correlate the most. 
+
+```{r internal_structure, fig.height=15, fig.width=15}
+# item correlation matrix
+corP <- psych::polychoric(BFI2[1:60])
+
+# item correlation plot
+ShinyItemAnalysis::plot_corr(BFI2[1:60], cor = "polychoric",
+                             clust_method = "ward.D2",
+                             n_clust = 5,
+                             shape = 'square',
+                            line_col = 'red',
+                            fill = 'red',
+                            fill_alpha = 0.1) +
+  theme(axis.text=element_text(size=12))
+```
+
+```{r}
+# factor correlation matrix
+cor(BFI2_domains[1:5], method="spearman")
+
+# factor correlation plot
+ShinyItemAnalysis::plot_corr(BFI2_domains[1:5],
+                             cor = "spearman",
+                             shape = 'square',
+                             labels = TRUE,
+                             labels_size = 4)
+```
+
+```{r}
+# extraversion subscales correlation matrix
+BFI2 %>% 
+  select(seq(1, 56, 5)) %>% 
+  plot_corr(corr = "polychoric",
+          clust_method = "ward.D2",
+          n_clust = 3,
+          shape = 'square',
+          labels = TRUE,
+          labels_size = 4,
+          line_col = 'red',
+          fill = 'red',
+          fill_alpha = 0.1)
+```
+
+```{r}
+# agreeability subscales correlation matrix
+BFI2 %>% 
+  select(seq(2, 57, 5)) %>% 
+  plot_corr(corr = "polychoric",
+          clust_method = "ward.D2",
+          n_clust = 3,
+          shape = 'square',
+          labels = TRUE,
+          labels_size = 4,
+          line_col = 'red',
+          fill = 'red',
+          fill_alpha = 0.1)
+```
+
+```{r}
+# conscientiousness subscales correlation matrix
+BFI2 %>% 
+  select(seq(3, 58, 5)) %>% 
+  plot_corr(corr = "polychoric",
+          clust_method = "ward.D2",
+          n_clust = 3,
+          shape = 'square',
+          labels = TRUE,
+          labels_size = 4,
+          line_col = 'red',
+          fill = 'red',
+          fill_alpha = 0.1)
+```
+
+```{r}
+# negative emotionality subscales correlation matrix
+BFI2 %>% 
+  select(seq(4, 59, 5)) %>% 
+  plot_corr(corr = "polychoric",
+          clust_method = "ward.D2",
+          n_clust = 3,
+          shape = 'square',
+          labels = TRUE,
+          labels_size = 4,
+          line_col = 'red',
+          fill = 'red',
+          fill_alpha = 0.1)
+```
+
+```{r}
+# open-mindedness subscales correlation matrix
+BFI2 %>% 
+  select(seq(5, 60, 5)) %>% 
+  plot_corr(corr = "polychoric",
+          clust_method = "ward.D2",
+          n_clust = 3,
+          shape = 'square',
+          labels = TRUE,
+          labels_size = 4,
+          line_col = 'red',
+          fill = 'red',
+          fill_alpha = 0.1)
+```
+</br>
+Because the BFI2 does not measure a single construct, its items should not all intercorrelate. Items should intercorrelate within the framework of the corresponding domain and facet. Although the item correlation heat-map is a bit cluttered, it shows 5 clusters roughly representing the five BFI2 domains. There is an overlap of *Extraversion* and *Open-Mindedness* items. Looking at the domain correlations confirms this, as there is a positive correlation ($\rho=0.29$) between *Extraversion* and *Open-Mindedness*. *Extraversion* is also negatively correlated to *Negative Emotionality* ($\rho=-0.32$). Correlation heatmaps for the respective dimensions show that there are a few 'unexpected' high correlations -- *Respectfulness* correlates with *Compassion* (*Agreeability*), *Responsibility* correlates with *Organization* (*Conscientiousness*), *Depression* correlates with *Anxiety* (*Negative Emotionality*).
+
+</br>
+
+
+##### 4e (extra) Discuss situations when range restriction may occur in your data. Simulate a situation when range restriction occurs in your data, or provide a practical example. Estimate corrrelation and provide estimate corrected for range restriction.
+
+```{r range_restriction}
+
+```
+
+
+</br>
+
+
+#### 5. Use your own data and/or provide constructive feedback to the lecture, exercises, or any of the material. [BONUS 1 pt]
+
+
+</br>
+
